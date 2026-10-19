@@ -1,86 +1,79 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { ref, set } from "firebase/database";
-
+import { Link } from "react-router-dom";
+import { ref, push, set } from "firebase/database";
 import { clearCart } from "../redux/winesSlice";
 import database from "../firebase-config";
-
-import "./CartResultBlock.css";
-
-function CartResultBlock() {
-
-  const cartItems = useSelector(state => state.wines.cart);
+import { money } from "./WineItem";
+export default function CartResultBlock() {
+  const cart = useSelector((state) => state.wines.cart);
   const dispatch = useDispatch();
-
-  const minOrder = 50;
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [freeDeliveryAmount, setFreeDeliveryAmount] = useState(50);
-  const [sendedOrder, setSendedOrder] = useState(false);
-
-  useEffect( () => {
-    if (cartItems.length > 0) {
-      const amount = cartItems.reduce( (r,v) => r + (v.amount * v.item.price), 0);
-      setTotalAmount(amount);
-      setFreeDeliveryAmount(minOrder - amount);
+  const [status, setStatus] = useState("idle");
+  const total = cart.reduce(
+    (sum, entry) => sum + entry.amount * entry.item.price,
+    0,
+  );
+  async function submit() {
+    if (status === "sending" || !cart.length) return;
+    setStatus("sending");
+    try {
+      await set(
+        push(ref(database, "orders")),
+        cart.map(({ item, amount }) => ({
+          name: item.name,
+          id: item.id,
+          amount,
+        })),
+      );
+      dispatch(clearCart());
+      setStatus("success");
+    } catch {
+      setStatus("error");
     }
-  },[cartItems]);
-
-  function sendOrder() {
-    const order = cartItems.map( v =>
-      ({
-        name: v.item.name, 
-        id: v.item.id,
-        amount: v.amount,
-      }));
-    uploadOrderToServer(order);
-    dispatch(clearCart());
-    setTotalAmount(0);
-    setFreeDeliveryAmount(0);
-    setSendedOrder(true);
-  };
-
-  async function uploadOrderToServer(order) {
-    const id = new Date();
-    set(ref(database, 'orders/' + id), order);
-  };
-
+  }
+  if (!cart.length)
+    return (
+      <div className="empty-state">
+        <h2>
+          {status === "success"
+            ? "Your request has been saved."
+            : "Your bag is waiting."}
+        </h2>
+        <p>
+          {status === "success"
+            ? "No payment has been taken. Delivery and payment are not available in this demo."
+            : "Find a bottle that feels like you."}
+        </p>
+        <Link className="button" to="/">
+          Explore wines ↗
+        </Link>
+      </div>
+    );
   return (
-    <div className="cart-result-wrap">
-      <div className="cart-result-decorate-line"></div>
-      { (cartItems.length !== 0) &&
-        <div className="cart-result-block">
-          <div className="cart-result-block-info">
-            <p className="cart-result-block-title">
-              Total:
-              <span> {totalAmount.toFixed(2)} &#8364;</span>
-            </p>
-            { (totalAmount < minOrder) && 
-              <p className="cart-result-block-par">
-                Not enough to get free shipping:
-                <span> {freeDeliveryAmount.toFixed(2)} &#8364;</span>
-              </p>
-            }
-          </div>
-          <input className="cart-result-block-btn" type="button" value="Checkout" onClick={sendOrder} />
-        </div>
-      }
-
-      { (sendedOrder) &&
-        <p className="cart-result-block-response">Thank you, your order has been accepted!</p>
-      }
-
-      { (cartItems.length === 0 && !sendedOrder) &&
-        <div className="cart-result-empty">
-          <div className="cart-result-empty-img-block"></div>
-          <h2 className="cart-result-empty-title">
-            cart empty
-          </h2>
-          <NavLink to="/" className="cart-result-empty-link">Choose wine</NavLink>
-        </div>
-      }
-    </div>
+    <aside className="order-summary">
+      <p className="eyebrow">Your selection</p>
+      <h2>Order summary</h2>
+      <div className="subtotal">
+        <span>Subtotal</span>
+        <strong>{money(total)}</strong>
+      </div>
+      <p>
+        This portfolio demo saves an order request only. It does not collect
+        payment or arrange delivery.
+      </p>
+      <button
+        className="button"
+        disabled={status === "sending"}
+        onClick={submit}
+      >
+        {status === "sending" ? "Saving request…" : "Save order request ↗"}
+      </button>
+      {status === "error" && (
+        <p role="alert">
+          We couldn’t save your request. Your bag is safe. Please try again.
+        </p>
+      )}
+      <Link to="/">Continue exploring</Link>
+    </aside>
   );
 }
-
-export default CartResultBlock;

@@ -1,53 +1,31 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-
 import CartWineItem from "./CartWineItem";
 import CartResultBlock from "./CartResultBlock";
-import PagesLinks from "./PagesLinks";
-
-import "./WineCart.css";
-
-function WineCart() {
-
-  const [itemsAmount, setItemsAmount] = useState(0);
-
-  const itemsInCart = useSelector(state => state.wines.cart);
-
-  const amount = itemsInCart.reduce( (r, v) => r + v.amount, 0);
-  if (itemsAmount !== amount) {
-    setItemsAmount(amount);
-  };
-
-  let cartItemsCode;
-  if (itemsInCart.length > 0) {
-    cartItemsCode = itemsInCart.map( v =>
-      <CartWineItem
-        key={v.item.id}
-        amount={v.amount}
-        item={v.item}
-      />
-    );
-  };
-
+export default function WineCart() {
+  const cart = useSelector((state) => state.wines.cart);
   return (
-    <Fragment>
-      <PagesLinks />
-
-      <div className="cart-header">
-        <NavLink to="/" className="cart-link">&#65124; choose wine</NavLink>
-        <div className="cart-decoration-block"></div>
-        <h1 className="cart-title">Cart</h1>
-        <span className="cart-title-info">(items in cart: {itemsAmount})</span>
+    <main id="main" className="cart-page">
+      <Link to="/" className="back-link">
+        ← Back to the collection
+      </Link>
+      <p className="eyebrow">Good choices</p>
+      <h1>
+        Your <em>wine bag.</em>
+      </h1>
+      <p>
+        {cart.reduce((sum, entry) => sum + entry.amount, 0)} bottles, ready for
+        your next moment.
+      </p>
+      <div className="cart-layout">
+        <div>
+          {cart.map((entry) => (
+            <CartWineItem key={entry.item.id} {...entry} />
+          ))}
+        </div>
+        <CartResultBlock />
       </div>
-
-      <div className="cart-items-block">
-        {cartItemsCode}
-      </div>
-
-      <CartResultBlock />
-    </Fragment>
+    </main>
   );
 }
-
-export default WineCart;

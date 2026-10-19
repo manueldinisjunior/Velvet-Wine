@@ -1,215 +1,100 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { winesLoad } from "../redux/winesLoad";
-import { updateCart, setPageWines} from "../redux/winesSlice";
+import { updateCart } from "../redux/winesSlice";
 import WineShopHeader from "./WineShopHeader";
-import PagesRouter from "../routes/PagesRouter";
-import WineItem from "./WineItem";
+import { PageMain } from "../pages/PageMain";
+import WineCart from "./WineCart";
 
-function WineShop() {
-
-  const location = useLocation();
+export default function WineShop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }, [pathname, hash]);
   const dispatch = useDispatch();
-  const wines = useSelector(state => state.wines);
-
-  const [initialWinesArr, setInitialWinesArr] = useState(null);
-  const [winesArr, setWinesArr] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [winesPerPage] = useState(12);
-  const [isShowPages, setIsShowPages] = useState(false);
-
-  if (wines.dataLoadState === 0) {
+  const cart = useSelector((state) => state.wines.cart);
+  const [restored, setRestored] = useState(false);
+  useEffect(() => {
     dispatch(winesLoad);
-  };
-
-  // save info from localStorage
-  useEffect( () => {
-    if (localStorage.getItem("nevinnyShopCartData")) {
-      const cartFromLocalStorage = JSON.parse(localStorage.getItem("nevinnyShopCartData"));
-      dispatch(updateCart(cartFromLocalStorage));
+    try {
+      const saved = JSON.parse(
+        localStorage.getItem("nevinnyShopCartData") || "[]",
+      );
+      if (Array.isArray(saved))
+        dispatch(
+          updateCart(
+            saved.filter(
+              (entry) =>
+                entry?.item?.id &&
+                typeof entry.item.name === "string" &&
+                Array.isArray(entry.item.region) &&
+                Number.isFinite(entry.item.price) &&
+                entry.item.price >= 0 &&
+                Number.isInteger(entry.amount) &&
+                entry.amount > 0,
+            ),
+          ),
+        );
+    } catch {
+      /* A damaged or unavailable cache must not prevent shopping. */
     }
-  }, []
-  );
-
-  // catch event before page reload and save current cart to localStorage
-  window.addEventListener("beforeunload", saveCartToLocalStorage);
-
-  function saveCartToLocalStorage() {
-    localStorage.setItem("nevinnyShopCartData", JSON.stringify(wines.cart));
-  };
-
-  useEffect( () => {
-    if (wines.dataLoadState === 2) {
-      switch (location.pathname) {
-        case "/italy":
-          getItalyWines();
-          break;
-        case "/spain":
-          getSpainWines();
-          break;
-        case "/france":
-          getFranceWines();
-          break;
-        case "/new-world":
-          getNewWorldWines();
-          break;
-        case "/":
-          getAllWines();
-          break;
-        default:
-          break;
-      }
-    };
-  }, [location.pathname, wines.dataLoadState]
-  );
-
-  function getItalyWines() {
-    const italyWines = wines.initialData.filter( v => v.region[0].toLowerCase() === "италия");
-    dispatch(setPageWines(italyWines));
-  };
-
-  function getSpainWines() {
-    const spainWines = wines.initialData.filter( v => v.region[0].toLowerCase() === "испания");
-    dispatch(setPageWines(spainWines));
-  };
-
-  function getFranceWines() {
-    const franceWines = wines.initialData.filter( v => v.region[0].toLowerCase() === "франция");
-    dispatch(setPageWines(franceWines));
-  };
-
-  function getNewWorldWines() {
-    const countries = ["аpгентина", "австралия", "чили", "новая зеландия", "юар", "сша"];
-    const newWorldWines = [];
-    for (let i = 0; i < wines.initialData.length; i++) {
-      for (let j = 0; j < countries.length; j++) {
-        if (wines.initialData[i].region[0].toLowerCase() === countries[j]) {
-          newWorldWines.push(wines.initialData[i]);
-        }
+    setRestored(true);
+  }, [dispatch]);
+  useEffect(() => {
+    if (restored) {
+      try {
+        localStorage.setItem("nevinnyShopCartData", JSON.stringify(cart));
+      } catch {
+        /* Storage is optional. */
       }
     }
-    dispatch(setPageWines(newWorldWines));
-  };
-
-  function getAllWines() {
-    dispatch(setPageWines(wines.initialData));
-  };
-
-  useEffect( () => {
-    if (wines.dataLoadState === 2) {
-      setInitialWinesArr(wines.data);
-      setWinesArr(wines.data);
-    }
-  }, [wines]
-  );
-
-  useEffect( () => {
-    setCurrentPage(1);
-  }, [location]
-  );
-
-  function changedFilter(filterText) {
-    setCurrentPage(1);
-    switch (filterText) {
-      case "red":
-        setWinesArr(initialWinesArr.filter( v => v.type.toLowerCase() === "red"));
-        break;
-      case "white":
-        setWinesArr(initialWinesArr.filter( v => v.type.toLowerCase() === "white"));
-        break;
-      case "dry":
-        setWinesArr(initialWinesArr.filter( v => v.sugar.toLowerCase() === "dry"));
-        break;
-      case "semi-dry":
-        setWinesArr(initialWinesArr.filter( v => v.sugar.toLowerCase() === "semi-dry"));
-        break;
-      case "semi-sweet":
-        setWinesArr(initialWinesArr.filter( v => v.sugar.toLowerCase() === "semi-sweet"));
-        break;
-      case "sweet":
-        setWinesArr(initialWinesArr.filter( v => v.sugar.toLowerCase() === "sweet"));
-        break;
-      case "all":
-        setWinesArr(initialWinesArr);
-        break;
-      default:
-        break;
-    }
-  };
-
-  function changedSort(sortType) {
-    const sortedArr = [...winesArr];
-    switch (sortType) {
-      case "raiting-decrease":
-        setWinesArr(sortedArr.sort( (a,b) => b.raiting - a.raiting));
-        break;
-      case "raiting-increase":
-        setWinesArr(sortedArr.sort( (a,b) => a.raiting - b.raiting));
-        break;
-      case "price-decrease":
-        setWinesArr(sortedArr.sort( (a,b) => b.price - a.price));
-        break;
-      case "price-increase":
-        setWinesArr(sortedArr.sort( (a,b) => a.price - b.price));
-        break;
-      case "all":
-        setWinesArr(initialWinesArr);
-        break;
-      default:
-        break;
-    }
-  };
-
-  function changeOutputType(state) {
-    setIsShowPages(state);
-  };
-
-  function paginate(number) {
-    setCurrentPage(number);
-  };
-
-  let wineItemCode;
-  if (winesArr) {
-    if (isShowPages) {
-      const lastWineIndex = currentPage * winesPerPage;
-      const firstWineIndex = lastWineIndex - winesPerPage;
-      const currentPageWines = winesArr.slice(firstWineIndex, lastWineIndex);
-      wineItemCode = currentPageWines.map( v =>
-        <WineItem 
-          key={v.id}
-          item={v}
-        />
-      );
-    } else {
-      wineItemCode = winesArr.map( v =>
-        <WineItem 
-          key={v.id}
-          item={v}
-        />
-      );
-    }
-  };
-
+  }, [cart, restored]);
   return (
-    <Fragment>
+    <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <WineShopHeader />
-      <PagesRouter
-        cbChangedFilter={changedFilter}
-        cbChangedSort={changedSort}
-        cbChangeOutputType={changeOutputType}
-        loadState={wines.dataLoadState}
-        wineItemCode={wineItemCode}
-        loadError={wines.dataLoadError}
-        isShowPages={isShowPages}
-        winesArrLength={winesArr ? winesArr.length : null}
-        winesPerPage={winesPerPage}
-        cbPaginate={paginate}
-        currentPage={currentPage}
-      />
-    </Fragment>
+      <Routes>
+        {["/", "/italy", "/france", "/spain", "/new-world"].map((path) => (
+          <Route key={path} path={path} element={<PageMain />} />
+        ))}
+        <Route path="/cart" element={<WineCart />} />
+        <Route
+          path="*"
+          element={
+            <main id="main" className="empty-state">
+              <h1>A little off the wine trail.</h1>
+              <Link className="button" to="/">
+                Explore the collection
+              </Link>
+            </main>
+          }
+        />
+      </Routes>
+      <footer id="contact">
+        <div className="footer-top">
+          <Link to="/" className="wordmark">
+            velvet<span>essence</span>
+          </Link>
+          <p>
+            Good wine.
+            <br />
+            Even better company.
+          </p>
+          <a href="tel:+258875144228">
+            Let’s talk wine ↗<br />
+            <small>+258 875 144 228</small>
+          </a>
+        </div>
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} Velvet Essence</span>
+          <span>Enjoy responsibly. For adults of legal drinking age.</span>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </footer>
+    </>
   );
 }
-
-export default WineShop;

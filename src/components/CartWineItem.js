@@ -1,86 +1,49 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { useDispatch } from "react-redux";
-
 import { changeItemAmount, deleteItemFromCart } from "../redux/winesSlice";
-
-import "./CartWineItem.css";
-
-function CartWineItem( {amount, item} ) {
-
-  const [currentPrice, setCurrentPrice] = useState(amount * item.price);
-
+import { WineImage, money } from "./WineItem";
+export default function CartWineItem({ amount, item }) {
   const dispatch = useDispatch();
-
-  function increaseAmount() {
-    const newAmount = amount + 1;
-    setCurrentPrice(newAmount * item.price);
-    dispatch(changeItemAmount( {currentItemId: item.id, currentAmount: newAmount} ));
-  };
-
-  function decreaseAmount(event) {
-    const newAmount = amount - 1;
-    if (newAmount > 0) {
-      setCurrentPrice(newAmount * item.price);
-      dispatch(changeItemAmount( {currentItemId: item.id, currentAmount: newAmount} ));
-    } else {
-      deleteItem(event);
-    }
-  };
-
-  function deleteItem(event) {
-    event.target.parentElement.parentElement.parentElement.parentElement.classList.add("deleted-item");
-    setTimeout( () => {
-      dispatch(deleteItemFromCart(item.id));
-    }, 500);
-  };
-
-  return(
-    <div className="cart-item-block">
-      <div className="cart-item-img-block">
-        <img className="cart-item-img" src={item.imgSmall} title={item.name} alt={item.name} />
+  function change(delta) {
+    if (amount + delta < 1) dispatch(deleteItemFromCart(item.id));
+    else
+      dispatch(
+        changeItemAmount({
+          currentItemId: item.id,
+          currentAmount: amount + delta,
+        }),
+      );
+  }
+  return (
+    <article className="cart-item">
+      <div className="cart-image">
+        <WineImage item={item} />
       </div>
-      <div className="cart-item-wrap">
-        <div className="cart-item-info-block">
-          <h2 className="cart-item-title">{item.name}</h2>
-          <p className="cart-item-par">Type: {item.type}, {item.sugar}</p>
-          <p className="cart-item-par">Region: {item.region.join(", ")}</p>
+      <div>
+        <h2>{item.name}</h2>
+        <p>
+          {item.region.join(", ")} · {item.volume} L
+        </p>
+        <div className="quantity">
+          <button
+            onClick={() => change(-1)}
+            aria-label={`Remove one ${item.name}`}
+          >
+            −
+          </button>
+          <span>{amount}</span>
+          <button onClick={() => change(1)} aria-label={`Add one ${item.name}`}>
+            +
+          </button>
         </div>
-        <div className="cart-item-btns-wrap">
-          <div className="cart-item-count-block">
-            <input className="cart-item-count-btn" type="button" value="-" onClick={decreaseAmount} />
-            <span className="cart-item-count-text">{amount}</span>
-            <input className="cart-item-count-btn" type="button" value="+" onClick={increaseAmount} />
-          </div>
-          <div className="cart-item-price-block">
-            {currentPrice.toFixed(2)} &#8364;
-          </div>
-          <div className="cart-item-del-block">
-            <input className="cart-item-del-btn" type="button" onClick={deleteItem} />
-          </div>
-        </div>
+        <button
+          className="text-button"
+          onClick={() => dispatch(deleteItemFromCart(item.id))}
+        >
+          Remove <span className="sr-only">{item.name}</span>
+        </button>
       </div>
-    </div>
+      <strong>{money(amount * item.price)}</strong>
+    </article>
   );
 }
-
-CartWineItem.propTypes = {
-  amount: PropTypes.number.isRequired,
-  item: PropTypes.shape({
-    alcohol: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    grapeSort: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired,
-    imgBig: PropTypes.string.isRequired,
-    imgSmall: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    production: PropTypes.string.isRequired,
-    raiting: PropTypes.number.isRequired,
-    region: PropTypes.array.isRequired,
-    sugar: PropTypes.string.isRequired,
-    volume: PropTypes.number.isRequired,
-  }),
-};
-
-export default CartWineItem;

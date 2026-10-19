@@ -12,7 +12,6 @@ export const winesSlice = createSlice({
   name: "wines",
   initialState,
   reducers: {
-
     updateLoadState: (state, action) => {
       state.dataLoadState = action.payload.state;
       state.dataLoadError = action.payload.error;
@@ -24,11 +23,15 @@ export const winesSlice = createSlice({
     },
 
     addItemToCart: (state, action) => {
-      state.cart.push(action.payload);
+      const existing = state.cart.find(
+        (entry) => entry.item.id === action.payload.item.id,
+      );
+      if (existing) existing.amount += action.payload.amount;
+      else state.cart.push(action.payload);
     },
 
     changeItemAmount: (state, action) => {
-      state.cart.forEach( v => {
+      state.cart.forEach((v) => {
         if (v.item.id === action.payload.currentItemId) {
           v.amount = action.payload.currentAmount;
         }
@@ -36,8 +39,8 @@ export const winesSlice = createSlice({
     },
 
     deleteItemFromCart: (state, action) => {
-      const index = state.cart.findIndex( v => v.item.id === action.payload);
-      state.cart.splice(index, 1);
+      const index = state.cart.findIndex((v) => v.item.id === action.payload);
+      if (index !== -1) state.cart.splice(index, 1);
     },
 
     clearCart: (state, action) => {
@@ -54,7 +57,15 @@ export const winesSlice = createSlice({
   },
 });
 
-export const { updateLoadState, updateData, addItemToCart, changeItemAmount, deleteItemFromCart, clearCart, updateCart, 
-  setPageWines } = winesSlice.actions;
+export const {
+  updateLoadState,
+  updateData,
+  addItemToCart,
+  changeItemAmount,
+  deleteItemFromCart,
+  clearCart,
+  updateCart,
+  setPageWines,
+} = winesSlice.actions;
 
 export default winesSlice.reducer;

@@ -1,26 +1,45 @@
-import { ref, child, get } from "firebase/database";
-
+import { ref, get } from "firebase/database";
 import { updateLoadState, updateData } from "./winesSlice";
 import database from "../firebase-config";
-
-export async function winesLoad(dispatch) {
-
-  dispatch(updateLoadState( {state: 1, error: null} ));
-  const dbRef = ref(database);
-
-  get(child(dbRef, "wines/"))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        dispatch(updateLoadState( {state: 2, error: null} ));
-        dispatch(updateData(snapshot.val()));
-      } else {
-        dispatch(updateLoadState( {state: 3, error: "No data"} ));
-        console.error("No data");
-      }
+import savedWines from "../items.json";
+let pending;
+export function winesLoad(dispatch) {
+  dispatch(updateLoadState({ state: 1, error: null }));
+  if (!pending)
+    pending = Promise.race([
+      get(ref(database, "wines/")).then((snapshot) => {
+        const value = snapshot.val();
+        const wines = Array.isArray(value) ? value : Object.values(value || {});
+        if (
+          !wines.length ||
+          !wines.every(
+            (wine) =>
+              wine?.id &&
+              typeof wine.name === "string" &&
+              Array.isArray(wine.region) &&
+              Array.isArray(wine.grapeSort) &&
+              typeof wine.type === "string" &&
+              Number.isFinite(wine.price),
+          )
+        )
+          throw new Error("Invalid catalog");
+        return wines;
+      }),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Catalog timeout")), 6000),
+      ),
+    ]).finally(() => {
+      pending = null;
+    });
+  return pending
+    .then((wines) => {
+      dispatch(updateData(wines));
+      dispatch(updateLoadState({ state: 2, error: null }));
     })
-    .catch((err) => {
-      dispatch(updateLoadState( {state: 3, error: err.message} ));
-      console.error(err);
-    }
-    )
-};
+    .catch(() => {
+      dispatch(updateData(savedWines));
+      dispatch(
+        updateLoadState({ state: 2, error: "Live catalog unavailable" }),
+      );
+    });
+}
