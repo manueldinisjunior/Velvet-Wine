@@ -8,8 +8,8 @@ export default function SiteFooter() {
   return <footer id="contact">
     <div className="footer-top">
       <Link to="/" className="wordmark">velvet<span>essence</span></Link>
-      <p>{t("hero")}</p>
-      <BackToTop />
+      <p>{t("footerFirst")}<br />{t("footerSecond")}</p>
+      <Link className="footer-contact" to="/kontakt">{t("contact")} ↗</Link>
     </div>
     <div className="footer-bottom footer-business">
       <div className="company-details">
@@ -23,7 +23,7 @@ export default function SiteFooter() {
       </div>
       <nav className="footer-legal" aria-label={t("imprint")}>{legalLinks.map(([url,key])=><Link key={url} to={"/"+url}>{t(key)}</Link>)}</nav>
       <p id="social-note" className="footer-note">{t("socialNote")}</p>
-      <div className="footer-meta"><span>© {new Date().getFullYear()} Velvet Essence</span><span>{t("demo")}</span><span>{t("responsible")}</span></div>
+      <div className="footer-meta"><span>© {new Date().getFullYear()} Velvet Essence</span><span>{t("demo")}</span><span>{t("responsible")}</span><BackToTop /></div>
     </div>
   </footer>;
 }

@@ -326,6 +326,7 @@ small {
   gap: 25px;
   margin-bottom: 40px;
 }
+.section-heading h1,
 .section-heading h2 {
   font-size: clamp(40px, 4.4vw, 66px);
 }
@@ -843,7 +844,8 @@ footer {
     display: block;
     margin-bottom: 25px;
   }
-  .section-heading h2 {
+  .section-heading h1,
+.section-heading h2 {
     font-size: 44px;
   }
   .section-heading > p {
@@ -1260,3 +1262,9 @@ footer a:hover {
   .site-header .wordmark span { letter-spacing:3px; }
   .header-actions .language-picker select { width:84px; max-width:84px; }
 }
+
+/* Reference footer: quiet typography and a text-style return control. */
+.footer-meta { align-items:center; justify-content:space-between; }
+.footer-meta .back-top { margin:0 0 0 auto; padding:10px 0; min-height:44px; border:0; background:transparent; color:var(--cream); font-size:12px; }
+.footer-top .footer-contact { min-height:44px; display:inline-flex; align-items:center; }
+@media(max-width:600px) { .footer-meta { align-items:flex-start; } .footer-meta .back-top { margin-left:0; } }

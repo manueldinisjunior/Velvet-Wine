@@ -46,6 +46,7 @@ export const PageMain = () => {
 };
 function Catalog({ country, home }) {
   const { t } = useLanguage();
+  const CollectionHeading = home ? "h2" : "h1";
   const { initialData, dataLoadState, dataLoadError } = useSelector(
     (state) => state.wines,
   );
@@ -63,15 +64,7 @@ function Catalog({ country, home }) {
   };
   return (
     <main id="main" tabIndex={-1}>
-      {home ? (
-        <WineShopBanner />
-      ) : (
-        <section className="page-intro vineyard">
-          <p className="eyebrow">Velvet Essence</p>
-          <h1>{t("store")}</h1>
-          <p>{t("intro")}</p>
-        </section>
-      )}
+      {home && <WineShopBanner />}
       {home && <div className="flavour-strip" aria-hidden="true"><span>{t("red")}</span>✳<span>{t("white")}</span>✳<span>{t("pink")}</span>✳<span>VELVET MOMENTS</span></div>}
       <section
         className="collection"
@@ -81,7 +74,7 @@ function Catalog({ country, home }) {
         <div className="section-heading">
           <div>
             <p className="eyebrow">Velvet Essence</p>
-            <h2 id="collection-title"><em>{t("explore")}</em></h2>
+            <CollectionHeading id="collection-title"><em>{t(home ? "explore" : "store")}</em></CollectionHeading>
           </div>
           <p>{t("intro")}</p>
         </div>
@@ -189,15 +182,15 @@ function Catalog({ country, home }) {
           </>
         )}
       </section>
-      <section id="story" className="story vineyard">
+      <section id="story" className="story">
         <div>
           <p className="eyebrow">Velvet Essence</p>
-          <h2>{t("about")}</h2>
+          <h2>{t("spiritFirst")}<br /><em>{t("spiritSecond")}</em></h2>
         </div>
         <div>
           <p>{t("story")}</p>
-          <Link className="button button-light" to="/weinwissen">
-            {t("guide")} ↗
+          <Link className="button button-light" to="/weinladen#collection">
+            {t("explore")} ↗
           </Link>
         </div>
       </section>

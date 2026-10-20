@@ -54,7 +54,11 @@
     "legalNote": "Die ausführlichen rechtlichen Hinweise stehen auf Deutsch. Betreiberangaben müssen vor einer geschäftlichen Nutzung ergänzt und geprüft werden.",
     "emptyCart": "Dein Warenkorb ist noch leer.",
     "image": "Bild nicht verfügbar",
-    "regions": "Regionen"
+    "regions": "Regionen",
+    "spiritFirst": "Weniger Zeremonie.",
+    "spiritSecond": "Mehr Entdeckungen.",
+    "footerFirst": "Guter Wein.",
+    "footerSecond": "Noch bessere Gesellschaft."
   },
   "en": {
     "home": "Discover",
@@ -111,7 +115,11 @@
     "legalNote": "Detailed legal notices are in German. Operator details must be completed and reviewed before commercial use.",
     "emptyCart": "Your bag is empty.",
     "image": "Image unavailable",
-    "regions": "Regions"
+    "regions": "Regions",
+    "spiritFirst": "Less ceremony.",
+    "spiritSecond": "More discovery.",
+    "footerFirst": "Good wine.",
+    "footerSecond": "Even better company."
   },
   "nl": {
     "home": "Ontdekken",
@@ -168,7 +176,11 @@
     "legalNote": "De uitgebreide juridische informatie is in het Duits. Gegevens van de exploitant moeten vóór commercieel gebruik worden aangevuld en gecontroleerd.",
     "emptyCart": "Je winkelmand is leeg.",
     "image": "Afbeelding niet beschikbaar",
-    "regions": "Streken"
+    "regions": "Streken",
+    "spiritFirst": "Minder ceremonie.",
+    "spiritSecond": "Meer ontdekken.",
+    "footerFirst": "Goede wijn.",
+    "footerSecond": "Nog beter gezelschap."
   },
   "sv": {
     "home": "Upptäck",
@@ -225,7 +237,11 @@
     "legalNote": "Detaljerad juridisk information finns på tyska. Operatörens uppgifter måste kompletteras och granskas före kommersiell användning.",
     "emptyCart": "Din varukorg är tom.",
     "image": "Bild saknas",
-    "regions": "Regioner"
+    "regions": "Regioner",
+    "spiritFirst": "Mindre ceremoni.",
+    "spiritSecond": "Fler upptäckter.",
+    "footerFirst": "Gott vin.",
+    "footerSecond": "Ännu bättre sällskap."
   },
   "nb": {
     "home": "Oppdag",
@@ -282,7 +298,11 @@
     "legalNote": "Detaljert juridisk informasjon er på tysk. Operatøropplysninger må fylles ut og gjennomgås før kommersiell bruk.",
     "emptyCart": "Handlekurven din er tom.",
     "image": "Bilde ikke tilgjengelig",
-    "regions": "Regioner"
+    "regions": "Regioner",
+    "spiritFirst": "Mindre seremoni.",
+    "spiritSecond": "Flere oppdagelser.",
+    "footerFirst": "God vin.",
+    "footerSecond": "Enda bedre selskap."
   },
   "fr": {
     "home": "Découvrir",
@@ -339,7 +359,11 @@
     "legalNote": "Les mentions légales détaillées sont en allemand. Les coordonnées de l’exploitant doivent être complétées et vérifiées avant tout usage commercial.",
     "emptyCart": "Votre panier est vide.",
     "image": "Image indisponible",
-    "regions": "Régions"
+    "regions": "Régions",
+    "spiritFirst": "Moins de cérémonie.",
+    "spiritSecond": "Plus de découvertes.",
+    "footerFirst": "Du bon vin.",
+    "footerSecond": "Une compagnie encore meilleure."
   },
   "it": {
     "home": "Scopri",
@@ -396,7 +420,11 @@
     "legalNote": "Le informazioni legali dettagliate sono in tedesco. I dati del gestore devono essere completati e verificati prima dell’uso commerciale.",
     "emptyCart": "Il carrello è vuoto.",
     "image": "Immagine non disponibile",
-    "regions": "Regioni"
+    "regions": "Regioni",
+    "spiritFirst": "Meno cerimonie.",
+    "spiritSecond": "Più scoperte.",
+    "footerFirst": "Buon vino.",
+    "footerSecond": "Compagnia ancora migliore."
   },
   "es": {
     "home": "Descubrir",
@@ -453,7 +481,11 @@
     "legalNote": "La información legal detallada está en alemán. Los datos del responsable deben completarse y revisarse antes del uso comercial.",
     "emptyCart": "Tu cesta está vacía.",
     "image": "Imagen no disponible",
-    "regions": "Regiones"
+    "regions": "Regiones",
+    "spiritFirst": "Menos ceremonia.",
+    "spiritSecond": "Más descubrimientos.",
+    "footerFirst": "Buen vino.",
+    "footerSecond": "Aún mejor compañía."
   },
   "pt": {
     "home": "Descobrir",
@@ -510,7 +542,11 @@
     "legalNote": "As informações legais detalhadas estão em alemão. Os dados do responsável devem ser completados e revistos antes da utilização comercial.",
     "emptyCart": "O teu carrinho está vazio.",
     "image": "Imagem indisponível",
-    "regions": "Regiões"
+    "regions": "Regiões",
+    "spiritFirst": "Menos cerimónia.",
+    "spiritSecond": "Mais descobertas.",
+    "footerFirst": "Bom vinho.",
+    "footerSecond": "Companhia ainda melhor."
   },
   "ru": {
     "home": "Открыть",
@@ -567,7 +603,11 @@
     "legalNote": "Подробная правовая информация доступна на немецком. До коммерческого использования необходимо дополнить и проверить данные оператора.",
     "emptyCart": "Ваша корзина пуста.",
     "image": "Изображение недоступно",
-    "regions": "Регионы"
+    "regions": "Регионы",
+    "spiritFirst": "Меньше церемоний.",
+    "spiritSecond": "Больше открытий.",
+    "footerFirst": "Хорошее вино.",
+    "footerSecond": "Ещё лучше компания."
   },
   "zh-Hans": {
     "home": "探索",
@@ -624,6 +664,10 @@
     "legalNote": "详细法律信息以德语提供。商业使用前必须补充并审核运营者信息。",
     "emptyCart": "购物车为空。",
     "image": "图片不可用",
-    "regions": "产区"
+    "regions": "产区",
+    "spiritFirst": "少些仪式。",
+    "spiritSecond": "多些发现。",
+    "footerFirst": "美酒。",
+    "footerSecond": "更美好的相聚。"
   }
 }
