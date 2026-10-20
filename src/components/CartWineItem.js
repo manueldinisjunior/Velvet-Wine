@@ -1,8 +1,10 @@
+import { useLanguage } from "../i18n";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { changeItemAmount, deleteItemFromCart } from "../redux/winesSlice";
 import { WineImage, money } from "./WineItem";
 export default function CartWineItem({ amount, item }) {
+  const { t, language } = useLanguage();
   const dispatch = useDispatch();
   function change(delta) {
     if (amount + delta < 1) dispatch(deleteItemFromCart(item.id));
@@ -27,12 +29,15 @@ export default function CartWineItem({ amount, item }) {
         <div className="quantity">
           <button
             onClick={() => change(-1)}
-            aria-label={`Remove one ${item.name}`}
+            aria-label={`${t("less")}: ${item.name}`}
           >
             −
           </button>
           <span>{amount}</span>
-          <button onClick={() => change(1)} aria-label={`Add one ${item.name}`}>
+          <button
+            onClick={() => change(1)}
+            aria-label={`${t("more")}: ${item.name}`}
+          >
             +
           </button>
         </div>
@@ -40,10 +45,10 @@ export default function CartWineItem({ amount, item }) {
           className="text-button"
           onClick={() => dispatch(deleteItemFromCart(item.id))}
         >
-          Remove <span className="sr-only">{item.name}</span>
+          {t("remove")} <span className="sr-only">{item.name}</span>
         </button>
       </div>
-      <strong>{money(amount * item.price)}</strong>
+      <strong>{money(amount * item.price, language)}</strong>
     </article>
   );
 }

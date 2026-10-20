@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -5,20 +6,22 @@ import {
   changeItemAmount,
   deleteItemFromCart,
 } from "../redux/winesSlice";
-export const money = (value) =>
-  new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(
-    value,
-  );
+export const money = (value, language = "de") =>
+  new Intl.NumberFormat(language, {
+    style: "currency",
+    currency: "EUR",
+  }).format(value);
 export function WineImage({ item }) {
+  const { t } = useLanguage();
   const [failed, setFailed] = useState(false);
   return failed ? (
     <div
       className="bottle-placeholder"
       role="img"
-      aria-label={`${item.name}; image unavailable`}
+      aria-label={`${item.name}; ${t("image")}`}
     >
       <span>VELVET</span>
-      <small>Image unavailable</small>
+      <small>{t("image")}</small>
     </div>
   ) : (
     <img
@@ -32,6 +35,7 @@ export function WineImage({ item }) {
   );
 }
 export default function WineItem({ item }) {
+  const { t, language } = useLanguage();
   const amount = useSelector(
     (state) =>
       state.wines.cart.find((entry) => entry.item.id === item.id)?.amount || 0,
@@ -51,7 +55,7 @@ export default function WineItem({ item }) {
   return (
     <article className={`wine-card wine-${item.type.toLowerCase()}`}>
       <div className="wine-visual">
-        <span className="wine-tag">{item.type.toLowerCase()} wine</span>
+        <span className="wine-tag">{t(item.type.toLowerCase())}</span>
         <WineImage item={item} />
         <span className="wine-origin">{item.region[0]}</span>
       </div>
@@ -62,19 +66,19 @@ export default function WineItem({ item }) {
         <h3>{item.name.replace(/"/g, "")}</h3>
         <p className="wine-grape">{item.grapeSort.join(" · ")}</p>
         <div className="wine-buy">
-          <strong>{money(item.price)}</strong>
+          <strong>{money(item.price, language)}</strong>
           {amount ? (
             <div className="quantity">
               <button
                 onClick={() => change(-1)}
-                aria-label={`Remove one ${item.name}`}
+                aria-label={`${t("less")}: ${item.name}`}
               >
                 −
               </button>
               <span aria-live="polite">{amount}</span>
               <button
                 onClick={() => change(1)}
-                aria-label={`Add one ${item.name}`}
+                aria-label={`${t("more")}: ${item.name}`}
               >
                 +
               </button>
@@ -83,9 +87,9 @@ export default function WineItem({ item }) {
             <button
               className="add-button"
               onClick={() => change(1)}
-              aria-label={`Add ${item.name} to bag`}
+              aria-label={`${t("add")}: ${item.name}`}
             >
-              Add to bag <span>+</span>
+              {t("add")} <span>+</span>
             </button>
           )}
         </div>

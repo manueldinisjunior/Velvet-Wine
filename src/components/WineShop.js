@@ -1,18 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { winesLoad } from "../redux/winesLoad";
 import { updateCart } from "../redux/winesSlice";
 import WineShopHeader from "./WineShopHeader";
 import { PageMain } from "../pages/PageMain";
 import WineCart from "./WineCart";
 
+import SiteFooter from "./SiteFooter";
+import { ContentPage } from "../pages/ContentPages";
+import { useLanguage } from "../i18n";
+
 export default function WineShop() {
+  const { t } = useLanguage();
   const { pathname, hash } = useLocation();
   useEffect(() => {
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
     else window.scrollTo(0, 0);
   }, [pathname, hash]);
+  useEffect(() => {
+    if (
+      [
+        "/",
+        "/weinladen",
+        "/italy",
+        "/france",
+        "/spain",
+        "/new-world",
+        "/cart",
+      ].includes(pathname)
+    )
+      document.title = `${t(pathname === "/cart" ? "cart" : pathname === "/" ? "home" : "store")} · Velvet Essence`;
+  }, [pathname, t]);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.wines.cart);
   const [restored, setRestored] = useState(false);
@@ -54,47 +73,53 @@ export default function WineShop() {
   return (
     <>
       <a className="skip-link" href="#main">
-        Skip to content
+        {t("skip")}
       </a>
       <WineShopHeader />
       <Routes>
-        {["/", "/italy", "/france", "/spain", "/new-world"].map((path) => (
-          <Route key={path} path={path} element={<PageMain />} />
+        {["/", "/weinladen", "/italy", "/france", "/spain", "/new-world"].map(
+          (path) => (
+            <Route key={path} path={path} element={<PageMain />} />
+          ),
+        )}
+        {["store", "shop"].map((path) => (
+          <Route
+            key={path}
+            path={"/" + path}
+            element={<Navigate to="/weinladen" replace />}
+          />
+        ))}
+        {[
+          "ueber-uns",
+          "weinwissen",
+          "kontakt",
+          "impressum",
+          "datenschutz",
+          "nutzungsbedingungen",
+          "versand-zahlung",
+          "widerruf",
+          "barrierefreiheit",
+        ].map((page) => (
+          <Route
+            key={page}
+            path={"/" + page}
+            element={<ContentPage page={page} />}
+          />
         ))}
         <Route path="/cart" element={<WineCart />} />
         <Route
           path="*"
           element={
             <main id="main" className="empty-state">
-              <h1>A little off the wine trail.</h1>
+              <h1>404</h1>
               <Link className="button" to="/">
-                Explore the collection
+                {t("explore")}
               </Link>
             </main>
           }
         />
       </Routes>
-      <footer id="contact">
-        <div className="footer-top">
-          <Link to="/" className="wordmark">
-            velvet<span>essence</span>
-          </Link>
-          <p>
-            Good wine.
-            <br />
-            Even better company.
-          </p>
-          <a href="tel:+258875144228">
-            Let’s talk wine ↗<br />
-            <small>+258 875 144 228</small>
-          </a>
-        </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Velvet Essence</span>
-          <span>Enjoy responsibly. For adults of legal drinking age.</span>
-          <a href="#top">Back to top ↑</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

@@ -1,42 +1,38 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useLanguage } from "../i18n";
 export default function WineShopBanner() {
+  const { t } = useLanguage();
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-copy">
-        <p className="eyebrow">A little discovery. A lot of flavour.</p>
-        <h1 id="hero-title">
-          Pour a little
-          <br />
-          <em>extraordinary.</em>
-        </h1>
-        <p>
-          From bold reds to bright whites. Find a bottle that belongs at your
-          table.
-        </p>
-        <a className="button button-light" href="#collection">
-          Find your wine <span>↗</span>
-        </a>
+        <p className="eyebrow">Velvet Essence</p>
+        <h1 id="hero-title">{t("hero")}</h1>
+        <p>{t("intro")}</p>
+        <Link className="button button-light" to="/weinladen">
+          {t("explore")} <span aria-hidden="true">↗</span>
+        </Link>
         <div className="hero-caption">
-          <span>01 / THE VELVET COLLECTION</span>
-          <span>Made for sharing ↓</span>
+          <span>01 / VELVET ESSENCE</span>
+          <span>{t("responsible")}</span>
         </div>
       </div>
       <div className="hero-image">
         <img
           src={`${process.env.PUBLIC_URL}/images/wine-cover.jpg`}
-          alt="Wine and a generous spread of tapas ready to share"
+          alt=""
           width="1200"
           height="631"
           fetchpriority="high"
         />
         <span className="hero-seal">
-          GOOD WINE.
+          VELVET
           <br />
-          GREAT COMPANY.
+          ESSENCE
           <br />
-          <b>✳</b>
+          <b aria-hidden="true">✳</b>
         </span>
-        <span className="image-caption">Set the table. Make a moment.</span>
+        <span className="image-caption">{t("responsible")}</span>
       </div>
     </section>
   );

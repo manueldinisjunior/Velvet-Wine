@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { languages, useLanguage } from "../i18n";
 export default function WineShopHeader() {
+  const { t, language, setLanguage } = useLanguage();
   const count = useSelector((state) =>
     state.wines.cart.reduce((sum, entry) => sum + entry.amount, 0),
   );
@@ -10,11 +11,15 @@ export default function WineShopHeader() {
   const { pathname } = useLocation();
   return (
     <>
-      <div id="top" className="announcement">
-        A world of wine. A taste of something new.
+      <div id="top" tabIndex={-1} className="announcement">
+        {t("responsible")}
       </div>
       <header className="site-header">
-        <Link to="/" className="wordmark" aria-label="Velvet Essence home">
+        <Link
+          to="/"
+          className="wordmark"
+          aria-label={`Velvet Essence · ${t("home")}`}
+        >
           velvet<span>essence</span>
         </Link>
         <button
@@ -23,12 +28,12 @@ export default function WineShopHeader() {
           aria-controls="navigation"
           onClick={() => setOpen(!open)}
         >
-          {open ? "Close ×" : "Menu ☰"}
+          {open ? t("close") + " ×" : t("menu") + " ☰"}
         </button>
         <nav
           id="navigation"
           className={open ? "navigation is-open" : "navigation"}
-          aria-label="Main navigation"
+          aria-label={t("menu")}
           onClick={() => setOpen(false)}
           onKeyDown={(event) => {
             if (event.key === "Escape") {
@@ -37,19 +42,42 @@ export default function WineShopHeader() {
             }
           }}
         >
-          <Link to="/" aria-current={pathname === "/" ? "page" : undefined}>
-            Discover
-          </Link>
-          <Link to="/italy">Our wines</Link>
-          <a href="/#story">Our spirit</a>
-          <a href="#contact">Contact ↗</a>
+          {[
+            ["/", "home"],
+            ["/weinladen", "store"],
+            ["/ueber-uns", "about"],
+            ["/weinwissen", "guide"],
+            ["/kontakt", "contact"],
+          ].map(([url, key]) => (
+            <Link
+              key={url}
+              to={url}
+              aria-current={pathname === url ? "page" : undefined}
+            >
+              {t(key)}
+            </Link>
+          ))}
         </nav>
+        <label className="language-picker">
+          <span className="sr-only">{t("language")}</span>
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            {Object.entries(languages).map(([value, label]) => (
+              <option key={value} value={value} lang={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
         <Link
           to="/cart"
           className="bag-link"
-          aria-label={`Shopping bag, ${count} bottles`}
+          aria-label={`${t("cart")}, ${count}`}
         >
-          Bag <span aria-live="polite">{count}</span>
+          <span className="bag-name">{t("cart")}</span>
+          <span aria-live="polite">{count}</span>
         </Link>
       </header>
     </>

@@ -1,22 +1,21 @@
+import { useLanguage } from "../i18n";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CartWineItem from "./CartWineItem";
 import CartResultBlock from "./CartResultBlock";
 export default function WineCart() {
+  const { t } = useLanguage();
   const cart = useSelector((state) => state.wines.cart);
   return (
     <main id="main" className="cart-page">
-      <Link to="/" className="back-link">
-        ← Back to the collection
+      <Link to="/weinladen" className="back-link">
+        ← {t("store")}
       </Link>
-      <p className="eyebrow">Good choices</p>
-      <h1>
-        Your <em>wine bag.</em>
-      </h1>
+      <p className="eyebrow">Velvet Essence</p>
+      <h1>{t("cart")}</h1>
       <p>
-        {cart.reduce((sum, entry) => sum + entry.amount, 0)} bottles, ready for
-        your next moment.
+        {cart.reduce((sum, entry) => sum + entry.amount, 0)} · {t("cart")}
       </p>
       <div className="cart-layout">
         <div>

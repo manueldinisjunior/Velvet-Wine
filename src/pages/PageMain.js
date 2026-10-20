@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n";
 import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,9 +37,15 @@ export function selectWines(wines, country, type, query, sort) {
 }
 export const PageMain = () => {
   const { pathname } = useLocation();
-  return <Catalog key={pathname} country={pathname.slice(1)} />;
+  const country = ["italy", "france", "spain", "new-world"].includes(
+    pathname.slice(1),
+  )
+    ? pathname.slice(1)
+    : "";
+  return <Catalog key={pathname} country={country} home={pathname === "/"} />;
 };
-function Catalog({ country }) {
+function Catalog({ country, home }) {
+  const { t } = useLanguage();
   const { initialData, dataLoadState, dataLoadError } = useSelector(
     (state) => state.wines,
   );
@@ -48,19 +55,23 @@ function Catalog({ country }) {
   const [sort, setSort] = useState("featured");
   const [limit, setLimit] = useState(12);
   const wines = selectWines(initialData || [], country, type, query, sort);
-  function reset() {
+  const reset = () => {
     setType("all");
     setQuery("");
     setSort("featured");
     setLimit(12);
-  }
+  };
   return (
-    <main id="main">
-      <WineShopBanner />
-      <div className="flavour-strip" aria-hidden="true">
-        <span>BOLD REDS</span>✳<span>BRIGHT WHITES</span>✳
-        <span>NEW FAVOURITES</span>✳<span>VELVET MOMENTS</span>
-      </div>
+    <main id="main" tabIndex={-1}>
+      {home ? (
+        <WineShopBanner />
+      ) : (
+        <section className="page-intro vineyard">
+          <p className="eyebrow">Velvet Essence</p>
+          <h1>{t("store")}</h1>
+          <p>{t("intro")}</p>
+        </section>
+      )}
       <section
         className="collection"
         id="collection"
@@ -68,43 +79,32 @@ function Catalog({ country }) {
       >
         <div className="section-heading">
           <div>
-            <p className="eyebrow">Find your flavour</p>
-            <h2 id="collection-title">
-              Your next <em>favourite.</em>
-            </h2>
+            <p className="eyebrow">Velvet Essence</p>
+            <h2 id="collection-title">{t("explore")}</h2>
           </div>
-          <p>
-            Different places. Distinct personalities.
-            <br />
-            One delicious place to start.
-          </p>
+          <p>{t("demo")}</p>
         </div>
-        <nav className="region-links" aria-label="Wine regions">
+        <nav className="region-links" aria-label={t("regions")}>
           {[
-            ["", "All regions"],
-            ["italy", "Italy"],
+            ["", "🌐"],
+            ["italy", "Italia"],
             ["france", "France"],
-            ["spain", "Spain"],
-            ["new-world", "New World"],
+            ["spain", "España"],
+            ["new-world", "USA · Chile · Australia"],
           ].map(([value, label]) => (
             <Link
               key={value}
               className={country === value ? "selected" : ""}
               aria-current={country === value ? "page" : undefined}
-              to={`/${value}#collection`}
+              to={value ? "/" + value + "#collection" : "/weinladen#collection"}
             >
-              {label}
+              {value ? label : t("all")}
             </Link>
           ))}
         </nav>
         <div className="collection-controls">
-          <div className="filter-tabs" aria-label="Wine style">
-            {[
-              ["all", "All wines"],
-              ["red", "Reds"],
-              ["white", "Whites"],
-              ["pink", "Rosé"],
-            ].map(([value, label]) => (
+          <div className="filter-tabs" aria-label={t("store")}>
+            {["all", "red", "white", "pink"].map((value) => (
               <button
                 key={value}
                 aria-pressed={type === value}
@@ -113,16 +113,16 @@ function Catalog({ country }) {
                   setLimit(12);
                 }}
               >
-                {label}
+                {t(value)}
               </button>
             ))}
           </div>
           <div className="search-sort">
             <label className="search">
-              <span className="sr-only">Search wines</span>
+              <span className="sr-only">{t("search")}</span>
               <input
                 type="search"
-                placeholder="Search wine, grape, region…"
+                placeholder={t("search")}
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);
@@ -131,31 +131,33 @@ function Catalog({ country }) {
               />
             </label>
             <label>
-              <span className="sr-only">Sort wines</span>
+              <span className="sr-only">{t("featured")}</span>
               <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                <option value="featured">Featured</option>
-                <option value="price-low">Price: low to high</option>
-                <option value="price-high">Price: high to low</option>
-                <option value="rating">Highest rated</option>
+                {[
+                  ["featured", "featured"],
+                  ["price-low", "low"],
+                  ["price-high", "high"],
+                  ["rating", "rating"],
+                ].map(([value, key]) => (
+                  <option key={value} value={value}>
+                    {t(key)}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
         </div>
-        {dataLoadState === 1 && (
-          <p role="status">Finding your next favourite…</p>
-        )}
+        {dataLoadState === 1 && <p role="status">{t("loading")}</p>}
         {dataLoadError && (
           <p className="catalog-notice">
-            {dataLoadState === 2
-              ? "Showing our saved collection. Live availability could not be loaded."
-              : "The collection could not be loaded."}{" "}
-            <button onClick={() => dispatch(winesLoad)}>Try again</button>
+            {t("offline")}{" "}
+            <button onClick={() => dispatch(winesLoad)}>{t("retry")}</button>
           </p>
         )}
         {dataLoadState === 2 && (
           <>
             <p className="result-count" role="status">
-              {wines.length} wines to discover
+              {wines.length} {t("count")}
             </p>
             <div className="wine-grid">
               {wines.slice(0, limit).map((item) => (
@@ -164,45 +166,37 @@ function Catalog({ country }) {
             </div>
             {!wines.length && (
               <div className="empty-state">
-                <h3>No bottles found.</h3>
-                <p>Try another grape, region or wine style.</p>
+                <h3>{t("empty")}</h3>
                 <button className="button" onClick={reset}>
-                  Reset filters
+                  {t("reset")}
                 </button>
               </div>
             )}
             {wines.length > limit && (
               <div className="load-more">
                 <p>
-                  Showing {Math.min(limit, wines.length)} of {wines.length}
+                  {Math.min(limit, wines.length)} / {wines.length}
                 </p>
                 <button
                   className="button button-outline"
                   onClick={() => setLimit(limit + 12)}
                 >
-                  Discover more ↓
+                  {t("load")} ↓
                 </button>
               </div>
             )}
           </>
         )}
       </section>
-      <section id="story" className="story">
+      <section id="story" className="story vineyard">
         <div>
-          <p className="eyebrow">The Velvet spirit</p>
-          <h2>
-            Less ceremony.
-            <br />
-            <em>More discovery.</em>
-          </h2>
+          <p className="eyebrow">Velvet Essence</p>
+          <h2>{t("about")}</h2>
         </div>
         <div>
-          <p>
-            Wine doesn’t need to be complicated. Explore a new region, find a
-            grape you love, or bring something different to the table.
-          </p>
-          <Link className="button button-light" to="/france#collection">
-            Explore the collection ↗
+          <p>{t("story")}</p>
+          <Link className="button button-light" to="/weinwissen">
+            {t("guide")} ↗
           </Link>
         </div>
       </section>

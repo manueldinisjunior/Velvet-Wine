@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -6,6 +7,7 @@ import { clearCart } from "../redux/winesSlice";
 import database from "../firebase-config";
 import { money } from "./WineItem";
 export default function CartResultBlock() {
+  const { t, language } = useLanguage();
   const cart = useSelector((state) => state.wines.cart);
   const dispatch = useDispatch();
   const [status, setStatus] = useState("idle");
@@ -34,46 +36,31 @@ export default function CartResultBlock() {
   if (!cart.length)
     return (
       <div className="empty-state">
-        <h2>
-          {status === "success"
-            ? "Your request has been saved."
-            : "Your bag is waiting."}
-        </h2>
-        <p>
-          {status === "success"
-            ? "No payment has been taken. Delivery and payment are not available in this demo."
-            : "Find a bottle that feels like you."}
-        </p>
-        <Link className="button" to="/">
-          Explore wines ↗
+        <h2>{status === "success" ? t("saved") : t("emptyCart")}</h2>
+        <p>{status === "success" ? t("demo") : t("intro")}</p>
+        <Link className="button" to="/weinladen">
+          {t("explore")} ↗
         </Link>
       </div>
     );
   return (
     <aside className="order-summary">
-      <p className="eyebrow">Your selection</p>
-      <h2>Order summary</h2>
+      <p className="eyebrow">{t("cart")}</p>
+      <h2>{t("cart")}</h2>
       <div className="subtotal">
-        <span>Subtotal</span>
-        <strong>{money(total)}</strong>
+        <span>{t("total")}</span>
+        <strong>{money(total, language)}</strong>
       </div>
-      <p>
-        This portfolio demo saves an order request only. It does not collect
-        payment or arrange delivery.
-      </p>
+      <p>{t("demo")}</p>
       <button
         className="button"
         disabled={status === "sending"}
         onClick={submit}
       >
-        {status === "sending" ? "Saving request…" : "Save order request ↗"}
+        {status === "sending" ? t("saving") : t("request")}
       </button>
-      {status === "error" && (
-        <p role="alert">
-          We couldn’t save your request. Your bag is safe. Please try again.
-        </p>
-      )}
-      <Link to="/">Continue exploring</Link>
+      {status === "error" && <p role="alert">{t("error")}</p>}
+      <Link to="/weinladen">{t("explore")}</Link>
     </aside>
   );
 }

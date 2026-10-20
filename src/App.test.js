@@ -24,12 +24,12 @@ beforeEach(() => {
 
 test("browse, filter, add, persist, change quantity and retain bag after failed order", async () => {
   render(<App />);
-  await screen.findByText("64 wines to discover");
-  fireEvent.click(screen.getByRole("button", { name: "Whites" }));
+  await screen.findByText("64 Weine entdecken");
+  fireEvent.click(screen.getByRole("button", { name: "Weißwein" }));
   fireEvent.change(screen.getByRole("searchbox"), {
     target: { value: "Freschello" },
   });
-  const add = screen.getAllByRole("button", { name: /Add .* to bag/ });
+  const add = screen.getAllByRole("button", { name: /In den Warenkorb:/ });
   expect(add.length).toBeGreaterThan(0);
   fireEvent.click(add[0]);
   await waitFor(() =>
@@ -37,23 +37,25 @@ test("browse, filter, add, persist, change quantity and retain bag after failed 
       JSON.parse(localStorage.getItem("nevinnyShopCartData"))[0].amount,
     ).toBe(1),
   );
-  fireEvent.click(
-    screen.getByRole("link", { name: "Shopping bag, 1 bottles" }),
-  );
+  fireEvent.click(screen.getByRole("link", { name: "Warenkorb, 1" }));
   expect(
-    screen.getByRole("heading", { name: /Your wine bag/ }),
+    screen.getByRole("heading", { name: /Warenkorb/, level: 1 }),
   ).toBeInTheDocument();
-  fireEvent.click(screen.getByRole("button", { name: /Add one/ }));
-  fireEvent.click(screen.getByRole("button", { name: /Save order request/ }));
+  fireEvent.click(screen.getByRole("button", { name: /Eine Flasche mehr/ }));
+  fireEvent.click(
+    screen.getByRole("button", { name: /Demo-Anfrage speichern/ }),
+  );
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "Your bag is safe",
+    "Dein Warenkorb bleibt erhalten",
   );
   expect(
     JSON.parse(localStorage.getItem("nevinnyShopCartData"))[0].amount,
   ).toBe(2);
-  fireEvent.click(screen.getByRole("button", { name: /^Remove (?!one).*Freschello/ }));
+  fireEvent.click(
+    screen.getByRole("button", { name: /^Entfernen.*Freschello/ }),
+  );
   expect(
-    screen.getByRole("heading", { name: "Your bag is waiting." }),
+    screen.getByRole("heading", { name: "Dein Warenkorb ist noch leer." }),
   ).toBeInTheDocument();
 });
 
@@ -61,14 +63,57 @@ test("offline catalog and damaged storage still allow browsing", async () => {
   get.mockRejectedValue(new Error("Offline"));
   localStorage.setItem("nevinnyShopCartData", "{invalid");
   render(<App />);
-  expect(
-    await screen.findByText(/Showing our saved collection/),
-  ).toBeInTheDocument();
-  expect(screen.getByText("64 wines to discover")).toBeInTheDocument();
+  expect(await screen.findByText(/Gespeicherte Auswahl/)).toBeInTheDocument();
+  expect(screen.getByText("64 Weine entdecken")).toBeInTheDocument();
   fireEvent.change(screen.getByRole("searchbox"), {
     target: { value: "zz-no-match" },
   });
-  expect(screen.getByText("No bottles found.")).toBeInTheDocument();
-  fireEvent.click(screen.getByRole("button", { name: "Reset filters" }));
-  expect(screen.getByText("64 wines to discover")).toBeInTheDocument();
+  expect(screen.getByText("Keine Weine gefunden.")).toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "Filter zurücksetzen" }));
+  expect(screen.getByText("64 Weine entdecken")).toBeInTheDocument();
+});
+
+test("store alias redirects and all languages translate navigation", async () => {
+  window.history.replaceState({}, "", "/store");
+  render(<App />);
+  await screen.findByText("64 Weine entdecken");
+  expect(window.location.pathname).toBe("/weinladen");
+  const select = screen.getByRole("combobox", { name: "Sprache" });
+  const choices = {
+    nl: "Wijnwinkel",
+    sv: "Vinbutik",
+    nb: "Vinbutikk",
+    fr: "Cave à vins",
+    it: "Enoteca",
+    es: "Tienda de vinos",
+    pt: "Loja de vinhos",
+    ru: "Винный магазин",
+    "zh-Hans": "葡萄酒商店",
+  };
+  for (const [lang, label] of Object.entries(choices)) {
+    fireEvent.change(select, { target: { value: lang } });
+    expect(document.documentElement.lang).toBe(lang);
+    expect(
+      screen.getByRole("heading", { level: 1, name: label }),
+    ).toBeInTheDocument();
+    expect(localStorage.getItem("velvet-language")).toBe(lang);
+  }
+});
+
+test("legal page and social links remain reachable with reduced motion", () => {
+  window.history.replaceState({}, "", "/datenschutz");
+  window.matchMedia = jest.fn(() => ({ matches: true }));
+  render(<App />);
+  expect(
+    screen.getByRole("heading", { level: 1, name: "Datenschutz" }),
+  ).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /Instagram/ })).toHaveAttribute(
+    "rel",
+    "nofollow noopener noreferrer",
+  );
+  fireEvent.click(screen.getByRole("button", { name: /Nach oben/ }));
+  expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+  expect(
+    screen.getByText("Bewusst genießen.", { selector: ".announcement" }),
+  ).toHaveFocus();
 });
