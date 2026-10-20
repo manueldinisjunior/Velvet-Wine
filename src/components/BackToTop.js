@@ -35,7 +35,7 @@ export default function BackToTop() {
     );
     const step = (now) => {
       const progress = Math.min((now - start) / 1500, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
+      const ease = progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
       window.scrollTo(0, origin * (1 - ease));
       if (progress < 1) frame = requestAnimationFrame(step);
       else finish();

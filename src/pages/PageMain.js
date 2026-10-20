@@ -1,3 +1,4 @@
+import FlavourTicker from "../components/FlavourTicker";
 import Icon from "../components/Icon";
 import { useLanguage } from "../i18n";
 import React, { useState } from "react";
@@ -7,7 +8,7 @@ import WineShopBanner from "../components/WineShopBanner";
 import WineItem from "../components/WineItem";
 import { winesLoad } from "../redux/winesLoad";
 
-export function selectWines(wines, country, type, query, sort) {
+export function selectWines(wines, country, type, query, sort, category = "all") {
   const result = wines.filter((wine) => {
     const origin = wine.region[0].toLowerCase();
     const regionMatches =
@@ -25,6 +26,7 @@ export function selectWines(wines, country, type, query, sort) {
         : origin === country);
     return (
       regionMatches &&
+      (category === "all" || (category === "alcoholFree" ? wine.alcoholFree : wine.category === category)) &&
       (type === "all" || wine.type.toLowerCase() === type) &&
       `${wine.name} ${wine.region.join(" ")} ${wine.grapeSort.join(" ")}`
         .toLowerCase()
@@ -52,12 +54,14 @@ function Catalog({ country, home }) {
     (state) => state.wines,
   );
   const dispatch = useDispatch();
+  const [category, setCategory] = useState("all");
   const [type, setType] = useState("all");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("featured");
   const [limit, setLimit] = useState(12);
-  const wines = selectWines(initialData || [], country, type, query, sort);
+  const wines = selectWines(initialData || [], country, type, query, sort, category);
   const reset = () => {
+    setCategory("all");
     setType("all");
     setQuery("");
     setSort("featured");
@@ -66,7 +70,7 @@ function Catalog({ country, home }) {
   return (
     <main id="main" tabIndex={-1}>
       {home && <WineShopBanner />}
-      {home && <div className="flavour-strip" aria-hidden="true"><span>{t("red")}</span><Icon name="sparkle" /><span>{t("white")}</span><Icon name="sparkle" /><span>{t("pink")}</span><Icon name="sparkle" /><span>VELVET MOMENTS</span></div>}
+      {home && <FlavourTicker />}
       <section
         className="collection"
         id="collection"
@@ -97,6 +101,8 @@ function Catalog({ country, home }) {
             </Link>
           ))}
         </nav>
+        <div className="catalog-category"><label htmlFor="category">{t("alcoholFree")}</label><select id="category" value={category} onChange={event => { setCategory(event.target.value); setType("all"); setLimit(12); }}>{["all", "alcoholFree", "afWine", "afSparkling", "afGin", "afOther"].map(key => <option key={key} value={key}>{t(key)}</option>)}</select></div>
+        {category !== "all" && <p className="catalog-reference">{t("catalogReference")}</p>}
         <div className="collection-controls">
           <div className="filter-tabs" aria-label={t("store")}>
             {["all", "red", "white", "pink"].map((value) => (

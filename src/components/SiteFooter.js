@@ -1,3 +1,4 @@
+import PrivacySettings from "./PrivacySettings";
 import Icon from "./Icon";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -21,7 +22,7 @@ export default function SiteFooter() {
       </div>
       <div className="footer-meta"><span>© {new Date().getFullYear()} Velvet Essence</span><span>{t("demo")}</span><span>{t("responsible")}</span><BackToTop /></div>
       <nav className="footer-legal" aria-label={t("imprint")}>{legalLinks.map(([url,key])=><Link key={url} to={"/"+url}>{t(key)}</Link>)}</nav>
-      <div className="footer-meta"><a href="https://manueldinisjunior.de/" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", minHeight: 44 }}>Developed by manueldinisjunior.de <Icon name="external" /></a></div>
+      <div className="footer-meta"><PrivacySettings /><a href="https://manueldinisjunior.de/" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", minHeight: 44 }}>Developed by manueldinisjunior.de <Icon name="external" /></a></div>
     </div>
   </footer>;
 }

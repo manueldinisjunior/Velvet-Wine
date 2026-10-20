@@ -24,7 +24,7 @@ beforeEach(() => {
 
 test("browse, filter, add, persist, change quantity and retain bag after failed order", async () => {
   render(<App />);
-  await screen.findByText("64 Weine entdecken");
+  await screen.findByText("79 Produkte");
   fireEvent.click(screen.getByRole("button", { name: "Weißwein" }));
   fireEvent.change(screen.getByRole("searchbox"), {
     target: { value: "Freschello" },
@@ -64,19 +64,19 @@ test("offline catalog and damaged storage still allow browsing", async () => {
   localStorage.setItem("nevinnyShopCartData", "{invalid");
   render(<App />);
   expect(await screen.findByText(/Gespeicherte Auswahl/)).toBeInTheDocument();
-  expect(screen.getByText("64 Weine entdecken")).toBeInTheDocument();
+  expect(screen.getByText("79 Produkte")).toBeInTheDocument();
   fireEvent.change(screen.getByRole("searchbox"), {
     target: { value: "zz-no-match" },
   });
   expect(screen.getByText("Keine Weine gefunden.")).toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: "Filter zurücksetzen" }));
-  expect(screen.getByText("64 Weine entdecken")).toBeInTheDocument();
+  expect(screen.getByText("79 Produkte")).toBeInTheDocument();
 });
 
 test("store alias redirects and all languages translate navigation", async () => {
   window.history.replaceState({}, "", "/store");
   render(<App />);
-  await screen.findByText("64 Weine entdecken");
+  await screen.findByText("79 Produkte");
   expect(window.location.pathname).toBe("/weinladen");
   const select = screen.getByRole("combobox", { name: "Sprache" });
   const choices = {
@@ -132,4 +132,44 @@ test("icon menu toggles, closes on Escape, and restores focus", () => {
   fireEvent.click(menu);
   fireEvent.pointerDown(document.body);
   expect(menu).toHaveAttribute("aria-expanded", "false");
+});
+
+test("privacy dialog opens from footer and closes without accepting optional tracking", () => {
+  HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
+  HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
+  render(<App />);
+  fireEvent.click(screen.getByRole("button", { name: "Datenschutzeinstellungen" }));
+  expect(screen.getByRole("dialog")).toHaveAttribute("open");
+  expect(screen.getByText(/Keine Analyse- oder Werbetracker/)).toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button", { name: "Fertig" }));
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+});
+
+test("ticker can be paused and alcohol-free categories can be filtered", async () => {
+  render(<App />);
+  await screen.findByText("79 Produkte");
+  fireEvent.click(screen.getByRole("button", { name: "Laufband pausieren" }));
+  expect(screen.getByRole("button", { name: "Laufband fortsetzen" })).toHaveAttribute("aria-pressed", "true");
+  fireEvent.change(screen.getByRole("combobox", { name: "Alkoholfrei" }), { target: { value: "afGin" } });
+  expect(screen.getByText("3 Produkte")).toBeInTheDocument();
+  expect(screen.getByText("Beefeater 0.0%")).toBeInTheDocument();
+  expect(screen.queryByText("Win 0.0 Tempranillo")).not.toBeInTheDocument();
+});
+
+test("back to top animates through the midpoint and finishes after 1500ms", () => {
+  window.matchMedia = jest.fn(() => ({ matches: false }));
+  render(<App />);
+  Object.defineProperty(window, "scrollY", { configurable: true, value: 1000 });
+  const now = jest.spyOn(performance, "now").mockReturnValue(0);
+  let frame;
+  const raf = jest.spyOn(window, "requestAnimationFrame").mockImplementation(callback => { frame = callback; return 1; });
+  fireEvent.click(screen.getByRole("button", { name: /Nach oben/ }));
+  frame(750);
+  expect(window.scrollTo).toHaveBeenLastCalledWith(0, 500);
+  frame(1500);
+  expect(window.scrollTo).toHaveBeenLastCalledWith(0, 0);
+  expect(document.getElementById("top")).toHaveFocus();
+  raf.mockRestore();
+  now.mockRestore();
+  Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
 });

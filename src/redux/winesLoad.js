@@ -1,3 +1,4 @@
+import alcoholFree from "../data/alcoholFree.json";
 import { ref, get } from "firebase/database";
 import { updateLoadState, updateData } from "./winesSlice";
 import database from "../firebase-config";
@@ -33,11 +34,11 @@ export function winesLoad(dispatch) {
     });
   return pending
     .then((wines) => {
-      dispatch(updateData(wines));
+      dispatch(updateData([...wines.filter(wine => !alcoholFree.some(item => item.id === wine.id)), ...alcoholFree]));
       dispatch(updateLoadState({ state: 2, error: null }));
     })
     .catch(() => {
-      dispatch(updateData(savedWines));
+      dispatch(updateData([...savedWines, ...alcoholFree]));
       dispatch(
         updateLoadState({ state: 2, error: "Live catalog unavailable" }),
       );

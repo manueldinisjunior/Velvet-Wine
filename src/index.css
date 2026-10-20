@@ -1293,3 +1293,32 @@ footer a:hover {
  .header-actions .language-picker select { width:78px; max-width:78px; }
  .header-actions .bag-link { font-size:11px; padding:5px 6px; }
 }
+
+/* Quiet privacy controls, sized for touch and keyboard use. */
+.privacy-trigger { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:8px 0; color:inherit; background:none; font:inherit; text-decoration:underline; text-underline-offset:4px; }
+.privacy-dialog { width:min(520px, calc(100% - 32px)); max-height:calc(100dvh - 32px); overflow:auto; padding:28px; border:1px solid var(--line); border-radius:20px; background:var(--cream); color:var(--ink); box-shadow:0 24px 80px #35172a33; }
+.privacy-dialog::backdrop { background:#35172a88; }
+.privacy-heading,.privacy-actions { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.privacy-heading .eyebrow { margin:0; }
+.privacy-close { width:44px; height:44px; display:grid; place-items:center; border-radius:50%; background:transparent; color:inherit; }
+.privacy-dialog h2 { font-size:clamp(25px,5vw,34px); line-height:1.15; margin:16px 0; overflow-wrap:anywhere; }
+.privacy-dialog p { line-height:1.6; font-size:16px; }
+.privacy-storage { padding:18px; margin:24px 0; border:1px solid var(--line); border-radius:12px; }
+.privacy-storage > span { display:block; font-size:12px; margin-top:8px; color:var(--wine); }
+.privacy-storage p { margin-bottom:0; font-size:14px; }
+.privacy-actions a { text-decoration:underline; min-height:44px; display:flex; align-items:center; }
+.privacy-actions .button { min-height:44px; }
+.flavour-strip.ticker { position:relative; padding:16px 0; gap:0; flex-wrap:nowrap; }
+.ticker-window { overflow:hidden; flex:1; min-width:0; }
+.ticker-track { display:flex; width:max-content; animation:velvet-ticker 36s linear infinite; }
+.ticker-group { display:flex; flex-shrink:0; }
+.ticker-item { display:inline-flex; align-items:center; gap:32px; padding-right:32px; white-space:nowrap; }
+.ticker-control { width:44px; height:44px; flex-shrink:0; display:grid; place-items:center; border-radius:50%; margin:0 12px; color:var(--ink); background:transparent; border:1px solid currentColor; }
+.ticker:hover .ticker-track,.ticker:focus-within .ticker-track,.ticker.is-paused .ticker-track { animation-play-state:paused; }
+@keyframes velvet-ticker { to { transform:translateX(-50%); } }
+.catalog-category { display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin:24px 0; }
+.catalog-category select { max-width:100%; min-height:44px; padding:10px 14px; border:1px solid var(--line); border-radius:24px; background:var(--cream); color:var(--ink); font:inherit; }
+.catalog-reference { font-size:13px; line-height:1.5; }
+.product-source { display:inline-flex; align-items:center; min-height:44px; font-size:12px; text-decoration:underline; text-underline-offset:3px; }
+@media(max-width:600px) { .privacy-dialog { padding:20px; } .privacy-actions { flex-wrap:wrap; } .ticker-item { gap:24px; padding-right:24px; } }
+@media(prefers-reduced-motion:reduce) { .ticker-track { animation:none; width:auto; } .ticker-group { flex-wrap:wrap; gap:12px; } .ticker-group + .ticker-group,.ticker-control { display:none; } .ticker-item { white-space:normal; } .ticker-group .ticker-item:nth-child(n+5) { display:none; } }
