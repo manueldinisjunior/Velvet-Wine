@@ -37,9 +37,9 @@ test("browse, filter, add, persist, change quantity and retain bag after failed 
       JSON.parse(localStorage.getItem("nevinnyShopCartData"))[0].amount,
     ).toBe(1),
   );
-  fireEvent.click(screen.getByRole("link", { name: "Warenkorb, 1" }));
+  fireEvent.click(screen.getByRole("link", { name: "Cart, 1" }));
   expect(
-    screen.getByRole("heading", { name: /Warenkorb/, level: 1 }),
+    screen.getByRole("heading", { name: /Cart/, level: 1 }),
   ).toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: /Eine Flasche mehr/ }));
   fireEvent.click(

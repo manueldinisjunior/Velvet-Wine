@@ -72,6 +72,7 @@ function Catalog({ country, home }) {
           <p>{t("intro")}</p>
         </section>
       )}
+      {home && <div className="flavour-strip" aria-hidden="true"><span>{t("red")}</span>✳<span>{t("white")}</span>✳<span>{t("pink")}</span>✳<span>VELVET MOMENTS</span></div>}
       <section
         className="collection"
         id="collection"
@@ -80,9 +81,9 @@ function Catalog({ country, home }) {
         <div className="section-heading">
           <div>
             <p className="eyebrow">Velvet Essence</p>
-            <h2 id="collection-title">{t("explore")}</h2>
+            <h2 id="collection-title"><em>{t("explore")}</em></h2>
           </div>
-          <p>{t("demo")}</p>
+          <p>{t("intro")}</p>
         </div>
         <nav className="region-links" aria-label={t("regions")}>
           {[

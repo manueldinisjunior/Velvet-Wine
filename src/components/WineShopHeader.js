@@ -58,6 +58,7 @@ export default function WineShopHeader() {
             </Link>
           ))}
         </nav>
+        <div className="header-actions">
         <label className="language-picker">
           <span className="sr-only">{t("language")}</span>
           <select
@@ -74,11 +75,12 @@ export default function WineShopHeader() {
         <Link
           to="/cart"
           className="bag-link"
-          aria-label={`${t("cart")}, ${count}`}
+          aria-label={`Cart, ${count}`}
         >
-          <span className="bag-name">{t("cart")}</span>
+          <span className="bag-name">Cart</span>
           <span aria-live="polite">{count}</span>
         </Link>
+        </div>
       </header>
     </>
   );

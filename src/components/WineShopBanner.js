@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n";
 export default function WineShopBanner() {
   const { t } = useLanguage();
+  const headline = t("hero").split(/[.。]/).map(part => part.trim()).filter(Boolean);
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-copy">
         <p className="eyebrow">Velvet Essence</p>
-        <h1 id="hero-title">{t("hero")}</h1>
+        <h1 id="hero-title">{headline[0]}.<br /><em>{headline.slice(1).join(". ")}.</em></h1>
         <p>{t("intro")}</p>
         <Link className="button button-light" to="/weinladen">
           {t("explore")} <span aria-hidden="true">↗</span>
