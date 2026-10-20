@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import Icon from "./Icon";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { languages, useLanguage } from "../i18n";
@@ -9,12 +10,30 @@ export default function WineShopHeader() {
   );
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const menuRef = useRef(null);
+  const headerRef = useRef(null);
+  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const dismiss = (event) => {
+      if (event.type === "keydown" && event.key === "Escape") {
+        setOpen(false);
+        menuRef.current?.focus();
+      } else if (event.type === "pointerdown" && !headerRef.current?.contains(event.target)) setOpen(false);
+    };
+    document.addEventListener("keydown", dismiss);
+    document.addEventListener("pointerdown", dismiss);
+    return () => {
+      document.removeEventListener("keydown", dismiss);
+      document.removeEventListener("pointerdown", dismiss);
+    };
+  }, [open]);
   return (
     <>
       <div id="top" tabIndex={-1} className="announcement">
         {t("responsible")}
       </div>
-      <header className="site-header">
+      <header ref={headerRef} className="site-header">
         <Link
           to="/"
           className="wordmark"
@@ -22,25 +41,12 @@ export default function WineShopHeader() {
         >
           velvet<span>essence</span>
         </Link>
-        <button
-          className="menu-toggle"
-          aria-expanded={open}
-          aria-controls="navigation"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? t("close") + " ×" : t("menu") + " ☰"}
-        </button>
         <nav
           id="navigation"
           className={open ? "navigation is-open" : "navigation"}
           aria-label={t("menu")}
           onClick={() => setOpen(false)}
-          onKeyDown={(event) => {
-            if (event.key === "Escape") {
-              setOpen(false);
-              document.querySelector(".menu-toggle")?.focus();
-            }
-          }}
+
         >
           {[
             ["/", "home"],
@@ -80,6 +86,9 @@ export default function WineShopHeader() {
           <span className="bag-name">Cart</span>
           <span aria-live="polite">{count}</span>
         </Link>
+        <button ref={menuRef} type="button" className="menu-toggle" aria-label={open ? t("close") : t("menu")} aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>
+          <Icon name={open ? "close" : "menu"} size={22} />
+        </button>
         </div>
       </header>
     </>

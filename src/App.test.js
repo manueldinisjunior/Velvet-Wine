@@ -117,3 +117,19 @@ test("legal page and social links remain reachable with reduced motion", () => {
     screen.getByText("Bewusst genießen.", { selector: ".announcement" }),
   ).toHaveFocus();
 });
+
+test("icon menu toggles, closes on Escape, and restores focus", () => {
+  window.history.replaceState({}, "", "/");
+  render(<App />);
+  const menu = screen.getByRole("button", { name: "Menü" });
+  expect(menu).toHaveAttribute("aria-expanded", "false");
+  expect(menu).toHaveTextContent("");
+  fireEvent.click(menu);
+  expect(screen.getByRole("button", { name: "Schließen" })).toHaveAttribute("aria-expanded", "true");
+  fireEvent.keyDown(document, { key: "Escape" });
+  expect(menu).toHaveAttribute("aria-expanded", "false");
+  expect(menu).toHaveFocus();
+  fireEvent.click(menu);
+  fireEvent.pointerDown(document.body);
+  expect(menu).toHaveAttribute("aria-expanded", "false");
+});

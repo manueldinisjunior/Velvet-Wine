@@ -1,3 +1,4 @@
+import Icon from "./Icon";
 import { useLanguage } from "../i18n";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -10,7 +11,7 @@ export default function WineCart() {
   return (
     <main id="main" className="cart-page">
       <Link to="/weinladen" className="back-link">
-        ← {t("store")}
+        <Icon name="left" /> {t("store")}
       </Link>
       <p className="eyebrow">Velvet Essence</p>
       <h1>{t("cart")}</h1>

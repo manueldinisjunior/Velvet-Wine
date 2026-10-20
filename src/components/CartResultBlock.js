@@ -1,3 +1,4 @@
+import Icon from "./Icon";
 import { useLanguage } from "../i18n";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -39,7 +40,7 @@ export default function CartResultBlock() {
         <h2>{status === "success" ? t("saved") : t("emptyCart")}</h2>
         <p>{status === "success" ? t("demo") : t("intro")}</p>
         <Link className="button" to="/weinladen">
-          {t("explore")} ↗
+          {t("explore")} <Icon name="external" />
         </Link>
       </div>
     );

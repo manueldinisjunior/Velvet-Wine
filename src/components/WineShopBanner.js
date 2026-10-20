@@ -1,3 +1,4 @@
+import Icon from "./Icon";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n";
@@ -11,7 +12,7 @@ export default function WineShopBanner() {
         <h1 id="hero-title">{headline[0]}.<br /><em>{headline.slice(1).join(". ")}.</em></h1>
         <p>{t("intro")}</p>
         <Link className="button button-light" to="/weinladen">
-          {t("explore")} <span aria-hidden="true">↗</span>
+          {t("explore")} <span aria-hidden="true"><Icon name="external" /></span>
         </Link>
         <div className="hero-caption">
           <span>01 / VELVET ESSENCE</span>
@@ -31,7 +32,7 @@ export default function WineShopBanner() {
           <br />
           ESSENCE
           <br />
-          <b aria-hidden="true">✳</b>
+          <b aria-hidden="true"><Icon name="sparkle" /></b>
         </span>
         <span className="image-caption">{t("responsible")}</span>
       </div>

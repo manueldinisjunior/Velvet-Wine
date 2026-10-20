@@ -1,3 +1,4 @@
+import Icon from "../components/Icon";
 import { useLanguage } from "../i18n";
 import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
@@ -65,7 +66,7 @@ function Catalog({ country, home }) {
   return (
     <main id="main" tabIndex={-1}>
       {home && <WineShopBanner />}
-      {home && <div className="flavour-strip" aria-hidden="true"><span>{t("red")}</span>✳<span>{t("white")}</span>✳<span>{t("pink")}</span>✳<span>VELVET MOMENTS</span></div>}
+      {home && <div className="flavour-strip" aria-hidden="true"><span>{t("red")}</span><Icon name="sparkle" /><span>{t("white")}</span><Icon name="sparkle" /><span>{t("pink")}</span><Icon name="sparkle" /><span>VELVET MOMENTS</span></div>}
       <section
         className="collection"
         id="collection"
@@ -80,7 +81,7 @@ function Catalog({ country, home }) {
         </div>
         <nav className="region-links" aria-label={t("regions")}>
           {[
-            ["", "🌐"],
+            ["", ""],
             ["italy", "Italia"],
             ["france", "France"],
             ["spain", "España"],
@@ -175,7 +176,7 @@ function Catalog({ country, home }) {
                   className="button button-outline"
                   onClick={() => setLimit(limit + 12)}
                 >
-                  {t("load")} ↓
+                  {t("load")} <Icon name="down" />
                 </button>
               </div>
             )}
@@ -190,7 +191,7 @@ function Catalog({ country, home }) {
         <div>
           <p>{t("story")}</p>
           <Link className="button button-light" to="/weinladen#collection">
-            {t("explore")} ↗
+            {t("explore")} <Icon name="external" />
           </Link>
         </div>
       </section>

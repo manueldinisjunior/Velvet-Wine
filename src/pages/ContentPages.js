@@ -1,3 +1,4 @@
+import Icon from "../components/Icon";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n";
@@ -153,11 +154,11 @@ export function ContentPage({ page }) {
             href="https://manueldinisjunior.de/"
             rel="noopener noreferrer"
           >
-            Manuel Dinis Júnior ↗
+            Manuel Dinis Júnior <Icon name="external" />
           </a>
         )}
         <Link className="button button-outline" to="/weinladen">
-          {t("explore")} ↗
+          {t("explore")} <Icon name="external" />
         </Link>
       </div>
     </main>

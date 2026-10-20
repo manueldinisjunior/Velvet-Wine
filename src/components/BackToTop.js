@@ -1,3 +1,4 @@
+import Icon from "./Icon";
 import React, { useEffect, useRef } from "react";
 import { useLanguage } from "../i18n";
 export default function BackToTop() {
@@ -47,7 +48,7 @@ export default function BackToTop() {
       className="button button-light back-top"
       onClick={scroll}
     >
-      {t("top")} <span aria-hidden="true">↑</span>
+      {t("top")} <span aria-hidden="true"><Icon name="up" /></span>
     </button>
   );
 }
