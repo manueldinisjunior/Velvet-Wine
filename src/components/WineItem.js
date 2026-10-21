@@ -26,7 +26,7 @@ export function WineImage({ item }) {
   ) : (
     <img
       src={item.imgSmall}
-      alt={item.illustration ? "" : item.name}
+      alt={item.name}
       loading="lazy"
       width="180"
       height="240"
@@ -55,17 +55,16 @@ export default function WineItem({ item }) {
   return (
     <article className={`wine-card wine-${item.type.toLowerCase()}`}>
       <div className="wine-visual">
-        <span className="wine-tag">{t(item.category || item.type.toLowerCase())}</span>
+        <span className="wine-tag">{t(item.type.toLowerCase())}</span>
         <WineImage item={item} />
         <span className="wine-origin">{item.region[0]}</span>
       </div>
       <div className="wine-details">
         <p className="wine-meta">
-          {item.volume} L {item.alcohol != null && <><span>·</span> {item.alcohol}% ABV</>}
+          {item.volume} L <span>·</span> {item.alcohol}% ABV
         </p>
         <h3>{item.name.replace(/"/g, "")}</h3>
         <p className="wine-grape">{item.grapeSort.join(" · ")}</p>
-        {item.sourceUrl && <a className="product-source" href={item.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">{t("productSource")} · Decántalo</a>}
         <div className="wine-buy">
           <strong>{money(item.price, language)}</strong>
           {amount ? (

@@ -47,6 +47,7 @@ export default function WineShop() {
             saved.filter(
               (entry) =>
                 entry?.item?.id &&
+                !String(entry.item.id).startsWith("af-") &&
                 typeof entry.item.name === "string" &&
                 Array.isArray(entry.item.region) &&
                 Number.isFinite(entry.item.price) &&
