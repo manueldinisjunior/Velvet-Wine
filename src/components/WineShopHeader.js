@@ -2,9 +2,10 @@ import Icon from "./Icon";
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { languages, useLanguage } from "../i18n";
+import LanguagePicker from "./LanguagePicker";
+import { useLanguage } from "../i18n";
 export default function WineShopHeader() {
-  const { t, language, setLanguage } = useLanguage();
+  const { t } = useLanguage();
   const count = useSelector((state) =>
     state.wines.cart.reduce((sum, entry) => sum + entry.amount, 0),
   );
@@ -65,19 +66,7 @@ export default function WineShopHeader() {
           ))}
         </nav>
         <div className="header-actions">
-        <label className="language-picker">
-          <span className="sr-only">{t("language")}</span>
-          <select
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-          >
-            {Object.entries(languages).map(([value, label]) => (
-              <option key={value} value={value} lang={value}>
-                {label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <LanguagePicker />
         <Link
           to="/weinladen#wein-suche"
           className="header-icon-link"

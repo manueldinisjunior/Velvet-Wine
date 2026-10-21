@@ -78,7 +78,7 @@ test("store alias redirects and all languages translate navigation", async () =>
   render(<App />);
   await screen.findByText("64 Weine entdecken");
   expect(window.location.pathname).toBe("/weinladen");
-  const select = screen.getByRole("combobox", { name: "Sprache" });
+  const languageTrigger = document.getElementById("language-toggle");
   const choices = {
     nl: "Wijnwinkel",
     sv: "Vinbutik",
@@ -91,7 +91,8 @@ test("store alias redirects and all languages translate navigation", async () =>
     "zh-Hans": "葡萄酒商店",
   };
   for (const [lang, label] of Object.entries(choices)) {
-    fireEvent.change(select, { target: { value: lang } });
+    fireEvent.click(languageTrigger);
+    fireEvent.click(document.querySelector(`#language-options button[lang="${lang}"]`));
     expect(document.documentElement.lang).toBe(lang);
     expect(
       screen.getByRole("heading", { level: 1, name: label }),
@@ -177,4 +178,15 @@ test("header search opens the catalog, focuses search, and works again on the sa
   fireEvent.click(search);
   expect(input).toHaveFocus();
   expect(screen.getByRole("link", { name: /^Cart, / }).querySelector("svg")).toBeInTheDocument();
+});
+
+test("flag picker closes on Escape and restores keyboard focus", () => {
+  render(<App />);
+  const trigger = screen.getByRole("button", { name: "Sprache: Deutsch" });
+  fireEvent.click(trigger);
+  expect(screen.getByRole("button", { name: "Deutsch", exact: true })).toHaveAttribute("aria-pressed", "true");
+  fireEvent.keyDown(document, { key: "Escape" });
+  expect(trigger).toHaveAttribute("aria-expanded", "false");
+  expect(trigger).toHaveFocus();
+  expect(document.getElementById("language-options")).not.toBeInTheDocument();
 });
