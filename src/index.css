@@ -1333,3 +1333,9 @@ button,.button,.bag-link,.social-links a { transition:transform 180ms ease, back
  button:not(:disabled):hover,.button:hover,.bag-link:hover,.social-links a:hover { transform:translateY(3px); }
 }
 @media(max-width:600px) { .footer-meta { flex-direction:row; align-items:center; } }
+
+.story .button:hover { background:#fff; color:var(--wine); }
+.privacy-fingerprint { width:48px; height:48px; display:inline-grid; place-items:center; flex-shrink:0; border-radius:50%; color:var(--wine); background:var(--lime); transition:background-color 180ms ease; }
+.privacy-fingerprint .ui-icon { stroke-width:1.15; }
+.privacy-trigger { gap:12px; text-decoration:none; }
+.privacy-trigger:hover .privacy-fingerprint { background:#fff; }
