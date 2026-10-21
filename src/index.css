@@ -1308,14 +1308,13 @@ footer a:hover {
 .privacy-actions .button { min-height:44px; }
 .flavour-strip.ticker { position:relative; padding:16px 0; gap:0; flex-wrap:nowrap; }
 .ticker-window { overflow:hidden; flex:1; min-width:0; }
-.ticker-track { display:flex; width:max-content; animation:velvet-ticker 36s linear infinite; }
-.ticker-group { display:flex; flex-shrink:0; }
+.ticker-track { display:flex; width:max-content; min-width:200%; animation:velvet-ticker 36s linear infinite !important; }
+.ticker-group { display:flex; flex-shrink:0; min-width:100vw; justify-content:space-around; }
 .ticker-item { display:inline-flex; align-items:center; gap:32px; padding-right:32px; white-space:nowrap; }
-@media (hover:hover) { .ticker:hover .ticker-track { animation-play-state:paused; } }
-.ticker.is-held .ticker-track { animation-play-state:paused; }
+
+.ticker.is-held .ticker-track { animation-play-state:paused !important; }
 @keyframes velvet-ticker { to { transform:translateX(-50%); } }
 @media(max-width:600px) { .privacy-dialog { padding:20px; } .privacy-actions { flex-wrap:wrap; } .ticker-item { gap:24px; padding-right:24px; } }
-@media(prefers-reduced-motion:reduce) { .ticker-track { animation:none; width:auto; } .ticker-group { flex-wrap:wrap; gap:12px; } .ticker-group + .ticker-group { display:none; } .ticker-item { white-space:normal; } .ticker-group .ticker-item:nth-child(n+5) { display:none; } }
 
 /* Compact footer with centered company links and one brand mark. */
 .footer-business { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; }
