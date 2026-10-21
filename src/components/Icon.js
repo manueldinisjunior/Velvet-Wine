@@ -7,8 +7,6 @@ const paths = {
   down: "m6 14 6 6 6-6M12 4v16",
   left: "m10 6-6 6 6 6M4 12h16",
   external: "M7 17 17 7M7 7h10v10",
-  plus: "M12 5v14M5 12h14",
-  minus: "M5 12h14",
   sparkle: "M12 2v20M2 12h20M5 5l14 14M5 19 19 5",
 };
 export default function Icon({ name, size = 20 }) {

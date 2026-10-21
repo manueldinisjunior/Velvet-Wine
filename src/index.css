@@ -1090,12 +1090,6 @@ footer a:hover {
   color: var(--ink);
   transform: translateY(-2px);
 }
-.footer-note {
-  font-size: 13px;
-  margin-top: 16px;
-  line-height: 1.7;
-  max-width: 380px;
-}
 .footer-bottom {
   font-size: 13px;
   flex-wrap: wrap;
@@ -1238,22 +1232,14 @@ footer a:hover {
 .header-actions .language-picker select { width:132px; max-width:132px; }
 .header-actions .bag-name { display:inline; }
 .section-heading > p { max-width:350px; }
-.footer-business { display:flex; flex-wrap:wrap; align-items:center; gap:16px 28px; }
-.footer-business .social-links { margin-left:auto; }
 .footer-legal { display:flex; flex-wrap:wrap; gap:4px 22px; width:100%; }
 .footer-legal a { text-decoration:underline; text-underline-offset:4px; }
-.footer-business .footer-note { margin:0; max-width:none; font-size:12px; }
-.footer-meta { display:flex; flex-wrap:wrap; gap:12px 24px; width:100%; font-size:12px; }
-.footer-meta > span:nth-child(2) { max-width:650px; }
 @media(max-width:600px) {
   .site-header { gap:8px; }
   .site-header .menu-toggle { margin-right:0; padding:4px; }
   .header-actions { gap:6px; }
   .header-actions .language-picker select { width:100px; max-width:100px; padding:10px 7px; font-size:12px; }
   .header-actions .bag-link { padding:7px 8px; gap:5px; }
-  .footer-business { align-items:flex-start; }
-  .footer-business .social-links { margin-left:0; }
-  .footer-meta { flex-direction:column; }
 }
 @media(max-width:380px) {
   .site-header .wordmark { font-size:29px; }
@@ -1262,10 +1248,7 @@ footer a:hover {
 }
 
 /* Reference footer: quiet typography and a text-style return control. */
-.footer-meta { align-items:center; justify-content:space-between; }
-.footer-meta .back-top { margin:0 0 0 auto; padding:10px 0; min-height:44px; border:0; background:transparent; color:var(--cream); font-size:12px; }
 .footer-top .footer-contact { min-height:44px; display:inline-flex; align-items:center; }
-@media(max-width:600px) { .footer-meta { align-items:flex-start; } .footer-meta .back-top { margin-left:0; } }
 
 .ui-icon { display:inline-block; flex-shrink:0; vertical-align:middle; }
 .header-actions .menu-toggle { margin:0; padding:0; width:44px; height:44px; flex-shrink:0; border:1px solid var(--line); border-radius:50%; align-items:center; justify-content:center; transition:background-color 160ms ease, border-color 160ms ease; }
@@ -1293,7 +1276,6 @@ footer a:hover {
 }
 
 /* Quiet privacy controls, sized for touch and keyboard use. */
-.privacy-trigger { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:8px 0; color:inherit; background:none; font:inherit; text-decoration:underline; text-underline-offset:4px; }
 .privacy-dialog { width:min(520px, calc(100% - 32px)); max-height:calc(100dvh - 32px); overflow:auto; padding:28px; border:1px solid var(--line); border-radius:20px; background:var(--cream); color:var(--ink); box-shadow:0 24px 80px #35172a33; }
 .privacy-dialog::backdrop { background:#35172a88; }
 .privacy-heading,.privacy-actions { display:flex; align-items:center; justify-content:space-between; gap:16px; }
@@ -1317,13 +1299,9 @@ footer a:hover {
 @media(max-width:600px) { .privacy-dialog { padding:20px; } .privacy-actions { flex-wrap:wrap; } .ticker-item { gap:24px; padding-right:24px; } }
 
 /* Compact footer with centered company links and one brand mark. */
-.footer-business { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; }
-.footer-business .social-links { margin:0; justify-content:center; flex-wrap:wrap; }
 .footer-legal { justify-content:center; gap:4px 20px; }
 .footer-privacy { display:flex; justify-content:center; }
 .footer-demo { margin:0; max-width:650px; font-size:12px; line-height:1.6; }
-.footer-meta { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px 24px; }
-.footer-meta .back-top { margin:0; }
 .developer-credit { display:inline-flex; align-items:center; gap:6px; min-height:44px; }
 .hero .button-light { background:#fff; color:var(--ink); }
 .hero .button-light:hover { background:var(--lime); color:var(--ink); }
@@ -1331,10 +1309,13 @@ button,.button,.bag-link,.social-links a { transition:transform 180ms ease, back
 @media(hover:hover) and (prefers-reduced-motion:no-preference) {
  button:not(:disabled):hover,.button:hover,.bag-link:hover,.social-links a:hover { transform:translateY(3px); }
 }
-@media(max-width:600px) { .footer-meta { flex-direction:row; align-items:center; } }
 
 .story .button:hover { background:#fff; color:var(--wine); }
 .privacy-fingerprint { width:48px; height:48px; display:inline-grid; place-items:center; flex-shrink:0; border-radius:50%; color:var(--wine); background:var(--lime); transition:background-color 180ms ease; }
-.privacy-fingerprint .ui-icon { stroke-width:1.15; }
-.privacy-trigger { gap:12px; text-decoration:none; }
 .privacy-trigger:hover .privacy-fingerprint { background:#fff; }
+.footer-business { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; }
+.footer-business .social-links { margin:0; justify-content:center; flex-wrap:wrap; }
+.footer-meta { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px 24px; width:100%; font-size:12px; }
+.footer-meta .back-top { margin:0; padding:10px 0; min-height:44px; border:0; background:transparent; color:var(--cream); font-size:12px; }
+.privacy-trigger { display:inline-flex; align-items:center; gap:12px; min-height:48px; padding:8px 0; color:inherit; background:none; font:inherit; text-decoration:none; }
+.privacy-fingerprint .ui-icon { width:40px; height:40px; min-width:40px; max-width:none; stroke-width:1.3; }
