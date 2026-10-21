@@ -1312,6 +1312,7 @@ footer a:hover {
 .ticker-group { display:flex; flex-shrink:0; }
 .ticker-item { display:inline-flex; align-items:center; gap:32px; padding-right:32px; white-space:nowrap; }
 @media (hover:hover) { .ticker:hover .ticker-track { animation-play-state:paused; } }
+.ticker.is-held .ticker-track { animation-play-state:paused; }
 @keyframes velvet-ticker { to { transform:translateX(-50%); } }
 @media(max-width:600px) { .privacy-dialog { padding:20px; } .privacy-actions { flex-wrap:wrap; } .ticker-item { gap:24px; padding-right:24px; } }
 @media(prefers-reduced-motion:reduce) { .ticker-track { animation:none; width:auto; } .ticker-group { flex-wrap:wrap; gap:12px; } .ticker-group + .ticker-group { display:none; } .ticker-item { white-space:normal; } .ticker-group .ticker-item:nth-child(n+5) { display:none; } }
