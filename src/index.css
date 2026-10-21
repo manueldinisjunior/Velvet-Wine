@@ -1319,3 +1319,43 @@ button,.button,.bag-link,.social-links a { transition:transform 180ms ease, back
 .footer-meta .back-top { margin:0; padding:10px 0; min-height:44px; border:0; background:transparent; color:var(--cream); font-size:12px; }
 .privacy-trigger { display:inline-flex; align-items:center; gap:12px; min-height:48px; padding:8px 0; color:inherit; background:none; font:inherit; text-decoration:none; }
 .privacy-fingerprint .ui-icon { width:40px; height:40px; min-width:40px; max-width:none; stroke-width:1.3; }
+
+/* Minimal header actions, with full touch targets and visible keyboard focus. */
+.header-icon-link {
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 44px;
+  width:44px;
+  height:44px;
+  color:var(--wine);
+  border-radius:50%;
+  transition:transform 180ms ease, background-color 180ms ease;
+}
+.header-icon-link:hover { background:var(--pink); }
+.header-icon-link:focus-visible { outline:2px solid var(--wine); outline-offset:3px; }
+.header-cart-count {
+  position:absolute;
+  top:0;
+  right:-2px;
+  min-width:18px;
+  height:18px;
+  padding:0 4px;
+  border-radius:12px;
+  background:var(--wine);
+  color:var(--cream);
+  font-size:10px;
+  font-weight:700;
+  line-height:18px;
+  text-align:center;
+}
+#wein-suche { scroll-margin-top:120px; }
+@media (hover:hover) and (prefers-reduced-motion:no-preference) {
+  .header-icon-link:hover { transform:translateY(3px); }
+}
+@media (max-width:380px) {
+  .site-header { padding-inline:10px; gap:4px; }
+  .header-actions { gap:2px; }
+  .header-actions .language-picker select { width:72px; max-width:72px; padding-inline:2px; }
+}

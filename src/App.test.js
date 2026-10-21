@@ -162,3 +162,19 @@ test("back to top animates through the midpoint and finishes after 1500ms", () =
   now.mockRestore();
   Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
 });
+
+test("header search opens the catalog, focuses search, and works again on the same route", async () => {
+  window.history.replaceState({}, "", "/ueber-uns");
+  render(<App />);
+  const search = screen.getByRole("link", { name: "Wein, Rebsorte oder Region suchen" });
+  fireEvent.click(search);
+  expect(window.location.pathname).toBe("/weinladen");
+  const input = screen.getByRole("searchbox");
+  expect(input).toHaveFocus();
+  fireEvent.change(input, { target: { value: "zz-no-match" } });
+  expect(await screen.findByText("Keine Weine gefunden.")).toBeInTheDocument();
+  search.focus();
+  fireEvent.click(search);
+  expect(input).toHaveFocus();
+  expect(screen.getByRole("link", { name: /^Cart, / }).querySelector("svg")).toBeInTheDocument();
+});

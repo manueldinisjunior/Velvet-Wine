@@ -1,7 +1,7 @@
 import FlavourTicker from "../components/FlavourTicker";
 import Icon from "../components/Icon";
 import { useLanguage } from "../i18n";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import WineShopBanner from "../components/WineShopBanner";
@@ -48,6 +48,14 @@ export const PageMain = () => {
 };
 function Catalog({ country, home }) {
   const { t } = useLanguage();
+  const location = useLocation();
+  const searchRef = useRef(null);
+  useEffect(() => {
+    if (location.hash === "#wein-suche") {
+      searchRef.current?.focus({ preventScroll: true });
+      searchRef.current?.scrollIntoView({ block: "center" });
+    }
+  }, [location]);
   const CollectionHeading = home ? "h2" : "h1";
   const { initialData, dataLoadState, dataLoadError } = useSelector(
     (state) => state.wines,
@@ -117,6 +125,8 @@ function Catalog({ country, home }) {
             <label className="search">
               <span className="sr-only">{t("search")}</span>
               <input
+                id="wein-suche"
+                ref={searchRef}
                 type="search"
                 placeholder={t("search")}
                 value={query}

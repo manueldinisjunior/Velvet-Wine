@@ -79,12 +79,22 @@ export default function WineShopHeader() {
           </select>
         </label>
         <Link
-          to="/cart"
-          className="bag-link"
-          aria-label={`Cart, ${count}`}
+          to="/weinladen#wein-suche"
+          className="header-icon-link"
+          aria-label={t("search")}
+          title={t("search")}
+          onClick={() => setOpen(false)}
         >
-          <span className="bag-name">Cart</span>
-          <span aria-live="polite">{count}</span>
+          <Icon name="search" size={23} />
+        </Link>
+        <Link
+          to="/cart"
+          className="header-icon-link header-cart"
+          aria-label={`Cart, ${count}`}
+          title={`Cart, ${count}`}
+        >
+          <Icon name="cart" size={24} />
+          {count > 0 && <span className="header-cart-count" aria-hidden="true">{count > 99 ? "99+" : count}</span>}
         </Link>
         <button ref={menuRef} type="button" className="menu-toggle" aria-label={open ? t("close") : t("menu")} aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>
           <Icon name={open ? "close" : "menu"} size={22} />
