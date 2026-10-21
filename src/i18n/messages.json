@@ -64,7 +64,8 @@
     "storageTitle": "Notwendige Speicherung",
     "storageInfo": "Cart und Sprache bleiben gespeichert, bis du sie änderst oder die Website-Daten im Browser löschst.",
     "alwaysActive": "Immer aktiv",
-    "done": "Fertig"
+    "done": "Fertig",
+    "allRightsReserved": "Alle Rechte vorbehalten."
   },
   "en": {
     "home": "Discover",
@@ -131,7 +132,8 @@
     "storageTitle": "Essential storage",
     "storageInfo": "Cart and language stay saved until you change them or clear website data in your browser.",
     "alwaysActive": "Always active",
-    "done": "Done"
+    "done": "Done",
+    "allRightsReserved": "All rights reserved."
   },
   "nl": {
     "home": "Ontdekken",
@@ -198,7 +200,8 @@
     "storageTitle": "Noodzakelijke opslag",
     "storageInfo": "Cart en taal blijven bewaard totdat je ze wijzigt of de websitegegevens wist.",
     "alwaysActive": "Altijd actief",
-    "done": "Gereed"
+    "done": "Gereed",
+    "allRightsReserved": "Alle rechten voorbehouden."
   },
   "sv": {
     "home": "Upptäck",
@@ -265,7 +268,8 @@
     "storageTitle": "Nödvändig lagring",
     "storageInfo": "Cart och språk sparas tills du ändrar dem eller rensar webbplatsdata.",
     "alwaysActive": "Alltid aktiv",
-    "done": "Klart"
+    "done": "Klart",
+    "allRightsReserved": "Alla rättigheter förbehållna."
   },
   "nb": {
     "home": "Oppdag",
@@ -332,7 +336,8 @@
     "storageTitle": "Nødvendig lagring",
     "storageInfo": "Cart og språk lagres til du endrer dem eller sletter nettstedsdata.",
     "alwaysActive": "Alltid aktiv",
-    "done": "Ferdig"
+    "done": "Ferdig",
+    "allRightsReserved": "Alle rettigheter forbeholdt."
   },
   "fr": {
     "home": "Découvrir",
@@ -399,7 +404,8 @@
     "storageTitle": "Stockage nécessaire",
     "storageInfo": "Le Cart et la langue restent enregistrés jusqu’à leur modification ou la suppression des données du site.",
     "alwaysActive": "Toujours actif",
-    "done": "Terminé"
+    "done": "Terminé",
+    "allRightsReserved": "Tous droits réservés."
   },
   "it": {
     "home": "Scopri",
@@ -466,7 +472,8 @@
     "storageTitle": "Memorizzazione necessaria",
     "storageInfo": "Cart e lingua restano salvati finché li modifichi o cancelli i dati del sito.",
     "alwaysActive": "Sempre attivo",
-    "done": "Fatto"
+    "done": "Fatto",
+    "allRightsReserved": "Tutti i diritti riservati."
   },
   "es": {
     "home": "Descubrir",
@@ -533,7 +540,8 @@
     "storageTitle": "Almacenamiento necesario",
     "storageInfo": "Cart e idioma se guardan hasta que los cambies o borres los datos del sitio.",
     "alwaysActive": "Siempre activo",
-    "done": "Listo"
+    "done": "Listo",
+    "allRightsReserved": "Todos los derechos reservados."
   },
   "pt": {
     "home": "Descobrir",
@@ -600,7 +608,8 @@
     "storageTitle": "Armazenamento necessário",
     "storageInfo": "O Cart e o idioma ficam guardados até os alterares ou apagares os dados do site.",
     "alwaysActive": "Sempre ativo",
-    "done": "Concluído"
+    "done": "Concluído",
+    "allRightsReserved": "Todos os direitos reservados."
   },
   "ru": {
     "home": "Открыть",
@@ -667,7 +676,8 @@
     "storageTitle": "Необходимое хранение",
     "storageInfo": "Cart и язык сохраняются, пока вы не измените их или не удалите данные сайта.",
     "alwaysActive": "Всегда активно",
-    "done": "Готово"
+    "done": "Готово",
+    "allRightsReserved": "Все права защищены."
   },
   "zh-Hans": {
     "home": "探索",
@@ -734,6 +744,7 @@
     "storageTitle": "必要存储",
     "storageInfo": "Cart 和语言会保留，直到您更改设置或清除网站数据。",
     "alwaysActive": "始终启用",
-    "done": "完成"
+    "done": "完成",
+    "allRightsReserved": "保留所有权利。"
   }
 }

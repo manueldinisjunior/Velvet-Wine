@@ -112,7 +112,7 @@ test("legal page and social links remain reachable with reduced motion", () => {
     "nofollow noopener noreferrer",
   );
   fireEvent.click(screen.getByRole("button", { name: /Nach oben/ }));
-  expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+  expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "instant" });
   expect(
     screen.getByText("Bewusst genießen.", { selector: ".announcement" }),
   ).toHaveFocus();
@@ -154,9 +154,9 @@ test("back to top animates through the midpoint and finishes after 1500ms", () =
   const raf = jest.spyOn(window, "requestAnimationFrame").mockImplementation(callback => { frame = callback; return 1; });
   fireEvent.click(screen.getByRole("button", { name: /Nach oben/ }));
   frame(750);
-  expect(window.scrollTo).toHaveBeenLastCalledWith(0, 500);
+  expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 500, left: 0, behavior: "instant" });
   frame(1500);
-  expect(window.scrollTo).toHaveBeenLastCalledWith(0, 0);
+  expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 0, left: 0, behavior: "instant" });
   expect(document.getElementById("top")).toHaveFocus();
   raf.mockRestore();
   now.mockRestore();

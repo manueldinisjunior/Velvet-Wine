@@ -20,7 +20,7 @@ export default function BackToTop() {
     };
     cleanup.current = cancel;
     const finish = () => {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       cancel();
       document.getElementById("top")?.focus({ preventScroll: true });
     };
@@ -36,7 +36,7 @@ export default function BackToTop() {
     const step = (now) => {
       const progress = Math.min((now - start) / 1500, 1);
       const ease = progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-      window.scrollTo(0, origin * (1 - ease));
+      window.scrollTo({ top: origin * (1 - ease), left: 0, behavior: "instant" });
       if (progress < 1) frame = requestAnimationFrame(step);
       else finish();
     };

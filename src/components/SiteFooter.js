@@ -20,7 +20,8 @@ export default function SiteFooter() {
       <nav className="footer-legal" aria-label={t("imprint")}>{legalLinks.map(([url,key])=><Link key={url} to={"/"+url}>{t(key)}</Link>)}</nav>
       <div className="footer-privacy"><PrivacySettings /></div>
       <p className="footer-demo">{t("demo")}</p>
-      <div className="footer-meta"><span>© {new Date().getFullYear()}</span><a className="developer-credit" href="https://manueldinisjunior.de/" rel="noopener noreferrer">Developed by manueldinisjunior.de <Icon name="external" /></a><BackToTop /></div>
+      <div className="footer-meta"><span>{t("allRightsReserved")} © {new Date().getFullYear()}</span><a className="developer-credit" href="https://manueldinisjunior.de/" rel="noopener noreferrer">Developed by manueldinisjunior.de <Icon name="external" /></a></div>
     </div>
+    <BackToTop />
   </footer>;
 }
