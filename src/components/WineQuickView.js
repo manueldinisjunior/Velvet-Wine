@@ -35,7 +35,7 @@ export default function WineQuickView({ item, opener, onClose }) {
     <p>{item.volume} L · {item.alcohol}% ABV</p>
     {typeof item.tastingNotes === "string" && item.tastingNotes.trim() && <section><h3>{t("tastingNotes")}</h3><p>{item.tastingNotes}</p></section>}
     {typeof item.foodPairings === "string" && item.foodPairings.trim() && <section><h3>{t("foodPairings")}</h3><p>{item.foodPairings}</p></section>}
-    <div className="quick-view-purchase"><strong>{money(item.price, language)}</strong><WinePurchase item={item} /></div>
+    <div className="quick-view-purchase"><strong>{money(item.price, language)}</strong><WinePurchase item={item} announce /></div>
     <p className="quick-view-demo">{t("demo")}</p>
   </dialog>;
 }

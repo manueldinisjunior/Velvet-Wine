@@ -208,6 +208,7 @@ test("quick view uses catalog facts, supports repeated additions and restores fo
   fireEvent.click(add);
   fireEvent.click(add);
   expect(add).toHaveTextContent("Hinzugefügt");
+  expect(within(panel).getByRole("status")).toHaveTextContent("Hinzugefügt");
   expect(screen.getByRole("link", { name: `Cart, ${before + 2}` })).toBeInTheDocument();
   fireEvent.click(within(panel).getByRole("button", { name: "Schließen" }));
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
