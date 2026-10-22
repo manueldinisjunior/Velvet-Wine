@@ -84,7 +84,10 @@
     "giftBusinessText": "Geschenke für Kunden, Partner und Mitarbeitende, passend zum Anlass und zur gewünschten Stückzahl.",
     "giftTailored": "Anlass, Budget und Wünsche bestimmen die Auswahl. Inhalt, Verpackung und Preis werden individuell abgestimmt.",
     "giftDemo": "Geschenkideen zur Veranschaulichung. In dieser Demo sind keine Bestellungen möglich.",
-    "giftContact": "Geschenke besprechen"
+    "giftContact": "Geschenke besprechen",
+    "giftChoose": "Dein Wein im Geschenkkorb",
+    "giftWineOnly": "nur der Wein",
+    "giftIllustration": "Illustrative Zusammenstellung. Korb und Feinkost sind nicht im Weinpreis enthalten. Keine Bestellung in dieser Demo."
   },
   "en": {
     "home": "Discover",
@@ -171,7 +174,10 @@
     "giftBusinessText": "Gifts for clients, partners and colleagues, tailored to the occasion and quantity.",
     "giftTailored": "Your occasion, budget and preferences shape the selection. Contents, packaging and price are agreed individually.",
     "giftDemo": "Illustrative gift ideas. Orders are not available in this demo.",
-    "giftContact": "Discuss a gift"
+    "giftContact": "Discuss a gift",
+    "giftChoose": "Your wine in the gift basket",
+    "giftWineOnly": "wine only",
+    "giftIllustration": "Illustrative arrangement. Basket and delicacies are not included in the wine price. No orders in this demo."
   },
   "nl": {
     "home": "Ontdekken",
@@ -258,7 +264,10 @@
     "giftBusinessText": "Geschenken voor klanten, partners en medewerkers, passend bij de gelegenheid en het aantal.",
     "giftTailored": "Gelegenheid, budget en wensen bepalen de selectie. Inhoud, verpakking en prijs worden persoonlijk afgestemd.",
     "giftDemo": "Cadeau-ideeën ter illustratie. Bestellen is niet mogelijk in deze demo.",
-    "giftContact": "Bespreek je cadeau"
+    "giftContact": "Bespreek je cadeau",
+    "giftChoose": "Jouw wijn in de geschenkmand",
+    "giftWineOnly": "alleen de wijn",
+    "giftIllustration": "Illustratieve samenstelling. Mand en lekkernijen zijn niet inbegrepen in de wijnprijs. Geen bestellingen in deze demo."
   },
   "sv": {
     "home": "Upptäck",
@@ -345,7 +354,10 @@
     "giftBusinessText": "Gåvor till kunder, samarbetspartner och medarbetare, anpassade efter tillfälle och antal.",
     "giftTailored": "Tillfälle, budget och önskemål styr urvalet. Innehåll, förpackning och pris bestäms individuellt.",
     "giftDemo": "Presentidéer som exempel. Det går inte att beställa i denna demo.",
-    "giftContact": "Prata om en gåva"
+    "giftContact": "Prata om en gåva",
+    "giftChoose": "Ditt vin i presentkorgen",
+    "giftWineOnly": "endast vinet",
+    "giftIllustration": "Illustrativ sammansättning. Korg och delikatesser ingår inte i vinpriset. Inga beställningar i denna demo."
   },
   "nb": {
     "home": "Oppdag",
@@ -432,7 +444,10 @@
     "giftBusinessText": "Gaver til kunder, samarbeidspartnere og ansatte, tilpasset anledning og antall.",
     "giftTailored": "Anledning, budsjett og ønsker bestemmer utvalget. Innhold, innpakning og pris avtales individuelt.",
     "giftDemo": "Gaveideer som eksempler. Bestilling er ikke tilgjengelig i denne demoen.",
-    "giftContact": "Snakk om en gave"
+    "giftContact": "Snakk om en gave",
+    "giftChoose": "Din vin i gavekurven",
+    "giftWineOnly": "kun vinen",
+    "giftIllustration": "Illustrerende sammensetning. Kurv og delikatesser er ikke inkludert i vinprisen. Ingen bestillinger i denne demoen."
   },
   "fr": {
     "home": "Découvrir",
@@ -519,7 +534,10 @@
     "giftBusinessText": "Des cadeaux pour vos clients, partenaires et collaborateurs, adaptés à l’occasion et aux quantités.",
     "giftTailored": "L’occasion, le budget et vos envies guident la sélection. Contenu, emballage et prix sont définis ensemble.",
     "giftDemo": "Idées cadeaux à titre d’exemple. Aucune commande possible dans cette démo.",
-    "giftContact": "Parlons de votre cadeau"
+    "giftContact": "Parlons de votre cadeau",
+    "giftChoose": "Votre vin dans le panier cadeau",
+    "giftWineOnly": "vin uniquement",
+    "giftIllustration": "Composition illustrative. Panier et gourmandises non compris dans le prix du vin. Aucune commande dans cette démo."
   },
   "it": {
     "home": "Scopri",
@@ -606,7 +624,10 @@
     "giftBusinessText": "Regali per clienti, partner e collaboratori, adatti all’occasione e alle quantità.",
     "giftTailored": "Occasione, budget e preferenze guidano la scelta. Contenuto, confezione e prezzo vengono concordati individualmente.",
     "giftDemo": "Idee regalo a scopo illustrativo. Non è possibile ordinare in questa demo.",
-    "giftContact": "Parliamo del tuo regalo"
+    "giftContact": "Parliamo del tuo regalo",
+    "giftChoose": "Il tuo vino nel cesto regalo",
+    "giftWineOnly": "solo il vino",
+    "giftIllustration": "Composizione illustrativa. Cesto e specialità non sono inclusi nel prezzo del vino. Nessun ordine in questa demo."
   },
   "es": {
     "home": "Descubrir",
@@ -693,7 +714,10 @@
     "giftBusinessText": "Regalos para clientes, socios y empleados, adaptados a la ocasión y la cantidad.",
     "giftTailored": "La ocasión, el presupuesto y tus preferencias guían la selección. Contenido, presentación y precio se acuerdan individualmente.",
     "giftDemo": "Ideas de regalo ilustrativas. Esta demo no permite realizar pedidos.",
-    "giftContact": "Hablemos de tu regalo"
+    "giftContact": "Hablemos de tu regalo",
+    "giftChoose": "Tu vino en la cesta de regalo",
+    "giftWineOnly": "solo el vino",
+    "giftIllustration": "Composición ilustrativa. La cesta y las delicias no están incluidas en el precio del vino. Sin pedidos en esta demo."
   },
   "pt": {
     "home": "Descobrir",
@@ -780,7 +804,10 @@
     "giftBusinessText": "Presentes para clientes, parceiros e colaboradores, adaptados à ocasião e à quantidade.",
     "giftTailored": "A ocasião, o orçamento e as preferências orientam a seleção. Conteúdo, embalagem e preço são combinados individualmente.",
     "giftDemo": "Ideias de presentes ilustrativas. Não é possível encomendar nesta demonstração.",
-    "giftContact": "Vamos falar do teu presente"
+    "giftContact": "Vamos falar do teu presente",
+    "giftChoose": "O teu vinho no cabaz",
+    "giftWineOnly": "apenas o vinho",
+    "giftIllustration": "Composição ilustrativa. O cabaz e as iguarias não estão incluídos no preço do vinho. Sem encomendas nesta demonstração."
   },
   "ru": {
     "home": "Открыть",
@@ -867,7 +894,10 @@
     "giftBusinessText": "Подарки клиентам, партнёрам и сотрудникам с учётом повода и количества.",
     "giftTailored": "Повод, бюджет и пожелания определяют выбор. Состав, упаковка и цена согласовываются индивидуально.",
     "giftDemo": "Примеры подарочных идей. Заказы в этой демоверсии недоступны.",
-    "giftContact": "Обсудить подарок"
+    "giftContact": "Обсудить подарок",
+    "giftChoose": "Ваше вино в подарочной корзине",
+    "giftWineOnly": "только вино",
+    "giftIllustration": "Пример оформления. Корзина и деликатесы не включены в цену вина. В демоверсии заказы недоступны."
   },
   "zh-Hans": {
     "home": "探索",
@@ -954,6 +984,9 @@
     "giftBusinessText": "为客户、合作伙伴和员工准备礼物，根据场合及数量进行搭配。",
     "giftTailored": "根据场合、预算和喜好挑选。内容、包装和价格需单独商定。",
     "giftDemo": "礼品方案仅供展示。本演示网站不接受订单。",
-    "giftContact": "咨询礼品方案"
+    "giftContact": "咨询礼品方案",
+    "giftChoose": "选择礼篮中的葡萄酒",
+    "giftWineOnly": "仅葡萄酒价格",
+    "giftIllustration": "搭配仅供展示。酒价不含礼篮和食品。本演示不接受订单。"
   }
 }
