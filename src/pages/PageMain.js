@@ -6,6 +6,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import WineShopBanner from "../components/WineShopBanner";
 import WineItem from "../components/WineItem";
+import WineQuickView from "../components/WineQuickView";
 import { winesLoad } from "../redux/winesLoad";
 
 export function selectWines(wines, country, type, query, sort) {
@@ -61,12 +62,24 @@ function Catalog({ country, home }) {
     (state) => state.wines,
   );
   const dispatch = useDispatch();
+  const [quickView, setQuickView] = useState(null);
+  const resultsRef = useRef(null);
   const [type, setType] = useState("all");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("featured");
   const [limit, setLimit] = useState(12);
+  useEffect(() => {
+    const element = resultsRef.current;
+    if (!element || window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) return;
+    const animation = element.animate?.([{ opacity: 0.35 }, { opacity: 1 }], { duration: 180, easing: "ease-out" });
+    return () => animation?.cancel();
+  }, [type, query, sort, limit, dataLoadState]);
   const wines = selectWines(initialData || [], country, type, query, sort);
+  const preserveHeight = () => {
+    if (resultsRef.current) resultsRef.current.style.minHeight = `${resultsRef.current.getBoundingClientRect().height}px`;
+  };
   const reset = () => {
+    preserveHeight();
     setType("all");
     setQuery("");
     setSort("featured");
@@ -113,6 +126,7 @@ function Catalog({ country, home }) {
                 key={value}
                 aria-pressed={type === value}
                 onClick={() => {
+                  preserveHeight();
                   setType(value);
                   setLimit(12);
                 }}
@@ -131,6 +145,7 @@ function Catalog({ country, home }) {
                 placeholder={t("search")}
                 value={query}
                 onChange={(e) => {
+                  preserveHeight();
                   setQuery(e.target.value);
                   setLimit(12);
                 }}
@@ -138,7 +153,7 @@ function Catalog({ country, home }) {
             </label>
             <label>
               <span className="sr-only">{t("featured")}</span>
-              <select value={sort} onChange={(e) => setSort(e.target.value)}>
+              <select value={sort} onChange={(e) => { preserveHeight(); setSort(e.target.value); }}>
                 {[
                   ["featured", "featured"],
                   ["price-low", "low"],
@@ -153,7 +168,10 @@ function Catalog({ country, home }) {
             </label>
           </div>
         </div>
-        {dataLoadState === 1 && <p role="status">{t("loading")}</p>}
+        {dataLoadState !== 2 && <>
+          <p role="status">{t("loading")}</p>
+          <div className="wine-grid" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <div className="wine-card wine-skeleton" key={index}><div className="wine-visual skeleton-bottle" /><div className="wine-details"><p className="wine-meta skeleton-text">&nbsp;</p><h3 className="skeleton-text">&nbsp;</h3><p className="wine-grape skeleton-text">&nbsp;</p><div className="wine-buy"><div className="skeleton-price" /></div></div></div>)}</div>
+        </>}
         {dataLoadError && (
           <p className="catalog-notice">
             {t("offline")}{" "}
@@ -161,13 +179,13 @@ function Catalog({ country, home }) {
           </p>
         )}
         {dataLoadState === 2 && (
-          <>
+          <div ref={resultsRef} className="catalog-results">
             <p className="result-count" role="status">
               {wines.length} {t("count")}
             </p>
-            <div className="wine-grid">
+            <div className="wine-grid wine-results">
               {wines.slice(0, limit).map((item) => (
-                <WineItem key={item.id} item={item} />
+                <WineItem key={item.id} item={item} onQuickView={(wine, opener) => setQuickView({ item: wine, opener })} />
               ))}
             </div>
             {!wines.length && (
@@ -191,9 +209,10 @@ function Catalog({ country, home }) {
                 </button>
               </div>
             )}
-          </>
+          </div>
         )}
       </section>
+      {quickView && <WineQuickView {...quickView} onClose={() => setQuickView(null)} />}
       <section id="story" className="story">
         <div>
           <p className="eyebrow">Velvet Essence</p>

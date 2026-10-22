@@ -412,9 +412,7 @@ select {
   mix-blend-mode: multiply;
   transition: transform 0.35s;
 }
-.wine-card:hover .wine-visual img {
-  transform: rotate(-5deg) scale(1.05);
-}
+
 .wine-tag {
   position: absolute;
   left: 14px;
@@ -1371,3 +1369,48 @@ footer#contact { position:relative; }
  .footer-business .social-links { gap:14px 16px; }
  .footer-legal { gap:8px 22px; }
 }
+
+/* Shopping interactions: short, finite and motion-preference aware. */
+.wine-card { transition:transform 180ms ease; }
+.wine-visual img { transition:transform 220ms ease; }
+.wine-card:focus-within { outline:2px solid var(--wine); outline-offset:6px; border-radius:12px; }
+.wine-title-button { padding:0; border:0; background:transparent; color:inherit; font:inherit; text-align:left; cursor:pointer; min-height:44px; }
+.wine-title-button:hover { text-decoration:underline; text-underline-offset:4px; }
+.purchase-controls { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:8px; }
+.wine-buy { flex-wrap:wrap; min-height:110px; align-content:start; }
+.wine-buy .purchase-controls { flex:1; }
+.wine-buy .add-button { min-width:130px; }
+.wine-results:empty { display:none; }
+.catalog-results { min-height:460px; }
+.skeleton-bottle { opacity:.35; }
+.skeleton-text { border-radius:6px; background:var(--line); }
+.skeleton-price { width:45%; height:44px; border-radius:22px; background:var(--line); }
+.wine-quick-view { position:fixed; inset:0 0 0 auto; margin:0; width:min(520px, 100%); max-width:100%; height:100dvh; max-height:100dvh; overflow-y:auto; overscroll-behavior:contain; border:0; padding:28px; background:var(--cream); color:var(--wine); box-shadow:-12px 0 60px #35172a22; }
+.wine-quick-view::backdrop { background:#35172a88; }
+.quick-view-close { position:sticky; top:0; margin-left:auto; z-index:1; background:var(--cream); }
+.quick-view-image { height:230px; display:flex; align-items:center; justify-content:center; }
+.quick-view-image img { height:210px; width:150px; object-fit:contain; mix-blend-mode:multiply; }
+.wine-quick-view h2 { font-size:32px; margin:16px 0 24px; overflow-wrap:anywhere; }
+.quick-view-facts { display:grid; grid-template-columns:100px 1fr; gap:12px 20px; font-size:14px; }
+.quick-view-facts dt { font-weight:700; }
+.quick-view-facts dd { margin:0; overflow-wrap:anywhere; }
+.quick-view-purchase { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-block:28px; }
+.quick-view-purchase > strong { white-space:nowrap; font-size:22px; }
+.quick-view-demo { font-size:12px; line-height:1.6; }
+@keyframes velvet-reveal { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes velvet-panel { from { opacity:0; transform:translateX(24px); } to { opacity:1; transform:translateX(0); } }
+@keyframes velvet-count { 50% { transform:scale(1.2); } }
+@media(prefers-reduced-motion:no-preference) {
+ .language-options { animation:velvet-reveal 160ms ease-out; }
+ .wine-quick-view[open] { animation:velvet-panel 220ms ease-out; }
+ .cart-count-pulse { animation:velvet-count 220ms ease-out; }
+ .wine-card:focus-within { transform:translateY(-3px); }
+ .wine-card:focus-within .wine-visual img { transform:scale(1.035); }
+}
+@media(max-width:1100px) and (prefers-reduced-motion:no-preference) { .navigation.is-open { animation:velvet-reveal 180ms ease-out; } }
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+ .wine-card:hover { transform:translateY(-3px); }
+ .wine-card:hover .wine-visual img { transform:scale(1.035); }
+}
+@media(hover:none) { .wine-card:focus-within { transform:none; } .wine-card:focus-within .wine-visual img { transform:none; } }
+@media(max-width:600px) { .wine-quick-view { padding:20px; } .quick-view-facts { grid-template-columns:90px 1fr; } }

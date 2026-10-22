@@ -1,11 +1,6 @@
 import { useLanguage } from "../i18n";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addItemToCart,
-  changeItemAmount,
-  deleteItemFromCart,
-} from "../redux/winesSlice";
+import WinePurchase from "./WinePurchase";
 export const money = (value, language = "de") =>
   new Intl.NumberFormat(language, {
     style: "currency",
@@ -34,24 +29,8 @@ export function WineImage({ item }) {
     />
   );
 }
-export default function WineItem({ item }) {
+export default function WineItem({ item, onQuickView }) {
   const { t, language } = useLanguage();
-  const amount = useSelector(
-    (state) =>
-      state.wines.cart.find((entry) => entry.item.id === item.id)?.amount || 0,
-  );
-  const dispatch = useDispatch();
-  function change(delta) {
-    if (!amount) dispatch(addItemToCart({ item, amount: 1 }));
-    else if (amount + delta === 0) dispatch(deleteItemFromCart(item.id));
-    else
-      dispatch(
-        changeItemAmount({
-          currentItemId: item.id,
-          currentAmount: amount + delta,
-        }),
-      );
-  }
   return (
     <article className={`wine-card wine-${item.type.toLowerCase()}`}>
       <div className="wine-visual">
@@ -63,35 +42,11 @@ export default function WineItem({ item }) {
         <p className="wine-meta">
           {item.volume} L <span>·</span> {item.alcohol}% ABV
         </p>
-        <h3>{item.name.replace(/"/g, "")}</h3>
+        <h3><button className="wine-title-button" aria-haspopup="dialog" onClick={event => onQuickView(item, event.currentTarget)} aria-label={`${t("quickView")}: ${item.name}`}>{item.name.replace(/"/g, "")}</button></h3>
         <p className="wine-grape">{item.grapeSort.join(" · ")}</p>
         <div className="wine-buy">
           <strong>{money(item.price, language)}</strong>
-          {amount ? (
-            <div className="quantity">
-              <button
-                onClick={() => change(-1)}
-                aria-label={`${t("less")}: ${item.name}`}
-              >
-                −
-              </button>
-              <span aria-live="polite">{amount}</span>
-              <button
-                onClick={() => change(1)}
-                aria-label={`${t("more")}: ${item.name}`}
-              >
-                +
-              </button>
-            </div>
-          ) : (
-            <button
-              className="add-button"
-              onClick={() => change(1)}
-              aria-label={`${t("add")}: ${item.name}`}
-            >
-              {t("add")} <span>+</span>
-            </button>
-          )}
+          <WinePurchase item={item} />
         </div>
       </div>
     </article>

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
 import wines from "./items.json";
@@ -189,4 +189,45 @@ test("flag picker closes on Escape and restores keyboard focus", () => {
   expect(trigger).toHaveAttribute("aria-expanded", "false");
   expect(trigger).toHaveFocus();
   expect(document.getElementById("language-options")).not.toBeInTheDocument();
+});
+
+
+test("quick view uses catalog facts, supports repeated additions and restores focus", async () => {
+  HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
+  HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
+  render(<App />);
+  await screen.findByText("64 Weine entdecken");
+  const opener = screen.getAllByRole("button", { name: /^Weindetails ansehen:/ })[0];
+  opener.focus();
+  fireEvent.click(opener);
+  const panel = screen.getByRole("dialog");
+  expect(within(panel).getByText(wines[0].production)).toBeInTheDocument();
+  expect(within(panel).queryByText("Verkostungsnotizen")).not.toBeInTheDocument();
+  const add = within(panel).getByRole("button", { name: /^In den Warenkorb:/ });
+  const before = Number(screen.getByRole("link", { name: /^Cart, / }).getAttribute("aria-label").split(", ")[1]);
+  fireEvent.click(add);
+  fireEvent.click(add);
+  expect(add).toHaveTextContent("Hinzugefügt");
+  expect(screen.getByRole("link", { name: `Cart, ${before + 2}` })).toBeInTheDocument();
+  fireEvent.click(within(panel).getByRole("button", { name: "Schließen" }));
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  expect(opener).toHaveFocus();
+  expect(document.body.style.overflow).not.toBe("hidden");
+});
+
+test("loading placeholders give way to the catalog and reduced motion skips result animation", async () => {
+  let resolveCatalog;
+  get.mockImplementation(() => new Promise(resolve => { resolveCatalog = resolve; }));
+  window.matchMedia = jest.fn(() => ({ matches: true }));
+  const animate = jest.fn(() => ({ cancel: jest.fn() }));
+  HTMLElement.prototype.animate = animate;
+  const { container } = render(<App />);
+  expect(screen.getByText("Weine werden geladen…")).toBeInTheDocument();
+  expect(container.querySelectorAll(".wine-skeleton")).toHaveLength(12);
+  resolveCatalog({ val: () => wines });
+  await screen.findByText("64 Weine entdecken");
+  fireEvent.click(screen.getByRole("button", { name: "Weißwein", exact: true }));
+  expect(animate).not.toHaveBeenCalled();
+  expect(container.querySelectorAll(".wine-skeleton")).toHaveLength(0);
+  delete HTMLElement.prototype.animate;
 });

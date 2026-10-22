@@ -6,6 +6,8 @@ const initialState = {
   initialData: null,
   data: null,
   cart: [],
+  cartNotice: null,
+  addSequence: 0,
 };
 
 export const winesSlice = createSlice({
@@ -23,6 +25,8 @@ export const winesSlice = createSlice({
     },
 
     addItemToCart: (state, action) => {
+      state.addSequence += 1;
+      state.cartNotice = action.payload.item.name;
       const existing = state.cart.find(
         (entry) => entry.item.id === action.payload.item.id,
       );

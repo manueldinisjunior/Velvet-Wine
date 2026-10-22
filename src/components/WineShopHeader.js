@@ -9,6 +9,7 @@ export default function WineShopHeader() {
   const count = useSelector((state) =>
     state.wines.cart.reduce((sum, entry) => sum + entry.amount, 0),
   );
+  const { cartNotice, addSequence } = useSelector(state => state.wines);
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const menuRef = useRef(null);
@@ -16,6 +17,7 @@ export default function WineShopHeader() {
   useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
     if (!open) return;
+    headerRef.current?.querySelector("#navigation a")?.focus();
     const dismiss = (event) => {
       if (event.type === "keydown" && event.key === "Escape") {
         setOpen(false);
@@ -83,12 +85,13 @@ export default function WineShopHeader() {
           title={`Cart, ${count}`}
         >
           <Icon name="cart" size={24} />
-          {count > 0 && <span className="header-cart-count" aria-hidden="true">{count > 99 ? "99+" : count}</span>}
+          {count > 0 && <span key={addSequence} className={`header-cart-count ${addSequence ? "cart-count-pulse" : ""}`} aria-hidden="true">{count > 99 ? "99+" : count}</span>}
         </Link>
         <button ref={menuRef} type="button" className="menu-toggle" aria-label={open ? t("close") : t("menu")} aria-expanded={open} aria-controls="navigation" onClick={() => setOpen(!open)}>
           <Icon name={open ? "close" : "menu"} size={22} />
         </button>
         </div>
+        <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">{cartNotice && <span key={addSequence}>{t("added")}: {cartNotice}. {t("cart")}: {count}</span>}</span>
       </header>
     </>
   );

@@ -65,7 +65,13 @@
     "storageInfo": "Cart und Sprache bleiben gespeichert, bis du sie änderst oder die Website-Daten im Browser löschst.",
     "alwaysActive": "Immer aktiv",
     "done": "Fertig",
-    "allRightsReserved": "Alle Rechte vorbehalten."
+    "allRightsReserved": "Alle Rechte vorbehalten.",
+    "added": "Hinzugefügt",
+    "quickView": "Weindetails ansehen",
+    "grapes": "Rebsorten",
+    "producer": "Weingut",
+    "tastingNotes": "Verkostungsnotizen",
+    "foodPairings": "Speiseempfehlungen"
   },
   "en": {
     "home": "Discover",
@@ -133,7 +139,13 @@
     "storageInfo": "Cart and language stay saved until you change them or clear website data in your browser.",
     "alwaysActive": "Always active",
     "done": "Done",
-    "allRightsReserved": "All rights reserved."
+    "allRightsReserved": "All rights reserved.",
+    "added": "Added",
+    "quickView": "View wine details",
+    "grapes": "Grape varieties",
+    "producer": "Producer",
+    "tastingNotes": "Tasting notes",
+    "foodPairings": "Food pairings"
   },
   "nl": {
     "home": "Ontdekken",
@@ -201,7 +213,13 @@
     "storageInfo": "Cart en taal blijven bewaard totdat je ze wijzigt of de websitegegevens wist.",
     "alwaysActive": "Altijd actief",
     "done": "Gereed",
-    "allRightsReserved": "Alle rechten voorbehouden."
+    "allRightsReserved": "Alle rechten voorbehouden.",
+    "added": "Toegevoegd",
+    "quickView": "Wijndetails bekijken",
+    "grapes": "Druivenrassen",
+    "producer": "Producent",
+    "tastingNotes": "Proefnotities",
+    "foodPairings": "Wijn-spijscombinaties"
   },
   "sv": {
     "home": "Upptäck",
@@ -269,7 +287,13 @@
     "storageInfo": "Cart och språk sparas tills du ändrar dem eller rensar webbplatsdata.",
     "alwaysActive": "Alltid aktiv",
     "done": "Klart",
-    "allRightsReserved": "Alla rättigheter förbehållna."
+    "allRightsReserved": "Alla rättigheter förbehållna.",
+    "added": "Tillagd",
+    "quickView": "Visa vindetaljer",
+    "grapes": "Druvsorter",
+    "producer": "Producent",
+    "tastingNotes": "Smaknoter",
+    "foodPairings": "Mat som passar"
   },
   "nb": {
     "home": "Oppdag",
@@ -337,7 +361,13 @@
     "storageInfo": "Cart og språk lagres til du endrer dem eller sletter nettstedsdata.",
     "alwaysActive": "Alltid aktiv",
     "done": "Ferdig",
-    "allRightsReserved": "Alle rettigheter forbeholdt."
+    "allRightsReserved": "Alle rettigheter forbeholdt.",
+    "added": "Lagt til",
+    "quickView": "Se vindetaljer",
+    "grapes": "Druetyper",
+    "producer": "Produsent",
+    "tastingNotes": "Smaksnotater",
+    "foodPairings": "Mat som passer"
   },
   "fr": {
     "home": "Découvrir",
@@ -405,7 +435,13 @@
     "storageInfo": "Le Cart et la langue restent enregistrés jusqu’à leur modification ou la suppression des données du site.",
     "alwaysActive": "Toujours actif",
     "done": "Terminé",
-    "allRightsReserved": "Tous droits réservés."
+    "allRightsReserved": "Tous droits réservés.",
+    "added": "Ajouté",
+    "quickView": "Voir les détails du vin",
+    "grapes": "Cépages",
+    "producer": "Producteur",
+    "tastingNotes": "Notes de dégustation",
+    "foodPairings": "Accords mets et vins"
   },
   "it": {
     "home": "Scopri",
@@ -473,7 +509,13 @@
     "storageInfo": "Cart e lingua restano salvati finché li modifichi o cancelli i dati del sito.",
     "alwaysActive": "Sempre attivo",
     "done": "Fatto",
-    "allRightsReserved": "Tutti i diritti riservati."
+    "allRightsReserved": "Tutti i diritti riservati.",
+    "added": "Aggiunto",
+    "quickView": "Visualizza dettagli del vino",
+    "grapes": "Vitigni",
+    "producer": "Produttore",
+    "tastingNotes": "Note di degustazione",
+    "foodPairings": "Abbinamenti"
   },
   "es": {
     "home": "Descubrir",
@@ -541,7 +583,13 @@
     "storageInfo": "Cart e idioma se guardan hasta que los cambies o borres los datos del sitio.",
     "alwaysActive": "Siempre activo",
     "done": "Listo",
-    "allRightsReserved": "Todos los derechos reservados."
+    "allRightsReserved": "Todos los derechos reservados.",
+    "added": "Añadido",
+    "quickView": "Ver detalles del vino",
+    "grapes": "Variedades de uva",
+    "producer": "Productor",
+    "tastingNotes": "Notas de cata",
+    "foodPairings": "Maridajes"
   },
   "pt": {
     "home": "Descobrir",
@@ -609,7 +657,13 @@
     "storageInfo": "O Cart e o idioma ficam guardados até os alterares ou apagares os dados do site.",
     "alwaysActive": "Sempre ativo",
     "done": "Concluído",
-    "allRightsReserved": "Todos os direitos reservados."
+    "allRightsReserved": "Todos os direitos reservados.",
+    "added": "Adicionado",
+    "quickView": "Ver detalhes do vinho",
+    "grapes": "Castas",
+    "producer": "Produtor",
+    "tastingNotes": "Notas de prova",
+    "foodPairings": "Harmonizações"
   },
   "ru": {
     "home": "Открыть",
@@ -677,7 +731,13 @@
     "storageInfo": "Cart и язык сохраняются, пока вы не измените их или не удалите данные сайта.",
     "alwaysActive": "Всегда активно",
     "done": "Готово",
-    "allRightsReserved": "Все права защищены."
+    "allRightsReserved": "Все права защищены.",
+    "added": "Добавлено",
+    "quickView": "Подробнее о вине",
+    "grapes": "Сорта винограда",
+    "producer": "Производитель",
+    "tastingNotes": "Дегустационные заметки",
+    "foodPairings": "Сочетания с едой"
   },
   "zh-Hans": {
     "home": "探索",
@@ -745,6 +805,12 @@
     "storageInfo": "Cart 和语言会保留，直到您更改设置或清除网站数据。",
     "alwaysActive": "始终启用",
     "done": "完成",
-    "allRightsReserved": "保留所有权利。"
+    "allRightsReserved": "保留所有权利。",
+    "added": "已添加",
+    "quickView": "查看葡萄酒详情",
+    "grapes": "葡萄品种",
+    "producer": "生产商",
+    "tastingNotes": "品鉴笔记",
+    "foodPairings": "配餐建议"
   }
 }
