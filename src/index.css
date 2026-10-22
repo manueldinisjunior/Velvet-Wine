@@ -1414,3 +1414,32 @@ footer#contact { position:relative; }
 }
 @media(hover:none) { .wine-card:focus-within { transform:none; } .wine-card:focus-within .wine-visual img { transform:none; } }
 @media(max-width:600px) { .wine-quick-view { padding:20px; } .quick-view-facts { grid-template-columns:90px 1fr; } }
+
+/* Gift ideas follow the catalog without competing with the wine selection. */
+.gift-section { padding:72px 5%; border-top:1px solid var(--line); background:#f1e7e9; }
+.gift-heading { display:grid; grid-template-columns:1.1fr 1fr; align-items:end; gap:32px 64px; margin-bottom:36px; }
+.gift-heading h2 { font-family:Georgia,serif; font-size:clamp(34px,4.2vw,60px); font-weight:400; line-height:1.08; margin:12px 0 0; }
+.gift-heading > p { max-width:46ch; margin:0; }
+.gift-options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.gift-option { border-top:1px solid #ad929f; padding:24px 0; }
+.gift-option-top { display:flex; align-items:center; justify-content:space-between; color:var(--wine); }
+.gift-option-top > span { font-size:12px; letter-spacing:.12em; }
+.gift-option h3 { font-size:24px; line-height:1.25; margin:28px 0 12px; }
+.gift-option p { margin:0; max-width:38ch; }
+.gift-bottom { border-top:1px solid #ad929f; padding-top:28px; display:flex; justify-content:space-between; align-items:center; gap:24px 40px; }
+.gift-bottom p { margin:0; max-width:65ch; }
+.gift-bottom .gift-note { margin-top:8px; font-size:12px; }
+.gift-bottom .button { flex-shrink:0; text-align:center; }
+@media(max-width:800px) {
+  .gift-heading { grid-template-columns:1fr; gap:20px; }
+  .gift-options { gap:20px; }
+  .gift-option h3 { font-size:21px; }
+  .gift-bottom { align-items:flex-start; flex-direction:column; }
+}
+@media(max-width:600px) {
+  .gift-section { padding:48px 6%; }
+  .gift-options { grid-template-columns:1fr; gap:0; }
+  .gift-option h3 { margin-top:16px; }
+  .gift-option p { max-width:none; }
+  .gift-bottom .button { width:100%; justify-content:center; }
+}

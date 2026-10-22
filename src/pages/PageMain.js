@@ -1,3 +1,4 @@
+import GiftSection from "../components/GiftSection";
 import FlavourTicker from "../components/FlavourTicker";
 import Icon from "../components/Icon";
 import { useLanguage } from "../i18n";
@@ -213,6 +214,7 @@ function Catalog({ country, home }) {
         )}
       </section>
       {quickView && <WineQuickView {...quickView} onClose={() => setQuickView(null)} />}
+      <GiftSection />
       <section id="story" className="story">
         <div>
           <p className="eyebrow">Velvet Essence</p>
