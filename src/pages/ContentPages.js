@@ -108,7 +108,7 @@ export function ContentPage({ page }) {
   const isLegal = Boolean(legal[page]);
   return (
     <main id="main" tabIndex={-1} className="content-page">
-      <section className="page-intro vineyard">
+      <section className={`page-intro vineyard${page === "ueber-uns" ? " about-background" : ""}`}>
         <p className="eyebrow">Velvet Essence</p>
         <h1>{t(key)}</h1>
         <p>

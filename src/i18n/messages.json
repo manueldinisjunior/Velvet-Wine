@@ -73,7 +73,7 @@
     "tastingNotes": "Verkostungsnotizen",
     "foodPairings": "Speiseempfehlungen",
     "giftEyebrow": "Geschenke & Genuss",
-    "giftTitle": "Freude schenken.",
+    "giftTitle": "Wein verschenken.",
     "giftTitleAccent": "Persönlich zusammengestellt.",
     "giftIntro": "Ein Lieblingswein, ein gefüllter Geschenkkorb oder ein Dankeschön fürs Team: Hier beginnt deine Geschenkidee.",
     "giftWine": "Ein Weinmoment",
@@ -87,7 +87,12 @@
     "giftContact": "Geschenke besprechen",
     "giftChoose": "Dein Wein im Geschenkkorb",
     "giftWineOnly": "nur der Wein",
-    "giftIllustration": "Illustrative Zusammenstellung. Korb und Feinkost sind nicht im Weinpreis enthalten. Keine Bestellung in dieser Demo."
+    "giftIllustration": "Illustrative Zusammenstellung. Korb und Feinkost sind nicht im Weinpreis enthalten. Keine Bestellung in dieser Demo.",
+    "giftIncluded": "inkl. Korb & Inhalt",
+    "giftShortNote": "Abbildung beispielhaft. Zusammenstellung nach Absprache.",
+    "giftWineLabel": "Wein",
+    "giftComponents": "Korb & Inhalt",
+    "giftTotal": "Gesamt"
   },
   "en": {
     "home": "Discover",
@@ -163,7 +168,7 @@
     "tastingNotes": "Tasting notes",
     "foodPairings": "Food pairings",
     "giftEyebrow": "Gifts & good taste",
-    "giftTitle": "Give a little joy.",
+    "giftTitle": "Give wine.",
     "giftTitleAccent": "Made personal.",
     "giftIntro": "A favourite wine, a filled gift basket or a thank-you for the team: your gift idea starts here.",
     "giftWine": "A wine moment",
@@ -177,7 +182,12 @@
     "giftContact": "Discuss a gift",
     "giftChoose": "Your wine in the gift basket",
     "giftWineOnly": "wine only",
-    "giftIllustration": "Illustrative arrangement. Basket and delicacies are not included in the wine price. No orders in this demo."
+    "giftIllustration": "Illustrative arrangement. Basket and delicacies are not included in the wine price. No orders in this demo.",
+    "giftIncluded": "incl. basket & contents",
+    "giftShortNote": "Illustrative image. Contents agreed individually.",
+    "giftWineLabel": "Wine",
+    "giftComponents": "Basket & contents",
+    "giftTotal": "Total"
   },
   "nl": {
     "home": "Ontdekken",
@@ -253,7 +263,7 @@
     "tastingNotes": "Proefnotities",
     "foodPairings": "Wijn-spijscombinaties",
     "giftEyebrow": "Cadeaus & genieten",
-    "giftTitle": "Geef een beetje plezier.",
+    "giftTitle": "Geef wijn cadeau.",
     "giftTitleAccent": "Persoonlijk samengesteld.",
     "giftIntro": "Een favoriete wijn, een gevulde geschenkmand of een bedankje voor het team: hier begint je cadeau-idee.",
     "giftWine": "Een wijnmoment",
@@ -267,7 +277,12 @@
     "giftContact": "Bespreek je cadeau",
     "giftChoose": "Jouw wijn in de geschenkmand",
     "giftWineOnly": "alleen de wijn",
-    "giftIllustration": "Illustratieve samenstelling. Mand en lekkernijen zijn niet inbegrepen in de wijnprijs. Geen bestellingen in deze demo."
+    "giftIllustration": "Illustratieve samenstelling. Mand en lekkernijen zijn niet inbegrepen in de wijnprijs. Geen bestellingen in deze demo.",
+    "giftIncluded": "incl. mand & inhoud",
+    "giftShortNote": "Voorbeeldafbeelding. Inhoud in overleg.",
+    "giftWineLabel": "Wijn",
+    "giftComponents": "Mand & inhoud",
+    "giftTotal": "Totaal"
   },
   "sv": {
     "home": "Upptäck",
@@ -343,7 +358,7 @@
     "tastingNotes": "Smaknoter",
     "foodPairings": "Mat som passar",
     "giftEyebrow": "Gåvor & njutning",
-    "giftTitle": "Ge bort glädje.",
+    "giftTitle": "Ge bort vin.",
     "giftTitleAccent": "Personligt utvalt.",
     "giftIntro": "Ett favoritvin, en fylld presentkorg eller ett tack till teamet: din presentidé börjar här.",
     "giftWine": "En vinstund",
@@ -357,7 +372,12 @@
     "giftContact": "Prata om en gåva",
     "giftChoose": "Ditt vin i presentkorgen",
     "giftWineOnly": "endast vinet",
-    "giftIllustration": "Illustrativ sammansättning. Korg och delikatesser ingår inte i vinpriset. Inga beställningar i denna demo."
+    "giftIllustration": "Illustrativ sammansättning. Korg och delikatesser ingår inte i vinpriset. Inga beställningar i denna demo.",
+    "giftIncluded": "inkl. korg & innehåll",
+    "giftShortNote": "Exempelbild. Innehåll enligt överenskommelse.",
+    "giftWineLabel": "Vin",
+    "giftComponents": "Korg & innehåll",
+    "giftTotal": "Totalt"
   },
   "nb": {
     "home": "Oppdag",
@@ -433,7 +453,7 @@
     "tastingNotes": "Smaksnotater",
     "foodPairings": "Mat som passer",
     "giftEyebrow": "Gaver & gode smaker",
-    "giftTitle": "Gi litt glede.",
+    "giftTitle": "Gi vin i gave.",
     "giftTitleAccent": "Personlig satt sammen.",
     "giftIntro": "En favorittvin, en fylt gavekurv eller en takk til teamet: gaveideen din begynner her.",
     "giftWine": "Et vinøyeblikk",
@@ -447,7 +467,12 @@
     "giftContact": "Snakk om en gave",
     "giftChoose": "Din vin i gavekurven",
     "giftWineOnly": "kun vinen",
-    "giftIllustration": "Illustrerende sammensetning. Kurv og delikatesser er ikke inkludert i vinprisen. Ingen bestillinger i denne demoen."
+    "giftIllustration": "Illustrerende sammensetning. Kurv og delikatesser er ikke inkludert i vinprisen. Ingen bestillinger i denne demoen.",
+    "giftIncluded": "inkl. kurv og innhold",
+    "giftShortNote": "Eksempelbilde. Innhold avtales individuelt.",
+    "giftWineLabel": "Vin",
+    "giftComponents": "Kurv og innhold",
+    "giftTotal": "Totalt"
   },
   "fr": {
     "home": "Découvrir",
@@ -523,7 +548,7 @@
     "tastingNotes": "Notes de dégustation",
     "foodPairings": "Accords mets et vins",
     "giftEyebrow": "Cadeaux & gourmandise",
-    "giftTitle": "Offrir un peu de joie.",
+    "giftTitle": "Offrez du vin.",
     "giftTitleAccent": "Une attention personnelle.",
     "giftIntro": "Un vin préféré, un panier garni ou un merci à votre équipe : votre idée cadeau commence ici.",
     "giftWine": "Un moment autour du vin",
@@ -537,7 +562,12 @@
     "giftContact": "Parlons de votre cadeau",
     "giftChoose": "Votre vin dans le panier cadeau",
     "giftWineOnly": "vin uniquement",
-    "giftIllustration": "Composition illustrative. Panier et gourmandises non compris dans le prix du vin. Aucune commande dans cette démo."
+    "giftIllustration": "Composition illustrative. Panier et gourmandises non compris dans le prix du vin. Aucune commande dans cette démo.",
+    "giftIncluded": "panier et contenu inclus",
+    "giftShortNote": "Photo illustrative. Composition à convenir.",
+    "giftWineLabel": "Vin",
+    "giftComponents": "Panier et contenu",
+    "giftTotal": "Total"
   },
   "it": {
     "home": "Scopri",
@@ -613,7 +643,7 @@
     "tastingNotes": "Note di degustazione",
     "foodPairings": "Abbinamenti",
     "giftEyebrow": "Regali & gusto",
-    "giftTitle": "Regala un sorriso.",
+    "giftTitle": "Regala il vino.",
     "giftTitleAccent": "Una scelta personale.",
     "giftIntro": "Un vino preferito, un cesto regalo o un grazie al team: la tua idea regalo inizia qui.",
     "giftWine": "Un momento di vino",
@@ -627,7 +657,12 @@
     "giftContact": "Parliamo del tuo regalo",
     "giftChoose": "Il tuo vino nel cesto regalo",
     "giftWineOnly": "solo il vino",
-    "giftIllustration": "Composizione illustrativa. Cesto e specialità non sono inclusi nel prezzo del vino. Nessun ordine in questa demo."
+    "giftIllustration": "Composizione illustrativa. Cesto e specialità non sono inclusi nel prezzo del vino. Nessun ordine in questa demo.",
+    "giftIncluded": "cesto e contenuto inclusi",
+    "giftShortNote": "Immagine illustrativa. Composizione da concordare.",
+    "giftWineLabel": "Vino",
+    "giftComponents": "Cesto e contenuto",
+    "giftTotal": "Totale"
   },
   "es": {
     "home": "Descubrir",
@@ -703,7 +738,7 @@
     "tastingNotes": "Notas de cata",
     "foodPairings": "Maridajes",
     "giftEyebrow": "Regalos & sabores",
-    "giftTitle": "Regala alegría.",
+    "giftTitle": "Regala vino.",
     "giftTitleAccent": "Una selección personal.",
     "giftIntro": "Un vino favorito, una cesta de regalo o un agradecimiento al equipo: tu idea comienza aquí.",
     "giftWine": "Un momento de vino",
@@ -717,7 +752,12 @@
     "giftContact": "Hablemos de tu regalo",
     "giftChoose": "Tu vino en la cesta de regalo",
     "giftWineOnly": "solo el vino",
-    "giftIllustration": "Composición ilustrativa. La cesta y las delicias no están incluidas en el precio del vino. Sin pedidos en esta demo."
+    "giftIllustration": "Composición ilustrativa. La cesta y las delicias no están incluidas en el precio del vino. Sin pedidos en esta demo.",
+    "giftIncluded": "cesta y contenido incluidos",
+    "giftShortNote": "Imagen ilustrativa. Composición a convenir.",
+    "giftWineLabel": "Vino",
+    "giftComponents": "Cesta y contenido",
+    "giftTotal": "Total"
   },
   "pt": {
     "home": "Descobrir",
@@ -793,7 +833,7 @@
     "tastingNotes": "Notas de prova",
     "foodPairings": "Harmonizações",
     "giftEyebrow": "Presentes & sabores",
-    "giftTitle": "Oferece alegria.",
+    "giftTitle": "Ofereça vinho.",
     "giftTitleAccent": "Uma escolha pessoal.",
     "giftIntro": "Um vinho favorito, um cabaz ou um agradecimento à equipa: a tua ideia de presente começa aqui.",
     "giftWine": "Um momento de vinho",
@@ -807,7 +847,12 @@
     "giftContact": "Vamos falar do teu presente",
     "giftChoose": "O teu vinho no cabaz",
     "giftWineOnly": "apenas o vinho",
-    "giftIllustration": "Composição ilustrativa. O cabaz e as iguarias não estão incluídos no preço do vinho. Sem encomendas nesta demonstração."
+    "giftIllustration": "Composição ilustrativa. O cabaz e as iguarias não estão incluídos no preço do vinho. Sem encomendas nesta demonstração.",
+    "giftIncluded": "cesto e conteúdo incluídos",
+    "giftShortNote": "Imagem ilustrativa. Composição a combinar.",
+    "giftWineLabel": "Vinho",
+    "giftComponents": "Cesto e conteúdo",
+    "giftTotal": "Total"
   },
   "ru": {
     "home": "Открыть",
@@ -883,7 +928,7 @@
     "tastingNotes": "Дегустационные заметки",
     "foodPairings": "Сочетания с едой",
     "giftEyebrow": "Подарки со вкусом",
-    "giftTitle": "Дарите радость.",
+    "giftTitle": "Подарите вино.",
     "giftTitleAccent": "С вниманием к каждому.",
     "giftIntro": "Любимое вино, подарочная корзина или благодарность команде: здесь начинается ваша идея подарка.",
     "giftWine": "Винный момент",
@@ -897,7 +942,12 @@
     "giftContact": "Обсудить подарок",
     "giftChoose": "Ваше вино в подарочной корзине",
     "giftWineOnly": "только вино",
-    "giftIllustration": "Пример оформления. Корзина и деликатесы не включены в цену вина. В демоверсии заказы недоступны."
+    "giftIllustration": "Пример оформления. Корзина и деликатесы не включены в цену вина. В демоверсии заказы недоступны.",
+    "giftIncluded": "включая корзину и наполнение",
+    "giftShortNote": "Пример оформления. Состав по согласованию.",
+    "giftWineLabel": "Вино",
+    "giftComponents": "Корзина и наполнение",
+    "giftTotal": "Итого"
   },
   "zh-Hans": {
     "home": "探索",
@@ -973,7 +1023,7 @@
     "tastingNotes": "品鉴笔记",
     "foodPairings": "配餐建议",
     "giftEyebrow": "礼赠与美味",
-    "giftTitle": "赠予喜悦。",
+    "giftTitle": "以酒传情。",
     "giftTitleAccent": "用心为你搭配。",
     "giftIntro": "一瓶心仪的葡萄酒、一份礼篮，或送给团队的谢意：从这里开启你的送礼灵感。",
     "giftWine": "葡萄酒时光",
@@ -987,6 +1037,11 @@
     "giftContact": "咨询礼品方案",
     "giftChoose": "选择礼篮中的葡萄酒",
     "giftWineOnly": "仅葡萄酒价格",
-    "giftIllustration": "搭配仅供展示。酒价不含礼篮和食品。本演示不接受订单。"
+    "giftIllustration": "搭配仅供展示。酒价不含礼篮和食品。本演示不接受订单。",
+    "giftIncluded": "含礼篮及配品",
+    "giftShortNote": "图片仅供参考，具体搭配另行商定。",
+    "giftWineLabel": "葡萄酒",
+    "giftComponents": "礼篮及配品",
+    "giftTotal": "合计"
   }
 }

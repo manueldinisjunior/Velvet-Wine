@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, fireEvent, waitFor, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "./App";
+import { store } from "./redux/store";
 import wines from "./items.json";
 import { get, set } from "firebase/database";
 
@@ -245,12 +246,17 @@ test("gift preview selects catalog wine and opens the matching purchase panel", 
   fireEvent.click(choice);
   expect(choice).toHaveAttribute("aria-pressed", "true");
   expect(gifts.getByText(white.name.replace(/"/g, ""))).toBeInTheDocument();
-  expect(gifts.getByText("nur der Wein")).toBeInTheDocument();
+  expect(gifts.getByText("inkl. Korb & Inhalt")).toBeInTheDocument();
   const opener = gifts.getByRole("button", { name: "Weindetails ansehen" });
   fireEvent.click(opener);
   const panel = within(screen.getByRole("dialog"));
   expect(panel.getByRole("heading")).toHaveTextContent(white.name.replace(/"/g, ""));
-  expect(panel.getByRole("button", { name: `In den Warenkorb: ${white.name}` })).toBeInTheDocument();
+  expect(panel.getByRole("button", { name: `In den Warenkorb: Geschenke & Genuss · ${white.name}` })).toBeInTheDocument();
+  expect(panel.getByText("Korb & Inhalt")).toBeInTheDocument();
+  expect(panel.getByText(/10,00\s*€/)).toBeInTheDocument();
+  fireEvent.click(panel.getByRole("button", { name: /^In den Warenkorb:/ }));
+  const bundle = store.getState().wines.cart.find(entry => entry.item.id === `gift-${white.id}`);
+  expect(bundle.item.price).toBe((Math.round(Number(white.price) * 100) + 1000) / 100);
   fireEvent.click(panel.getByRole("button", { name: "Schließen" }));
   expect(opener).toHaveFocus();
 });
