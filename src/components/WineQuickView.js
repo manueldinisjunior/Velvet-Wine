@@ -25,7 +25,7 @@ export default function WineQuickView({ item, opener, onClose }) {
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose();
   }}>
     <button autoFocus className="quick-view-close header-icon-link" aria-label={t("close")} onClick={onClose}><Icon name="close" /></button>
-    {item.giftWines ? <GiftBasketPreview presentation={item.giftPresentation} wines={item.giftWines} /> : <div className="quick-view-image"><WineImage item={item} /></div>}
+    {item.giftWines ? <GiftBasketPreview presentation={item.giftPresentation} wines={item.giftWines} /> : <div className="quick-view-image"><WineImage item={item} highResolution /></div>}
     <p className="eyebrow">{t(item.type.toLowerCase())}</p>
     <h2 id="quick-view-title">{item.name.replace(/"/g, "")}</h2>
     {item.giftWines ? <div className="gift-contents">{item.giftWines.map((wine,index) => <section key={index}><h3>{wine.name.replace(/"/g, "")}</h3><p>{wine.region.join(" · ")} · {wine.volume} L · {wine.alcohol}% ABV</p><p>{wine.grapeSort.join(" · ")}</p><strong>{money(wine.price, language)}</strong></section>)}</div> : <>

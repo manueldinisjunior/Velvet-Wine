@@ -288,8 +288,8 @@ test("two-wine basket updates both preview bottles and retains both wines in Car
   fireEvent.change(first, {target:{value:String(wines[2].id)}});
   fireEvent.change(second, {target:{value:String(wines[3].id)}});
   const preview = document.querySelector(".gifts-featured");
-  expect(within(preview).getByAltText(wines[2].name)).toHaveAttribute("src",wines[2].imgSmall);
-  expect(within(preview).getByAltText(wines[3].name)).toHaveAttribute("src",wines[3].imgSmall);
+  expect(within(preview).getByAltText(wines[2].name)).toHaveAttribute("src",wines[2].imgBig);
+  expect(within(preview).getByAltText(wines[3].name)).toHaveAttribute("src",wines[3].imgBig);
   fireEvent.click(within(preview).getAllByRole("button")[1]);
   expect(second).toHaveFocus();
   fireEvent.click(screen.getByRole("button",{name:"Korb auswählen 2"}));

@@ -6,9 +6,12 @@ export const money = (value, language = "de") =>
     style: "currency",
     currency: "EUR",
   }).format(value);
-export function WineImage({ item }) {
+export function WineImage({ item, highResolution = false }) {
   const { t } = useLanguage();
-  const [failed, setFailed] = useState(false);
+  const [failedSources, setFailedSources] = useState([]);
+  const sources = [...new Set([highResolution && item.imgBig, item.imgSmall].filter(Boolean))];
+  const source = sources.find(url => !failedSources.includes(url));
+  const failed = !source;
   return failed ? (
     <div
       className="bottle-placeholder"
@@ -20,12 +23,13 @@ export function WineImage({ item }) {
     </div>
   ) : (
     <img
-      src={item.imgSmall}
+      src={source}
       alt={item.name}
       loading="lazy"
       width="180"
       height="240"
-      onError={() => setFailed(true)}
+      decoding="async"
+      onError={() => setFailedSources(previous => [...previous, source])}
     />
   );
 }

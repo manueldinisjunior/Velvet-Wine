@@ -13,7 +13,7 @@ export default function GiftBasketPreview({ presentation, wines = [], onChoose, 
       const position = config.bottles[index];
       const style = {...position, transform:`rotate(${position.rotate})`};
       delete style.rotate;
-      return onChoose ? <button key={index} className="basket-bottle" style={style} type="button" onClick={() => onChoose(index)} aria-label={`${t("giftChoose")} ${index + 1}: ${wine.name}`}><WineImage key={wine.id} item={wine} /></button> : <div key={index} className="basket-bottle" style={style}><WineImage key={wine.id} item={wine} /></div>;
+      return onChoose ? <button key={index} className="basket-bottle" style={style} type="button" onClick={() => onChoose(index)} aria-label={`${t("giftChoose")} ${index + 1}: ${wine.name}`}><WineImage key={wine.id} item={wine} highResolution /></button> : <div key={index} className="basket-bottle" style={style}><WineImage key={wine.id} item={wine} highResolution /></div>;
     })}
     {config.rim && <img className="basket-rim" src={source} style={{clipPath:config.rim}} alt="" width="1000" height={presentation === 2 ? 625 : 1000} loading="lazy" />}
   </div>;
