@@ -235,28 +235,45 @@ test("loading placeholders give way to the catalog and reduced motion skips resu
 });
 
 
-test("gift preview selects catalog wine and opens the matching purchase panel", async () => {
+test("landing gift CTA opens dedicated gallery with wine and supplement pricing", async () => {
   HTMLDialogElement.prototype.showModal = function () { this.setAttribute("open", ""); };
   HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
   render(<App />);
   await screen.findByText("64 Weine entdecken");
-  const gifts = within(document.getElementById("geschenke"));
+  expect(document.getElementById("story")).toBeInTheDocument();
+  fireEvent.click(within(document.getElementById("geschenke")).getByRole("link", {name:"Geschenke entdecken"}));
+  expect(window.location.pathname).toBe("/geschenke");
+  expect(document.getElementById("story")).not.toBeInTheDocument();
+  expect(document.getElementById("geschenke")).not.toBeInTheDocument();
   const white = wines.find(wine => wine.type.toLowerCase() === "white");
-  const choice = gifts.getByRole("button", { name: "Weißwein" });
-  fireEvent.click(choice);
-  expect(choice).toHaveAttribute("aria-pressed", "true");
-  expect(gifts.getByText(white.name.replace(/"/g, ""))).toBeInTheDocument();
-  expect(gifts.getByText("inkl. Korb & Inhalt")).toBeInTheDocument();
-  const opener = gifts.getByRole("button", { name: "Weindetails ansehen" });
+  fireEvent.click(screen.getByRole("button", {name:"Korb auswählen 2"}));
+  expect(screen.getByRole("button", {name:"Korb auswählen 2"})).toHaveAttribute("aria-pressed", "true");
+  fireEvent.change(screen.getByLabelText("Wein", {exact:true}), {target:{value:String(white.id)}});
+  const opener = screen.getByRole("button", { name: "Weindetails ansehen" });
   fireEvent.click(opener);
   const panel = within(screen.getByRole("dialog"));
   expect(panel.getByRole("heading")).toHaveTextContent(white.name.replace(/"/g, ""));
-  expect(panel.getByRole("button", { name: `In den Warenkorb: Geschenke & Genuss · ${white.name}` })).toBeInTheDocument();
   expect(panel.getByText("Korb & Inhalt")).toBeInTheDocument();
   expect(panel.getByText(/10,00\s*€/)).toBeInTheDocument();
   fireEvent.click(panel.getByRole("button", { name: /^In den Warenkorb:/ }));
-  const bundle = store.getState().wines.cart.find(entry => entry.item.id === `gift-${white.id}`);
+  const bundle = store.getState().wines.cart.find(entry => entry.item.id === `gift-2-${white.id}`);
   expect(bundle.item.price).toBe((Math.round(Number(white.price) * 100) + 1000) / 100);
   fireEvent.click(panel.getByRole("button", { name: "Schließen" }));
   expect(opener).toHaveFocus();
+});
+
+test.each(["/weinladen", "/italy", "/france", "/spain", "/new-world"])("%s excludes landing promotions", async path => {
+  window.history.replaceState({}, "", path);
+  render(<App />);
+  await screen.findByRole("heading", {name:"Weinladen",level:1});
+  expect(document.getElementById("geschenke")).not.toBeInTheDocument();
+  expect(document.getElementById("story")).not.toBeInTheDocument();
+});
+
+test("gift page is directly accessible and shows all six reference photos", async () => {
+  window.history.replaceState({}, "", "/geschenke");
+  render(<App />);
+  expect(screen.getByRole("heading", {name:"Wein verschenken.",level:1})).toBeInTheDocument();
+  expect(screen.getAllByRole("button", {name:/^Korb auswählen /})).toHaveLength(6);
+  await waitFor(() => expect(screen.getByLabelText("Wein",{exact:true}).options).toHaveLength(wines.length));
 });

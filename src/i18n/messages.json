@@ -92,7 +92,12 @@
     "giftShortNote": "Abbildung beispielhaft. Zusammenstellung nach Absprache.",
     "giftWineLabel": "Wein",
     "giftComponents": "Korb & Inhalt",
-    "giftTotal": "Gesamt"
+    "giftTotal": "Gesamt",
+    "gifts": "Geschenke",
+    "giftDiscover": "Geschenke entdecken",
+    "giftPageIntro": "Wähle einen Korb und deinen Wein. Für einen Geburtstag, ein Dankeschön oder einen gemeinsamen Abend.",
+    "giftPresentation": "Korb auswählen",
+    "giftReferenceNote": "Die Fotos zeigen Gestaltungsideen. Enthalten ist der ausgewählte Wein; Marken und Preise auf den Fotos gelten nicht für dieses Angebot."
   },
   "en": {
     "home": "Discover",
@@ -187,7 +192,12 @@
     "giftShortNote": "Illustrative image. Contents agreed individually.",
     "giftWineLabel": "Wine",
     "giftComponents": "Basket & contents",
-    "giftTotal": "Total"
+    "giftTotal": "Total",
+    "gifts": "Gifts",
+    "giftDiscover": "Explore gifts",
+    "giftPageIntro": "Choose a basket and your wine. For a birthday, a thank-you or an evening together.",
+    "giftPresentation": "Choose a basket",
+    "giftReferenceNote": "Photos show presentation ideas. Your selected wine is included; brands and prices in the photos do not apply to this offer."
   },
   "nl": {
     "home": "Ontdekken",
@@ -282,7 +292,12 @@
     "giftShortNote": "Voorbeeldafbeelding. Inhoud in overleg.",
     "giftWineLabel": "Wijn",
     "giftComponents": "Mand & inhoud",
-    "giftTotal": "Totaal"
+    "giftTotal": "Totaal",
+    "gifts": "Cadeaus",
+    "giftDiscover": "Ontdek cadeaus",
+    "giftPageIntro": "Kies een mand en je wijn. Voor een verjaardag, een bedankje of een avond samen.",
+    "giftPresentation": "Kies een mand",
+    "giftReferenceNote": "De foto’s tonen presentatievoorbeelden. Je gekozen wijn is inbegrepen; merken en prijzen op de foto’s gelden niet voor dit aanbod."
   },
   "sv": {
     "home": "Upptäck",
@@ -377,7 +392,12 @@
     "giftShortNote": "Exempelbild. Innehåll enligt överenskommelse.",
     "giftWineLabel": "Vin",
     "giftComponents": "Korg & innehåll",
-    "giftTotal": "Totalt"
+    "giftTotal": "Totalt",
+    "gifts": "Presenter",
+    "giftDiscover": "Upptäck presenter",
+    "giftPageIntro": "Välj en korg och ditt vin. Till en födelsedag, ett tack eller en kväll tillsammans.",
+    "giftPresentation": "Välj en korg",
+    "giftReferenceNote": "Bilderna visar exempel på utformning. Ditt valda vin ingår; märken och priser på bilderna gäller inte detta erbjudande."
   },
   "nb": {
     "home": "Oppdag",
@@ -472,7 +492,12 @@
     "giftShortNote": "Eksempelbilde. Innhold avtales individuelt.",
     "giftWineLabel": "Vin",
     "giftComponents": "Kurv og innhold",
-    "giftTotal": "Totalt"
+    "giftTotal": "Totalt",
+    "gifts": "Gaver",
+    "giftDiscover": "Se gavene",
+    "giftPageIntro": "Velg en kurv og din vin. Til en bursdag, en takk eller en kveld sammen.",
+    "giftPresentation": "Velg en kurv",
+    "giftReferenceNote": "Bildene viser forslag til utforming. Den valgte vinen er inkludert; merker og priser på bildene gjelder ikke dette tilbudet."
   },
   "fr": {
     "home": "Découvrir",
@@ -567,7 +592,12 @@
     "giftShortNote": "Photo illustrative. Composition à convenir.",
     "giftWineLabel": "Vin",
     "giftComponents": "Panier et contenu",
-    "giftTotal": "Total"
+    "giftTotal": "Total",
+    "gifts": "Cadeaux",
+    "giftDiscover": "Découvrir les cadeaux",
+    "giftPageIntro": "Choisissez un panier et votre vin. Pour un anniversaire, un remerciement ou une soirée ensemble.",
+    "giftPresentation": "Choisir un panier",
+    "giftReferenceNote": "Les photos illustrent des idées de présentation. Le vin sélectionné est inclus ; les marques et prix sur les photos ne s’appliquent pas à cette offre."
   },
   "it": {
     "home": "Scopri",
@@ -662,7 +692,12 @@
     "giftShortNote": "Immagine illustrativa. Composizione da concordare.",
     "giftWineLabel": "Vino",
     "giftComponents": "Cesto e contenuto",
-    "giftTotal": "Totale"
+    "giftTotal": "Totale",
+    "gifts": "Regali",
+    "giftDiscover": "Scopri i regali",
+    "giftPageIntro": "Scegli un cesto e il tuo vino. Per un compleanno, un ringraziamento o una serata insieme.",
+    "giftPresentation": "Scegli un cesto",
+    "giftReferenceNote": "Le foto mostrano idee di presentazione. Il vino selezionato è incluso; marche e prezzi nelle foto non si applicano a questa offerta."
   },
   "es": {
     "home": "Descubrir",
@@ -757,7 +792,12 @@
     "giftShortNote": "Imagen ilustrativa. Composición a convenir.",
     "giftWineLabel": "Vino",
     "giftComponents": "Cesta y contenido",
-    "giftTotal": "Total"
+    "giftTotal": "Total",
+    "gifts": "Regalos",
+    "giftDiscover": "Descubre los regalos",
+    "giftPageIntro": "Elige una cesta y tu vino. Para un cumpleaños, un agradecimiento o una velada juntos.",
+    "giftPresentation": "Elige una cesta",
+    "giftReferenceNote": "Las fotos muestran ideas de presentación. Se incluye el vino elegido; las marcas y los precios de las fotos no se aplican a esta oferta."
   },
   "pt": {
     "home": "Descobrir",
@@ -852,7 +892,12 @@
     "giftShortNote": "Imagem ilustrativa. Composição a combinar.",
     "giftWineLabel": "Vinho",
     "giftComponents": "Cesto e conteúdo",
-    "giftTotal": "Total"
+    "giftTotal": "Total",
+    "gifts": "Presentes",
+    "giftDiscover": "Descobrir presentes",
+    "giftPageIntro": "Escolhe um cesto e o teu vinho. Para um aniversário, um agradecimento ou uma noite em boa companhia.",
+    "giftPresentation": "Escolher um cesto",
+    "giftReferenceNote": "As fotos mostram ideias de apresentação. O vinho selecionado está incluído; as marcas e os preços nas fotos não se aplicam a esta oferta."
   },
   "ru": {
     "home": "Открыть",
@@ -947,7 +992,12 @@
     "giftShortNote": "Пример оформления. Состав по согласованию.",
     "giftWineLabel": "Вино",
     "giftComponents": "Корзина и наполнение",
-    "giftTotal": "Итого"
+    "giftTotal": "Итого",
+    "gifts": "Подарки",
+    "giftDiscover": "Выбрать подарок",
+    "giftPageIntro": "Выберите корзину и вино. На день рождения, в знак благодарности или для вечера вместе.",
+    "giftPresentation": "Выбрать корзину",
+    "giftReferenceNote": "Фото показывают варианты оформления. Включено выбранное вино; бренды и цены на фото не относятся к этому предложению."
   },
   "zh-Hans": {
     "home": "探索",
@@ -1042,6 +1092,11 @@
     "giftShortNote": "图片仅供参考，具体搭配另行商定。",
     "giftWineLabel": "葡萄酒",
     "giftComponents": "礼篮及配品",
-    "giftTotal": "合计"
+    "giftTotal": "合计",
+    "gifts": "礼品",
+    "giftDiscover": "探索礼品",
+    "giftPageIntro": "选择礼篮与葡萄酒，用于生日、致谢或共度夜晚。",
+    "giftPresentation": "选择礼篮",
+    "giftReferenceNote": "图片展示包装灵感。包含您所选的葡萄酒；图片中的品牌与价格不适用于此方案。"
   }
 }

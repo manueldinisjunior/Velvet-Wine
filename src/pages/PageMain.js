@@ -214,8 +214,8 @@ function Catalog({ country, home }) {
         )}
       </section>
       {quickView && <WineQuickView {...quickView} onClose={() => setQuickView(null)} />}
-      <GiftSection onQuickView={(wine, opener) => setQuickView({ item: wine, opener })} />
-      <section id="story" className="story">
+      {home && <GiftSection />}
+      {home && <section id="story" className="story">
         <div>
           <p className="eyebrow">Velvet Essence</p>
           <h2>{t("spiritFirst")}<br /><em>{t("spiritSecond")}</em></h2>
@@ -226,7 +226,7 @@ function Catalog({ country, home }) {
             {t("explore")} <Icon name="external" />
           </Link>
         </div>
-      </section>
+      </section>}
     </main>
   );
 }

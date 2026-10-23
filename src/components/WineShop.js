@@ -6,6 +6,7 @@ import { updateCart } from "../redux/winesSlice";
 import WineShopHeader from "./WineShopHeader";
 import { PageMain } from "../pages/PageMain";
 import WineCart from "./WineCart";
+import GiftsPage from "../pages/GiftsPage";
 
 import SiteFooter from "./SiteFooter";
 import { ContentPage } from "../pages/ContentPages";
@@ -107,6 +108,7 @@ export default function WineShop() {
             element={<ContentPage page={page} />}
           />
         ))}
+        <Route path="/geschenke" element={<GiftsPage />} />
         <Route path="/cart" element={<WineCart />} />
         <Route
           path="*"

@@ -54,6 +54,7 @@ export default function WineShopHeader() {
           {[
             ["/", "home"],
             ["/weinladen", "store"],
+            ["/geschenke", "gifts"],
             ["/ueber-uns", "about"],
             ["/weinwissen", "guide"],
             ["/kontakt", "contact"],
