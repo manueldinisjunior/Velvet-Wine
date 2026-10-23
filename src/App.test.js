@@ -248,7 +248,7 @@ test("landing gift CTA opens dedicated gallery with wine and supplement pricing"
   const white = wines.find(wine => wine.type.toLowerCase() === "white");
   fireEvent.click(screen.getByRole("button", {name:"Korb auswählen 2"}));
   expect(screen.getByRole("button", {name:"Korb auswählen 2"})).toHaveAttribute("aria-pressed", "true");
-  fireEvent.change(screen.getByLabelText("Wein", {exact:true}), {target:{value:String(white.id)}});
+  fireEvent.change(screen.getByRole("combobox", {name:"1 × Wein"}), {target:{value:String(white.id)}});
   const opener = screen.getByRole("button", { name: "Weindetails ansehen" });
   fireEvent.click(opener);
   const panel = within(screen.getByRole("dialog"));
@@ -270,10 +270,10 @@ test.each(["/weinladen", "/italy", "/france", "/spain", "/new-world"])("%s exclu
   expect(document.getElementById("story")).not.toBeInTheDocument();
 });
 
-test("gift page is directly accessible and shows all six reference photos", async () => {
+test("gift page is directly accessible and shows four sharp reference photos", async () => {
   window.history.replaceState({}, "", "/geschenke");
   render(<App />);
   expect(screen.getByRole("heading", {name:"Wein verschenken.",level:1})).toBeInTheDocument();
-  expect(screen.getAllByRole("button", {name:/^Korb auswählen /})).toHaveLength(6);
-  await waitFor(() => expect(screen.getByLabelText("Wein",{exact:true}).options).toHaveLength(wines.length));
+  expect(screen.getAllByRole("button", {name:/^Korb auswählen /})).toHaveLength(4);
+  await waitFor(() => expect(screen.getByRole("combobox", {name:"1 × Wein"}).options).toHaveLength(wines.length));
 });

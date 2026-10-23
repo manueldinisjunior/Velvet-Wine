@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLanguage } from "../i18n";
-import { money } from "../components/WineItem";
+import { money, WineImage } from "../components/WineItem";
 import WineQuickView from "../components/WineQuickView";
+import useGiftCarousel, { GIFT_PRESENTATIONS } from "../hooks/useGiftCarousel";
 import Icon from "../components/Icon";
 import { winesLoad } from "../redux/winesLoad";
 
@@ -12,9 +13,10 @@ export default function GiftsPage() {
   const dispatch = useDispatch();
   const { initialData, dataLoadState, dataLoadError } = useSelector(state => state.wines);
   const wines = initialData || [];
-  const [presentation, setPresentation] = useState(1);
   const [wineId, setWineId] = useState("");
   const [quickView, setQuickView] = useState(null);
+  const [choosingWine, setChoosingWine] = useState(false);
+  const { ref, presentation, setPresentation, interactions } = useGiftCarousel(Boolean(quickView) || choosingWine);
   const selected = wines.find(wine => String(wine.id) === wineId) || wines[0];
   useEffect(() => { document.title = `${t("gifts")} · Velvet Essence`; }, [t]);
   const bundle = selected && {
@@ -30,11 +32,11 @@ export default function GiftsPage() {
       <p>{t("giftPageIntro")}</p>
     </header>
     <div className="gifts-layout">
-      <div className="gifts-gallery">
-        <div className="gifts-featured"><img key={presentation} src={`/images/gift-reference-${presentation}.webp`} alt={`${t("giftPresentation")} ${presentation}`} width="800" height="800" /></div>
+      <div className="gifts-gallery" ref={ref} {...interactions}>
+        <div className="gifts-featured"><img key={presentation} src={`/images/gift-reference-${presentation}${presentation === 1 ? "-single" : ""}.webp`} alt={`${t("giftPresentation")} ${presentation}`} width="800" height="800" /></div>
         <fieldset className="gift-thumbnails">
           <legend>{t("giftPresentation")}</legend>
-          <div>{[1,2,3,4,5,6].map(number => <button type="button" key={number} aria-pressed={presentation === number} aria-label={`${t("giftPresentation")} ${number}`} onClick={() => setPresentation(number)}><img src={`/images/gift-reference-${number}.webp`} width="100" height="100" alt="" loading="lazy" /><span>{String(number).padStart(2, "0")}</span></button>)}</div>
+          <div>{GIFT_PRESENTATIONS.map(number => <button type="button" key={number} aria-pressed={presentation === number} aria-label={`${t("giftPresentation")} ${number}`} onClick={() => setPresentation(number)}><img src={`/images/gift-reference-${number}${number === 1 ? "-single" : ""}.webp`} width="100" height="100" alt="" loading="lazy" /><span>{String(number).padStart(2, "0")}</span></button>)}</div>
         </fieldset>
         <p className="gift-note">{t("giftReferenceNote")}</p>
       </div>
@@ -44,8 +46,9 @@ export default function GiftsPage() {
         {dataLoadState !== 2 && <p role="status">{t("loading")}</p>}
         {dataLoadError && <p className="catalog-notice">{t("offline")} <button onClick={() => dispatch(winesLoad)}>{t("retry")}</button></p>}
         {selected ? <>
-          <label htmlFor="gift-wine">{t("giftWineLabel")}</label>
-          <select id="gift-wine" value={String(selected.id)} onChange={event => setWineId(event.target.value)}>{wines.map(wine => <option key={wine.id} value={String(wine.id)}>{wine.name.replace(/"/g, "")} · {money(wine.price, language)}</option>)}</select>
+          <div className="gift-chosen-bottle"><WineImage key={selected.id} item={selected} /><span>1 × {t("giftWineLabel")}</span></div>
+          <label htmlFor="gift-wine">1 × {t("giftWineLabel")}</label>
+          <select onFocus={() => setChoosingWine(true)} onBlur={() => setChoosingWine(false)} id="gift-wine" value={String(selected.id)} onChange={event => setWineId(event.target.value)}>{wines.map(wine => <option key={wine.id} value={String(wine.id)}>{wine.name.replace(/"/g, "")} · {money(wine.price, language)}</option>)}</select>
           <div aria-live="polite" aria-atomic="true">
             <p className="gift-selected-wine">{selected.name.replace(/"/g, "")}</p>
             <p className="gift-origin">{selected.region.join(" · ")} · {selected.volume} L</p>
