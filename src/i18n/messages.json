@@ -47,7 +47,7 @@
     "hero": "Besondere Weine. Gute Gesellschaft.",
     "intro": "Entdecke Rotwein, Weißwein und Rosé. Finde eine Flasche für deinen nächsten gemeinsamen Moment.",
     "explore": "Weine entdecken",
-    "story": "Wein muss nicht kompliziert sein. Bei Velvet Essence kannst du Regionen und Rebsorten kennenlernen und deine Auswahl in Ruhe zusammenstellen. Diese Website ist ein Portfolio-Projekt, kein aktiver Weinhandel.",
+    "story": "Entdecke Weine nach Herkunft und Rebsorte und stelle deine Auswahl zusammen.",
     "guideText": "Weißwein und Rosé schmecken meist leicht gekühlt. Rotwein braucht keine hohe Zimmertemperatur. Lagere Flaschen kühl, dunkel und bei möglichst gleichbleibender Temperatur. Leichte Weine passen oft zu leichten Gerichten; kräftige Weine zu intensiven Aromen.",
     "contactText": "Fragen zum Projekt? Du erreichst den Entwickler über sein Portfolio. Es gibt derzeit keine Verkaufsstelle und keine Bestellannahme.",
     "socialNote": "Die Social-Buttons öffnen die jeweilige Plattform; eigene Markenprofile sind noch nicht hinterlegt.",
@@ -95,9 +95,9 @@
     "giftTotal": "Gesamt",
     "gifts": "Geschenke",
     "giftDiscover": "Geschenke entdecken",
-    "giftPageIntro": "Wähle einen Korb und deinen Wein. Für einen Geburtstag, ein Dankeschön oder einen gemeinsamen Abend.",
+    "giftPageIntro": "Wähle deinen Korb und die passenden Weine.",
     "giftPresentation": "Korb auswählen",
-    "giftReferenceNote": "Die Fotos zeigen Gestaltungsideen. Enthalten ist der ausgewählte Wein; Marken und Preise auf den Fotos gelten nicht für dieses Angebot."
+    "giftReferenceNote": "Vorschau mit deinen gewählten Weinen. Korb und Beigaben sind beispielhaft."
   },
   "en": {
     "home": "Discover",
@@ -147,7 +147,7 @@
     "hero": "Special wines. Good company.",
     "intro": "Explore reds, whites and rosé. Find a bottle for your next shared moment.",
     "explore": "Explore wines",
-    "story": "Wine does not need to be complicated. At Velvet Essence you can explore regions and grapes and build your selection at your own pace. This website is a portfolio project, not an active wine retailer.",
+    "story": "Explore wines by origin and grape variety and put together your selection.",
     "guideText": "White and rosé wines are usually best slightly chilled. Red wine does not need a warm room. Store bottles in a cool, dark place at a stable temperature. Light wines often suit light dishes; bold wines suit intense flavours.",
     "contactText": "Questions about the project? Contact the developer through his portfolio. There is currently no physical shop and no ordering service.",
     "socialNote": "Social buttons open each platform; brand profiles have not yet been provided.",
@@ -195,9 +195,9 @@
     "giftTotal": "Total",
     "gifts": "Gifts",
     "giftDiscover": "Explore gifts",
-    "giftPageIntro": "Choose a basket and your wine. For a birthday, a thank-you or an evening together.",
+    "giftPageIntro": "Choose your basket and the wines to go with it.",
     "giftPresentation": "Choose a basket",
-    "giftReferenceNote": "Photos show presentation ideas. Your selected wine is included; brands and prices in the photos do not apply to this offer."
+    "giftReferenceNote": "Preview with your selected wines. Basket and extras are illustrative."
   },
   "nl": {
     "home": "Ontdekken",
@@ -247,7 +247,7 @@
     "hero": "Bijzondere wijnen. Goed gezelschap.",
     "intro": "Ontdek rode, witte en roséwijnen. Vind een fles voor je volgende moment samen.",
     "explore": "Ontdek wijnen",
-    "story": "Wijn hoeft niet ingewikkeld te zijn. Ontdek bij Velvet Essence streken en druiven en stel rustig je selectie samen. Deze website is een portfolioproject, geen actieve wijnhandel.",
+    "story": "Ontdek wijnen op herkomst en druivensoort en stel je selectie samen.",
     "guideText": "Serveer witte wijn en rosé licht gekoeld. Rode wijn hoeft niet warm te zijn. Bewaar flessen koel, donker en bij een constante temperatuur. Lichte wijnen passen vaak bij lichte gerechten; krachtige wijnen bij intense smaken.",
     "contactText": "Vragen over het project? Neem contact op met de ontwikkelaar via zijn portfolio. Er is momenteel geen winkel of bestelservice.",
     "socialNote": "De sociale knoppen openen de platforms; merkprofielen zijn nog niet opgegeven.",
@@ -295,9 +295,9 @@
     "giftTotal": "Totaal",
     "gifts": "Cadeaus",
     "giftDiscover": "Ontdek cadeaus",
-    "giftPageIntro": "Kies een mand en je wijn. Voor een verjaardag, een bedankje of een avond samen.",
+    "giftPageIntro": "Kies je mand en de bijpassende wijnen.",
     "giftPresentation": "Kies een mand",
-    "giftReferenceNote": "De foto’s tonen presentatievoorbeelden. Je gekozen wijn is inbegrepen; merken en prijzen op de foto’s gelden niet voor dit aanbod."
+    "giftReferenceNote": "Voorbeeld met je gekozen wijnen. Mand en extra’s zijn ter illustratie."
   },
   "sv": {
     "home": "Upptäck",
@@ -347,7 +347,7 @@
     "hero": "Speciella viner. Gott sällskap.",
     "intro": "Upptäck rött, vitt och rosé. Hitta en flaska för nästa stund tillsammans.",
     "explore": "Upptäck viner",
-    "story": "Vin behöver inte vara komplicerat. Hos Velvet Essence kan du utforska regioner och druvor och välja i lugn och ro. Webbplatsen är ett portfolioprojekt, inte en aktiv vinhandel.",
+    "story": "Utforska viner efter ursprung och druvsort och gör ditt urval.",
     "guideText": "Vitt vin och rosé serveras oftast lätt kylda. Rött vin behöver inte vara varmt. Förvara flaskor svalt och mörkt vid jämn temperatur. Lätta viner passar ofta lätta rätter; kraftiga viner passar intensiva smaker.",
     "contactText": "Frågor om projektet? Kontakta utvecklaren via hans portfolio. Det finns för närvarande ingen butik eller beställningstjänst.",
     "socialNote": "Knapparna öppnar respektive social plattform; varumärkesprofiler har ännu inte angetts.",
@@ -395,9 +395,9 @@
     "giftTotal": "Totalt",
     "gifts": "Presenter",
     "giftDiscover": "Upptäck presenter",
-    "giftPageIntro": "Välj en korg och ditt vin. Till en födelsedag, ett tack eller en kväll tillsammans.",
+    "giftPageIntro": "Välj din korg och vinerna som passar till.",
     "giftPresentation": "Välj en korg",
-    "giftReferenceNote": "Bilderna visar exempel på utformning. Ditt valda vin ingår; märken och priser på bilderna gäller inte detta erbjudande."
+    "giftReferenceNote": "Förhandsvisning med dina valda viner. Korg och tillbehör är exempel."
   },
   "nb": {
     "home": "Oppdag",
@@ -447,7 +447,7 @@
     "hero": "Spesielle viner. Godt selskap.",
     "intro": "Oppdag rødvin, hvitvin og rosé. Finn en flaske til neste stund sammen.",
     "explore": "Oppdag viner",
-    "story": "Vin trenger ikke være komplisert. Hos Velvet Essence kan du utforske regioner og druer og velge i ditt eget tempo. Nettstedet er et portfolioprosjekt, ikke en aktiv vinhandel.",
+    "story": "Utforsk viner etter opprinnelse og druesort og sett sammen ditt utvalg.",
     "guideText": "Hvitvin og rosé serveres gjerne lett avkjølt. Rødvin trenger ikke være varm. Oppbevar flasker kjølig og mørkt ved jevn temperatur. Lette viner passer ofte til lette retter; kraftige viner til intense smaker.",
     "contactText": "Spørsmål om prosjektet? Kontakt utvikleren via porteføljen hans. Det finnes foreløpig ingen butikk eller bestillingstjeneste.",
     "socialNote": "Knappene åpner de sosiale plattformene; merkevareprofiler er ennå ikke oppgitt.",
@@ -495,9 +495,9 @@
     "giftTotal": "Totalt",
     "gifts": "Gaver",
     "giftDiscover": "Se gavene",
-    "giftPageIntro": "Velg en kurv og din vin. Til en bursdag, en takk eller en kveld sammen.",
+    "giftPageIntro": "Velg din kurv og vinene som passer til.",
     "giftPresentation": "Velg en kurv",
-    "giftReferenceNote": "Bildene viser forslag til utforming. Den valgte vinen er inkludert; merker og priser på bildene gjelder ikke dette tilbudet."
+    "giftReferenceNote": "Forhåndsvisning med dine valgte viner. Kurv og tilbehør er eksempler."
   },
   "fr": {
     "home": "Découvrir",
@@ -547,7 +547,7 @@
     "hero": "Des vins singuliers. De bons moments.",
     "intro": "Explorez rouges, blancs et rosés. Trouvez une bouteille pour votre prochain moment partagé.",
     "explore": "Découvrir les vins",
-    "story": "Le vin peut rester simple. Avec Velvet Essence, découvrez régions et cépages et composez votre sélection à votre rythme. Ce site est un projet de portfolio, pas un commerce de vin actif.",
+    "story": "Découvrez les vins par origine et cépage, puis composez votre sélection.",
     "guideText": "Servez les blancs et rosés légèrement frais. Les rouges ne nécessitent pas une pièce chaude. Conservez les bouteilles au frais, dans le noir, à température stable. Les vins légers accompagnent souvent les plats légers ; les vins puissants, les saveurs intenses.",
     "contactText": "Une question sur le projet ? Contactez le développeur via son portfolio. Il n’y a actuellement ni boutique physique ni service de commande.",
     "socialNote": "Les boutons ouvrent les plateformes sociales ; aucun profil de marque n’a encore été fourni.",
@@ -595,9 +595,9 @@
     "giftTotal": "Total",
     "gifts": "Cadeaux",
     "giftDiscover": "Découvrir les cadeaux",
-    "giftPageIntro": "Choisissez un panier et votre vin. Pour un anniversaire, un remerciement ou une soirée ensemble.",
+    "giftPageIntro": "Choisissez votre panier et les vins qui l’accompagnent.",
     "giftPresentation": "Choisir un panier",
-    "giftReferenceNote": "Les photos illustrent des idées de présentation. Le vin sélectionné est inclus ; les marques et prix sur les photos ne s’appliquent pas à cette offre."
+    "giftReferenceNote": "Aperçu avec les vins choisis. Panier et accompagnements à titre illustratif."
   },
   "it": {
     "home": "Scopri",
@@ -647,7 +647,7 @@
     "hero": "Vini speciali. Buona compagnia.",
     "intro": "Scopri rossi, bianchi e rosé. Trova una bottiglia per il prossimo momento insieme.",
     "explore": "Scopri i vini",
-    "story": "Il vino non deve essere complicato. Con Velvet Essence puoi esplorare regioni e vitigni e scegliere con calma. Questo sito è un progetto di portfolio, non un negozio di vini attivo.",
+    "story": "Esplora i vini per origine e vitigno e componi la tua selezione.",
     "guideText": "Servi bianchi e rosé leggermente freschi. I rossi non richiedono una stanza calda. Conserva le bottiglie al fresco, al buio e a temperatura costante. Vini leggeri con piatti delicati; vini corposi con sapori intensi.",
     "contactText": "Domande sul progetto? Contatta lo sviluppatore tramite il suo portfolio. Al momento non esistono un negozio fisico o un servizio ordini.",
     "socialNote": "I pulsanti aprono le piattaforme social; i profili del marchio non sono ancora disponibili.",
@@ -695,9 +695,9 @@
     "giftTotal": "Totale",
     "gifts": "Regali",
     "giftDiscover": "Scopri i regali",
-    "giftPageIntro": "Scegli un cesto e il tuo vino. Per un compleanno, un ringraziamento o una serata insieme.",
+    "giftPageIntro": "Scegli il cesto e i vini da abbinare.",
     "giftPresentation": "Scegli un cesto",
-    "giftReferenceNote": "Le foto mostrano idee di presentazione. Il vino selezionato è incluso; marche e prezzi nelle foto non si applicano a questa offerta."
+    "giftReferenceNote": "Anteprima con i vini scelti. Cesto e accompagnamenti sono illustrativi."
   },
   "es": {
     "home": "Descubrir",
@@ -747,7 +747,7 @@
     "hero": "Vinos especiales. Buena compañía.",
     "intro": "Descubre tintos, blancos y rosados. Encuentra una botella para tu próximo momento compartido.",
     "explore": "Descubrir vinos",
-    "story": "El vino no tiene por qué ser complicado. En Velvet Essence puedes explorar regiones y uvas y elegir con calma. Esta web es un proyecto de portfolio, no una tienda de vinos activa.",
+    "story": "Descubre vinos por origen y variedad de uva y prepara tu selección.",
     "guideText": "Sirve blancos y rosados ligeramente frescos. Los tintos no necesitan una habitación cálida. Guarda las botellas en un lugar fresco, oscuro y a temperatura estable. Los vinos ligeros suelen acompañar platos suaves; los intensos, sabores fuertes.",
     "contactText": "¿Preguntas sobre el proyecto? Contacta con el desarrollador a través de su portfolio. Actualmente no hay tienda física ni servicio de pedidos.",
     "socialNote": "Los botones abren las plataformas sociales; aún no se han facilitado perfiles de la marca.",
@@ -795,9 +795,9 @@
     "giftTotal": "Total",
     "gifts": "Regalos",
     "giftDiscover": "Descubre los regalos",
-    "giftPageIntro": "Elige una cesta y tu vino. Para un cumpleaños, un agradecimiento o una velada juntos.",
+    "giftPageIntro": "Elige tu cesta y los vinos que la acompañan.",
     "giftPresentation": "Elige una cesta",
-    "giftReferenceNote": "Las fotos muestran ideas de presentación. Se incluye el vino elegido; las marcas y los precios de las fotos no se aplican a esta oferta."
+    "giftReferenceNote": "Vista previa con tus vinos elegidos. La cesta y los complementos son ilustrativos."
   },
   "pt": {
     "home": "Descobrir",
@@ -847,7 +847,7 @@
     "hero": "Vinhos especiais. Boa companhia.",
     "intro": "Descobre tintos, brancos e rosés. Encontra uma garrafa para o próximo momento partilhado.",
     "explore": "Descobrir vinhos",
-    "story": "O vinho não precisa de ser complicado. Na Velvet Essence podes explorar regiões e castas e escolher com calma. Este site é um projeto de portefólio, não uma loja de vinhos em atividade.",
+    "story": "Explora vinhos por origem e casta e prepara a tua seleção.",
     "guideText": "Serve brancos e rosés ligeiramente frescos. Os tintos não precisam de uma sala quente. Guarda as garrafas num local fresco, escuro e com temperatura estável. Vinhos leves combinam frequentemente com pratos leves; vinhos encorpados com sabores intensos.",
     "contactText": "Dúvidas sobre o projeto? Contacta o programador através do seu portefólio. Atualmente não há loja física nem serviço de encomendas.",
     "socialNote": "Os botões abrem as plataformas sociais; ainda não foram fornecidos perfis da marca.",
@@ -895,9 +895,9 @@
     "giftTotal": "Total",
     "gifts": "Presentes",
     "giftDiscover": "Descobrir presentes",
-    "giftPageIntro": "Escolhe um cesto e o teu vinho. Para um aniversário, um agradecimento ou uma noite em boa companhia.",
+    "giftPageIntro": "Escolhe o teu cesto e os vinhos que o acompanham.",
     "giftPresentation": "Escolher um cesto",
-    "giftReferenceNote": "As fotos mostram ideias de apresentação. O vinho selecionado está incluído; as marcas e os preços nas fotos não se aplicam a esta oferta."
+    "giftReferenceNote": "Pré-visualização com os vinhos escolhidos. O cesto e os complementos são ilustrativos."
   },
   "ru": {
     "home": "Открыть",
@@ -947,7 +947,7 @@
     "hero": "Особенные вина. Хорошая компания.",
     "intro": "Откройте красные, белые и розовые вина. Найдите бутылку для следующей встречи.",
     "explore": "Открыть вина",
-    "story": "Вино не должно быть сложным. В Velvet Essence можно знакомиться с регионами и сортами и выбирать без спешки. Это проект портфолио, а не действующий винный магазин.",
+    "story": "Изучайте вина по происхождению и сорту винограда и составляйте свою подборку.",
     "guideText": "Белые и розовые вина обычно подают слегка охлаждёнными. Красным винам не нужна тёплая комната. Храните бутылки в прохладном тёмном месте при стабильной температуре. Лёгкие вина часто подходят к лёгким блюдам, насыщенные — к ярким вкусам.",
     "contactText": "Вопросы о проекте? Свяжитесь с разработчиком через его портфолио. Магазина и приёма заказов пока нет.",
     "socialNote": "Кнопки открывают социальные платформы; профили бренда пока не предоставлены.",
@@ -995,9 +995,9 @@
     "giftTotal": "Итого",
     "gifts": "Подарки",
     "giftDiscover": "Выбрать подарок",
-    "giftPageIntro": "Выберите корзину и вино. На день рождения, в знак благодарности или для вечера вместе.",
+    "giftPageIntro": "Выберите корзину и вина для неё.",
     "giftPresentation": "Выбрать корзину",
-    "giftReferenceNote": "Фото показывают варианты оформления. Включено выбранное вино; бренды и цены на фото не относятся к этому предложению."
+    "giftReferenceNote": "Предпросмотр с выбранными винами. Корзина и дополнения показаны для примера."
   },
   "zh-Hans": {
     "home": "探索",
@@ -1047,7 +1047,7 @@
     "hero": "特别的美酒。愉快的相聚。",
     "intro": "探索红葡萄酒、白葡萄酒和桃红葡萄酒，为下一次相聚挑选一瓶好酒。",
     "explore": "探索葡萄酒",
-    "story": "葡萄酒不必复杂。在 Velvet Essence，你可以了解产区和葡萄品种，按自己的节奏挑选。本网站是作品集项目，并非营业中的葡萄酒商店。",
+    "story": "按产地和葡萄品种探索葡萄酒，搭配你的选择。",
     "guideText": "白葡萄酒和桃红葡萄酒通常适合稍微冰镇后饮用。红葡萄酒不需要温暖的室温。请将酒瓶存放在阴凉、避光且温度稳定的地方。清淡的酒常搭配清淡的菜肴，浓郁的酒适合味道浓厚的菜肴。",
     "contactText": "对项目有疑问？请通过开发者的作品集联系。目前没有实体店或订单服务。",
     "socialNote": "社交按钮打开相应平台，目前尚未提供品牌账号。",
@@ -1095,8 +1095,8 @@
     "giftTotal": "合计",
     "gifts": "礼品",
     "giftDiscover": "探索礼品",
-    "giftPageIntro": "选择礼篮与葡萄酒，用于生日、致谢或共度夜晚。",
+    "giftPageIntro": "选择礼篮及搭配的葡萄酒。",
     "giftPresentation": "选择礼篮",
-    "giftReferenceNote": "图片展示包装灵感。包含您所选的葡萄酒；图片中的品牌与价格不适用于此方案。"
+    "giftReferenceNote": "预览展示所选葡萄酒，礼篮及配品仅供参考。"
   }
 }

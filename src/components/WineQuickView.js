@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useLanguage } from "../i18n";
 import Icon from "./Icon";
 import { money, WineImage } from "./WineItem";
+import GiftBasketPreview from "./GiftBasketPreview";
 import WinePurchase from "./WinePurchase";
 
 export default function WineQuickView({ item, opener, onClose }) {
@@ -24,9 +25,10 @@ export default function WineQuickView({ item, opener, onClose }) {
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose();
   }}>
     <button autoFocus className="quick-view-close header-icon-link" aria-label={t("close")} onClick={onClose}><Icon name="close" /></button>
-    <div className="quick-view-image"><WineImage item={item} /></div>
+    {item.giftWines ? <GiftBasketPreview presentation={item.giftPresentation} wines={item.giftWines} /> : <div className="quick-view-image"><WineImage item={item} /></div>}
     <p className="eyebrow">{t(item.type.toLowerCase())}</p>
     <h2 id="quick-view-title">{item.name.replace(/"/g, "")}</h2>
+    {item.giftWines ? <div className="gift-contents">{item.giftWines.map((wine,index) => <section key={index}><h3>{wine.name.replace(/"/g, "")}</h3><p>{wine.region.join(" · ")} · {wine.volume} L · {wine.alcohol}% ABV</p><p>{wine.grapeSort.join(" · ")}</p><strong>{money(wine.price, language)}</strong></section>)}</div> : <>
     <dl className="quick-view-facts">
       <dt>{t("regions")}</dt><dd>{item.region.join(" · ")}</dd>
       <dt>{t("grapes")}</dt><dd>{item.grapeSort.join(" · ")}</dd>
@@ -35,6 +37,7 @@ export default function WineQuickView({ item, opener, onClose }) {
     <p>{item.volume} L · {item.alcohol}% ABV</p>
     {typeof item.tastingNotes === "string" && item.tastingNotes.trim() && <section><h3>{t("tastingNotes")}</h3><p>{item.tastingNotes}</p></section>}
     {typeof item.foodPairings === "string" && item.foodPairings.trim() && <section><h3>{t("foodPairings")}</h3><p>{item.foodPairings}</p></section>}
+    </>}
     {item.giftSupplement != null && <dl className="gift-price-breakdown"><dt>{t("giftWineLabel")}</dt><dd>{money(item.giftWinePrice, language)}</dd><dt>{t("giftComponents")}</dt><dd>{money(item.giftSupplement, language)}</dd><dt>{t("giftTotal")}</dt><dd>{money(item.price, language)}</dd></dl>}
     <div className="quick-view-purchase"><strong>{money(item.price, language)}</strong><WinePurchase item={item} announce /></div>
     <p className="quick-view-demo">{t("demo")}</p>

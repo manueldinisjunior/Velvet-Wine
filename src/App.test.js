@@ -147,7 +147,7 @@ test("privacy dialog opens from footer and closes without accepting optional tra
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 });
 
-test("back to top animates through the midpoint and finishes after 1500ms", () => {
+test("back to top animates through the midpoint and finishes after 2400ms from the first frame", () => {
   window.matchMedia = jest.fn(() => ({ matches: false }));
   render(<App />);
   Object.defineProperty(window, "scrollY", { configurable: true, value: 1000 });
@@ -155,9 +155,10 @@ test("back to top animates through the midpoint and finishes after 1500ms", () =
   let frame;
   const raf = jest.spyOn(window, "requestAnimationFrame").mockImplementation(callback => { frame = callback; return 1; });
   fireEvent.click(screen.getByRole("button", { name: /Nach oben/ }));
-  frame(750);
+  frame(500);
+  frame(1700);
   expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 500, left: 0, behavior: "instant" });
-  frame(1500);
+  frame(2900);
   expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 0, left: 0, behavior: "instant" });
   expect(document.getElementById("top")).toHaveFocus();
   raf.mockRestore();
@@ -248,11 +249,11 @@ test("landing gift CTA opens dedicated gallery with wine and supplement pricing"
   const white = wines.find(wine => wine.type.toLowerCase() === "white");
   fireEvent.click(screen.getByRole("button", {name:"Korb auswählen 2"}));
   expect(screen.getByRole("button", {name:"Korb auswählen 2"})).toHaveAttribute("aria-pressed", "true");
-  fireEvent.change(screen.getByRole("combobox", {name:"1 × Wein"}), {target:{value:String(white.id)}});
+  fireEvent.change(screen.getByRole("combobox", {name:"Wein 1"}), {target:{value:String(white.id)}});
   const opener = screen.getByRole("button", { name: "Weindetails ansehen" });
   fireEvent.click(opener);
   const panel = within(screen.getByRole("dialog"));
-  expect(panel.getByRole("heading")).toHaveTextContent(white.name.replace(/"/g, ""));
+  expect(panel.getByRole("heading", {level:2})).toHaveTextContent(white.name.replace(/"/g, ""));
   expect(panel.getByText("Korb & Inhalt")).toBeInTheDocument();
   expect(panel.getByText(/10,00\s*€/)).toBeInTheDocument();
   fireEvent.click(panel.getByRole("button", { name: /^In den Warenkorb:/ }));
@@ -275,5 +276,38 @@ test("gift page is directly accessible and shows four sharp reference photos", a
   render(<App />);
   expect(screen.getByRole("heading", {name:"Wein verschenken.",level:1})).toBeInTheDocument();
   expect(screen.getAllByRole("button", {name:/^Korb auswählen /})).toHaveLength(4);
-  await waitFor(() => expect(screen.getByRole("combobox", {name:"1 × Wein"}).options).toHaveLength(wines.length));
+  await waitFor(() => expect(screen.getByRole("combobox", {name:"Wein 1"}).options).toHaveLength(wines.length));
+});
+
+
+test("two-wine basket updates both preview bottles and retains both wines in Cart", async () => {
+  window.history.replaceState({}, "", "/geschenke");
+  render(<App />);
+  const first = await screen.findByRole("combobox", {name:"Wein 1"});
+  const second = screen.getByRole("combobox", {name:"Wein 2"});
+  fireEvent.change(first, {target:{value:String(wines[2].id)}});
+  fireEvent.change(second, {target:{value:String(wines[3].id)}});
+  const preview = document.querySelector(".gifts-featured");
+  expect(within(preview).getByAltText(wines[2].name)).toHaveAttribute("src",wines[2].imgSmall);
+  expect(within(preview).getByAltText(wines[3].name)).toHaveAttribute("src",wines[3].imgSmall);
+  fireEvent.click(within(preview).getAllByRole("button")[1]);
+  expect(second).toHaveFocus();
+  fireEvent.click(screen.getByRole("button",{name:"Korb auswählen 2"}));
+  expect(screen.queryByRole("combobox",{name:"Wein 2"})).not.toBeInTheDocument();
+  fireEvent.click(screen.getByRole("button",{name:"Korb auswählen 1"}));
+  expect(screen.getByRole("combobox",{name:"Wein 2"})).toHaveValue(String(wines[3].id));
+  fireEvent.click(screen.getByRole("button",{name:"Weindetails ansehen"}));
+  const panel = within(screen.getByRole("dialog"));
+  fireEvent.click(panel.getByRole("button",{name:/^In den Warenkorb:/}));
+  const bundle = store.getState().wines.cart.find(entry=>entry.item.id===`gift-1-${wines[2].id}-${wines[3].id}`);
+  expect(bundle.item.giftWines.map(wine=>wine.id)).toEqual([wines[2].id,wines[3].id]);
+  expect(bundle.item.price).toBe((Math.round(wines[2].price*100)+Math.round(wines[3].price*100)+1000)/100);
+});
+
+test("Weinwissen is removed and the old address redirects to the catalog", async () => {
+  window.history.replaceState({}, "", "/weinwissen");
+  render(<App />);
+  await screen.findByRole("heading", {name:"Weinladen",level:1});
+  expect(screen.queryByRole("link",{name:"Weinwissen"})).not.toBeInTheDocument();
+  expect(window.location.pathname).toBe("/weinladen");
 });

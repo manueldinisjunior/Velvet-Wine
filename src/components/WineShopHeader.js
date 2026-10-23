@@ -56,7 +56,6 @@ export default function WineShopHeader() {
             ["/weinladen", "store"],
             ["/geschenke", "gifts"],
             ["/ueber-uns", "about"],
-            ["/weinwissen", "guide"],
             ["/kontakt", "contact"],
           ].map(([url, key]) => (
             <Link

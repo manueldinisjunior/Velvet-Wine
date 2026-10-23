@@ -218,7 +218,7 @@ function Catalog({ country, home }) {
       {home && <section id="story" className="story">
         <div>
           <p className="eyebrow">Velvet Essence</p>
-          <h2>{t("spiritFirst")}<br /><em>{t("spiritSecond")}</em></h2>
+          <h2>{t("spiritFirst")}<br />{t("spiritSecond")}</h2>
         </div>
         <div>
           <p>{t("story")}</p>

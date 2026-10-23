@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../i18n";
 const pages = {
   "ueber-uns": "about",
-  weinwissen: "guide",
   kontakt: "contact",
   impressum: "imprint",
   datenschutz: "privacy",
@@ -91,7 +90,7 @@ const legal = {
     ],
     [
       "Bewegung",
-      "Der Nach-oben-Button scrollt normalerweise in 1,5 Sekunden zum Seitenanfang. Bei aktivierter Systemeinstellung für reduzierte Bewegung springt er ohne Animation. Mit dem Mausrad, einer Berührung oder einer Taste kannst du die laufende Animation abbrechen.",
+      "Der Nach-oben-Button scrollt normalerweise in 2,4 Sekunden zum Seitenanfang. Bei aktivierter Systemeinstellung für reduzierte Bewegung springt er ohne Animation. Mit dem Mausrad, einer Berührung oder einer Taste kannst du die laufende Animation abbrechen.",
     ],
     [
       "Stand und Rückmeldung",
@@ -107,8 +106,8 @@ export function ContentPage({ page }) {
   const key = pages[page];
   const isLegal = Boolean(legal[page]);
   return (
-    <main id="main" tabIndex={-1} className="content-page">
-      <section className={`page-intro vineyard${page === "ueber-uns" ? " about-background" : ""}`}>
+    <main id="main" tabIndex={-1} className={`content-page${page === "ueber-uns" ? " vineyard about-background" : ""}`}>
+      <section className={`page-intro${page === "ueber-uns" ? "" : " vineyard"}`}>
         <p className="eyebrow">Velvet Essence</p>
         <h1>{t(key)}</h1>
         <p>
@@ -117,9 +116,7 @@ export function ContentPage({ page }) {
               ? "legalNote"
               : page === "ueber-uns"
                 ? "story"
-                : page === "weinwissen"
-                  ? "guideText"
-                  : "contactText",
+                : "contactText",
           )}
         </p>
       </section>

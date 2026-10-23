@@ -93,7 +93,6 @@ export default function WineShop() {
         ))}
         {[
           "ueber-uns",
-          "weinwissen",
           "kontakt",
           "impressum",
           "datenschutz",
@@ -108,6 +107,7 @@ export default function WineShop() {
             element={<ContentPage page={page} />}
           />
         ))}
+        <Route path="/weinwissen" element={<Navigate to="/weinladen" replace />} />
         <Route path="/geschenke" element={<GiftsPage />} />
         <Route path="/cart" element={<WineCart />} />
         <Route

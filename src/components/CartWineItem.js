@@ -1,4 +1,5 @@
 import { useLanguage } from "../i18n";
+import GiftBasketPreview from "./GiftBasketPreview";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { changeItemAmount, deleteItemFromCart } from "../redux/winesSlice";
@@ -19,12 +20,12 @@ export default function CartWineItem({ amount, item }) {
   return (
     <article className="cart-item">
       <div className="cart-image">
-        <WineImage item={item} />
+        {item.giftWines ? <GiftBasketPreview presentation={item.giftPresentation} wines={item.giftWines} /> : <WineImage item={item} />}
       </div>
       <div>
         <h2>{item.name}</h2>
         <p>
-          {item.region.join(", ")} · {item.volume} L
+          {item.giftWines ? item.giftWines.map(wine => `${wine.name} · ${wine.volume} L`).join(" + ") : `${item.region.join(", ")} · ${item.volume} L`}
         </p>
         <div className="quantity">
           <button

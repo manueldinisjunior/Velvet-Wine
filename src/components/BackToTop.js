@@ -24,19 +24,21 @@ export default function BackToTop() {
       cancel();
       document.getElementById("top")?.focus({ preventScroll: true });
     };
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
       finish();
       return;
     }
     const origin = window.scrollY;
-    const start = performance.now();
+    let start;
+    const duration = 2400;
     ["wheel", "touchstart", "keydown"].forEach((event) =>
       window.addEventListener(event, cancel, { passive: true }),
     );
     const step = (now) => {
-      const progress = Math.min((now - start) / 1500, 1);
-      const ease = progress < 0.5 ? 4 * progress ** 3 : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-      window.scrollTo({ top: origin * (1 - ease), left: 0, behavior: "instant" });
+      if (start === undefined) start = now;
+      const progress = Math.min((now - start) / duration, 1);
+      const ease = (1 - Math.cos(Math.PI * progress)) / 2;
+      window.scrollTo({ top: Math.round(origin * (1 - ease)), left: 0, behavior: "instant" });
       if (progress < 1) frame = requestAnimationFrame(step);
       else finish();
     };

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-export const GIFT_PRESENTATIONS = [1, 2, 5, 6];
+import { GIFT_BASKETS } from "../data/gifts";
+export const GIFT_PRESENTATIONS = Object.keys(GIFT_BASKETS).map(Number);
 export default function useGiftCarousel(blocked = false) {
   const ref = useRef(null);
   const [presentation, setPresentation] = useState(GIFT_PRESENTATIONS[0]);
