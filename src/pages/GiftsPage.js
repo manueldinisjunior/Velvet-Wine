@@ -47,7 +47,7 @@ export default function GiftsPage() {
         {dataLoadError && <p className="catalog-notice">{t("offline")} <button onClick={() => dispatch(winesLoad)}>{t("retry")}</button></p>}
         {bundle ? <>
           {selected.map((wine,index) => <div className="gift-wine-choice" key={index}>
-            <div className="gift-wine-photo"><WineImage key={wine.id} item={wine} highResolution /></div>
+            <div className="gift-wine-photo"><WineImage key={wine.id} item={wine} highResolution cutout /></div>
             <label htmlFor={`gift-wine-${index}`}>{t("giftWineLabel")} {index + 1}</label>
             <select onFocus={() => setChoosingWine(true)} onBlur={() => setChoosingWine(false)} id={`gift-wine-${index}`} value={String(wine.id)} onChange={event => chooseWine(index,event.target.value)}>{wines.map(option => <option key={option.id} value={String(option.id)}>{option.name.replace(/"/g, "")} · {money(option.price, language)}</option>)}</select>
           </div>)}
