@@ -1469,16 +1469,17 @@ footer#contact { position:relative; }
 .about-background { min-height:calc(100svh - 126px); width:100%; }
 .about-background .page-intro { background:transparent; }
 .gifts-featured { display:block; aspect-ratio:auto; max-height:none; background:transparent; }
-.basket-preview { position:relative; width:100%; isolation:isolate; overflow:hidden; background:#f6f2eb; }
-.basket-preview .basket-back,.basket-preview .basket-rim { width:100%; height:100%; aspect-ratio:auto; object-fit:fill; }
+.basket-preview { position:relative; width:100%; display:grid; grid-template-columns:minmax(0,3fr) minmax(0,1fr); isolation:isolate; overflow:hidden; background:#fff; }
+.basket-preview .basket-back { width:100%; height:100%; aspect-ratio:1; object-fit:contain; background:#f6f2eb; }
+.basket-products { display:flex; align-items:center; justify-content:center; gap:6%; padding:12% 8%; min-width:0; background:#fff; }
 .basket-preview .basket-rim { position:absolute; inset:0; z-index:3; pointer-events:none; }
-.basket-preview .basket-bottle { position:absolute; z-index:2; padding:0; border:0; border-radius:0; background:#fff; mix-blend-mode:normal; transform-origin:50% 80%; }
+.basket-preview .basket-bottle { position:relative; flex:1; min-width:0; height:100%; padding:0; border:0; border-radius:0; background:#fff; mix-blend-mode:normal; }
 .basket-preview .basket-bottle img { width:100%; height:100%; max-height:none; aspect-ratio:auto; object-fit:contain; mix-blend-mode:normal; opacity:1; filter:none; }
 .basket-bottle .bottle-placeholder { width:100%; height:100%; min-height:0; font-size:9px; }
 .basket-preview button.basket-bottle:focus-visible { outline:2px solid var(--wine); outline-offset:3px; }
 .gift-teaser-carousel { max-height:340px; display:flex; align-items:center; }
 .gift-thumbnails .basket-preview { aspect-ratio:1 !important; }
-.gift-thumbnails .basket-preview-2 { aspect-ratio:690 / 431 !important; margin-block:18%; }
+.gift-thumbnails .basket-preview-2 { aspect-ratio:1 !important; }
 .gift-thumbnails .basket-preview img { max-height:none; }
 .gift-wine-choice + .gift-wine-choice { margin-top:18px; }
 .gift-price-breakdown dt { overflow-wrap:anywhere; font-size:14px; }
