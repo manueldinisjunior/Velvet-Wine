@@ -1362,7 +1362,7 @@ footer#contact { position:relative; }
 .footer-business .social-links { gap:16px 24px; }
 .footer-legal { gap:12px 28px; }
 .footer-legal a { display:inline-flex; align-items:center; min-height:44px; }
-.footer-top .footer-contact, .footer-business + .back-top { border:1px solid transparent; border-radius:28px; padding:10px 16px; }
+.footer-top .footer-contact, .footer-business + .back-top { display:inline-flex; align-items:center; justify-content:space-between; gap:16px; min-width:144px; min-height:48px; border:1px solid #ae939f; border-radius:28px; padding:10px 16px; font-size:14px; font-weight:600; line-height:26px; box-sizing:border-box; }
 .footer-top .footer-contact:hover, .footer-business + .back-top:hover,
 .footer-top .footer-contact:focus-visible, .footer-business + .back-top:focus-visible { border-color:#ae939f; }
 @media(max-width:600px) {

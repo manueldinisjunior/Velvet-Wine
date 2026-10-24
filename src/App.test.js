@@ -147,7 +147,7 @@ test("privacy dialog opens from footer and closes without accepting optional tra
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 });
 
-test("back to top animates through the midpoint and finishes after 2400ms from the first frame", () => {
+test("back to top animates through the midpoint and finishes after 2400ms of rendered frames", () => {
   window.matchMedia = jest.fn(() => ({ matches: false }));
   render(<App />);
   Object.defineProperty(window, "scrollY", { configurable: true, value: 1000 });
@@ -156,9 +156,9 @@ test("back to top animates through the midpoint and finishes after 2400ms from t
   const raf = jest.spyOn(window, "requestAnimationFrame").mockImplementation(callback => { frame = callback; return 1; });
   fireEvent.click(screen.getByRole("button", { name: /Nach oben/ }));
   frame(500);
-  frame(1700);
+  for (let time = 550; time <= 1700; time += 50) frame(time);
   expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 500, left: 0, behavior: "instant" });
-  frame(2900);
+  for (let time = 1750; time <= 2900; time += 50) frame(time);
   expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 0, left: 0, behavior: "instant" });
   expect(document.getElementById("top")).toHaveFocus();
   raf.mockRestore();

@@ -29,14 +29,18 @@ export default function BackToTop() {
       return;
     }
     const origin = window.scrollY;
-    let start;
+    let previousFrame;
+    let elapsed = 0;
     const duration = 2400;
     ["wheel", "touchstart", "keydown"].forEach((event) =>
       window.addEventListener(event, cancel, { passive: true }),
     );
     const step = (now) => {
-      if (start === undefined) start = now;
-      const progress = Math.min((now - start) / duration, 1);
+      // A busy/background desktop tab can deliver a frame seconds late.
+      // Advance by rendered frame time so a stall cannot skip the whole motion.
+      if (previousFrame !== undefined) elapsed += Math.min(Math.max(now - previousFrame, 0), 50);
+      previousFrame = now;
+      const progress = Math.min(elapsed / duration, 1);
       const ease = (1 - Math.cos(Math.PI * progress)) / 2;
       window.scrollTo({ top: Math.round(origin * (1 - ease)), left: 0, behavior: "instant" });
       if (progress < 1) frame = requestAnimationFrame(step);
