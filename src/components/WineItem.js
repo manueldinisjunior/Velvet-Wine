@@ -1,17 +1,25 @@
 import { useLanguage } from "../i18n";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getBottleMask } from "./bottleMask";
 import WinePurchase from "./WinePurchase";
 export const money = (value, language = "de") =>
   new Intl.NumberFormat(language, {
     style: "currency",
     currency: "EUR",
   }).format(value);
-export function WineImage({ item, highResolution = false }) {
+export function WineImage({ item, highResolution = false, cutout = false }) {
   const { t } = useLanguage();
   const [failedSources, setFailedSources] = useState([]);
   const sources = [...new Set([highResolution && item.imgBig, item.imgSmall].filter(Boolean))];
   const source = sources.find(url => !failedSources.includes(url));
   const failed = !source;
+  const [mask, setMask] = useState(null);
+  useEffect(() => {
+    let active = true;
+    setMask(null);
+    if (cutout && source) getBottleMask(source).then(value => { if (active) setMask(value); });
+    return () => { active = false; };
+  }, [cutout, source]);
   return failed ? (
     <div
       className="bottle-placeholder"
@@ -24,6 +32,7 @@ export function WineImage({ item, highResolution = false }) {
   ) : (
     <img
       src={source}
+      style={mask ? {maskImage:`url("${mask}")`, WebkitMaskImage:`url("${mask}")`, maskSize:"contain", WebkitMaskSize:"contain", maskRepeat:"no-repeat", WebkitMaskRepeat:"no-repeat", maskPosition:"center", WebkitMaskPosition:"center"} : undefined}
       alt={item.name}
       loading="lazy"
       width="180"
