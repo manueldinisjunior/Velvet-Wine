@@ -17,7 +17,7 @@ export function WineImage({ item, highResolution = false, cutout = false }) {
   useEffect(() => {
     let active = true;
     setMask(null);
-    if (cutout && source) getBottleMask(source).then(value => { if (active) setMask(value); });
+    if (cutout && source) getBottleMask(source).then(value => { if (active) setMask({source, value}); });
     return () => { active = false; };
   }, [cutout, source]);
   return failed ? (
@@ -32,7 +32,7 @@ export function WineImage({ item, highResolution = false, cutout = false }) {
   ) : (
     <img
       src={source}
-      style={mask ? {maskImage:`url("${mask}")`, WebkitMaskImage:`url("${mask}")`, maskSize:"contain", WebkitMaskSize:"contain", maskRepeat:"no-repeat", WebkitMaskRepeat:"no-repeat", maskPosition:"center", WebkitMaskPosition:"center"} : undefined}
+      style={mask?.source === source && mask.value ? {maskImage:`url("${mask.value}")`, WebkitMaskImage:`url("${mask.value}")`, maskMode:"alpha", maskSize:"contain", WebkitMaskSize:"contain", maskRepeat:"no-repeat", WebkitMaskRepeat:"no-repeat", maskPosition:"center", WebkitMaskPosition:"center"} : undefined}
       alt={item.name}
       loading="lazy"
       width="180"

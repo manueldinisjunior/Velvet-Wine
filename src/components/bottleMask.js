@@ -23,6 +23,30 @@ export function maskBackground(data, width, height) {
     if (index >= width) visit(index - width);
     if (index < width * (height - 1)) visit(index + width);
   }
+  // A bottle has an uninterrupted silhouette. Flood fill alone can leak
+  // through pale glass or label edges; preserve the interior of that outline.
+  const left = new Int32Array(height).fill(width);
+  const right = new Int32Array(height).fill(-1);
+  let first = height, last = -1;
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (data[(y * width + x) * 4 + 3]) {
+        left[y] = Math.min(left[y], x);
+        right[y] = x;
+      }
+    }
+    if (right[y] >= 0) { first = Math.min(first, y); last = y; }
+  }
+  let outlineLeft = width, outlineRight = -1;
+  const bodyEnd = first + (last - first) * 0.94;
+  for (let y = first; y <= last; y++) {
+    outlineLeft = Math.min(outlineLeft, left[y]);
+    outlineRight = Math.max(outlineRight, right[y]);
+    // Keep the neck/shoulders/body continuous; allow the base to curve inward.
+    const from = y <= bodyEnd ? outlineLeft : left[y];
+    const to = y <= bodyEnd ? outlineRight : right[y];
+    for (let x = from; x <= to; x++) data[(y * width + x) * 4 + 3] = 255;
+  }
   return data;
 }
 const masks = new Map();
