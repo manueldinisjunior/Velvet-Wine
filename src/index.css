@@ -1389,7 +1389,7 @@ footer#contact { position:relative; }
 .wine-quick-view::backdrop { background:#35172a88; }
 .quick-view-close { position:sticky; top:0; margin-left:auto; z-index:1; background:var(--cream); }
 .quick-view-image { height:230px; display:flex; align-items:center; justify-content:center; }
-.quick-view-image img { height:210px; width:150px; object-fit:contain; mix-blend-mode:multiply; }
+.quick-view-image img { height:210px; width:150px; object-fit:contain; mix-blend-mode:normal; background:#fff; }
 .wine-quick-view h2 { font-size:32px; margin:16px 0 24px; overflow-wrap:anywhere; }
 .quick-view-facts { display:grid; grid-template-columns:100px 1fr; gap:12px 20px; font-size:14px; }
 .quick-view-facts dt { font-weight:700; }
@@ -1460,7 +1460,7 @@ footer#contact { position:relative; }
 .gift-teaser-carousel { min-width:0; overflow:hidden; }
 .gift-teaser-carousel img { display:block; }
 .gift-chosen-bottle { display:flex; align-items:center; gap:16px; margin-bottom:16px; font-size:13px; }
-.gift-chosen-bottle img { width:64px; height:100px; object-fit:contain; mix-blend-mode:multiply; }
+.gift-chosen-bottle img { width:64px; height:100px; object-fit:contain; mix-blend-mode:normal; background:#fff; }
 @media(prefers-reduced-motion:no-preference) { .gift-teaser-carousel img { animation:velvet-reveal 300ms ease-out; } }
 
 /* Consistent headings and catalog-backed bottle composition. */
@@ -1472,8 +1472,8 @@ footer#contact { position:relative; }
 .basket-preview { position:relative; width:100%; isolation:isolate; overflow:hidden; background:#f6f2eb; }
 .basket-preview .basket-back,.basket-preview .basket-rim { width:100%; height:100%; aspect-ratio:auto; object-fit:fill; }
 .basket-preview .basket-rim { position:absolute; inset:0; z-index:3; pointer-events:none; }
-.basket-preview .basket-bottle { position:absolute; z-index:2; padding:0; border:0; border-radius:0; background:transparent; mix-blend-mode:multiply; transform-origin:50% 80%; }
-.basket-preview .basket-bottle img { width:100%; height:100%; max-height:none; aspect-ratio:auto; object-fit:contain; }
+.basket-preview .basket-bottle { position:absolute; z-index:2; padding:0; border:0; border-radius:0; background:#fff; mix-blend-mode:normal; transform-origin:50% 80%; }
+.basket-preview .basket-bottle img { width:100%; height:100%; max-height:none; aspect-ratio:auto; object-fit:contain; mix-blend-mode:normal; opacity:1; filter:none; }
 .basket-bottle .bottle-placeholder { width:100%; height:100%; min-height:0; font-size:9px; }
 .basket-preview button.basket-bottle:focus-visible { outline:2px solid var(--wine); outline-offset:3px; }
 .gift-teaser-carousel { max-height:340px; display:flex; align-items:center; }
@@ -1488,3 +1488,11 @@ footer#contact { position:relative; }
 .cart-image .basket-preview img { max-width:none; }
 @media(prefers-reduced-motion:no-preference) { .basket-bottle img { animation:velvet-reveal 180ms ease-out; } }
 @media(max-width:700px) { .gift-teaser-carousel { max-height:250px; } .about-background { min-height:calc(100svh - 110px); } }
+
+/* Preserve the original product colours against a neutral photo surface. */
+.gift-wine-choice { display:grid; grid-template-columns:76px minmax(0,1fr); column-gap:16px; align-items:center; }
+.gift-wine-choice > label { grid-column:2; align-self:end; }
+.gift-wine-choice > select { grid-column:2; align-self:start; }
+.gift-wine-photo { grid-column:1; grid-row:1 / 3; height:180px; background:#fff; display:grid; place-items:center; padding:8px; }
+.gift-wine-photo img { display:block; width:100%; height:164px; object-fit:contain; mix-blend-mode:normal; filter:none; opacity:1; }
+@media(max-width:420px) { .gift-wine-choice { grid-template-columns:58px minmax(0,1fr); gap:8px 12px; } .gift-wine-photo { height:150px; padding:6px; } .gift-wine-photo img { height:138px; } }
