@@ -4,7 +4,6 @@ const initialState = {
   dataLoadState: 0, //0 - not loaded, 1 - is loading, 2 - loaded, 3 - error
   dataLoadError: null,
   initialData: null,
-  data: null,
   cart: [],
   cartNotice: null,
   addSequence: 0,
@@ -21,7 +20,6 @@ export const winesSlice = createSlice({
 
     updateData: (state, action) => {
       state.initialData = action.payload;
-      state.data = action.payload;
     },
 
     addItemToCart: (state, action) => {
@@ -47,16 +45,12 @@ export const winesSlice = createSlice({
       if (index !== -1) state.cart.splice(index, 1);
     },
 
-    clearCart: (state, action) => {
+    clearCart: (state) => {
       state.cart = [];
     },
 
     updateCart: (state, action) => {
       state.cart = action.payload;
-    },
-
-    setPageWines: (state, action) => {
-      state.data = action.payload;
     },
   },
 });
@@ -69,7 +63,6 @@ export const {
   deleteItemFromCart,
   clearCart,
   updateCart,
-  setPageWines,
 } = winesSlice.actions;
 
 export default winesSlice.reducer;

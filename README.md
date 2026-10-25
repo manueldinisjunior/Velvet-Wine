@@ -7,6 +7,7 @@ A responsive React wine-store portfolio, with an editorial design inspired by Pe
 ```sh
 npm ci
 npm start
+npm run lint
 npm test -- --watchAll=false
 npm run build
 ```
@@ -15,7 +16,9 @@ Uses the existing React 18, React Router, Redux Toolkit and Firebase architectur
 
 ## Implemented
 
-- Responsive navigation, accessible controls, reduced-motion support and local fonts.
+- Responsive navigation, keyboard-accessible dialogs and language picker, reduced-motion support and local fonts.
+- Eleven languages, gift baskets with selectable wines and a €10 basket supplement, and product quick views.
+- Explicit “Nach oben” clicks use a 2.4-second eased scroll on every device, including reduced-motion settings; wheel, touch and keyboard input cancel it. Automatic animations still respect reduced motion.
 - Search by name, grape or region; country and style filters; price/rating sorting; progressive catalogue display.
 - Cart quantities, removal and guarded localStorage persistence.
 - Live Firebase catalogue with a six-second timeout and a labelled bundled-data fallback.
@@ -25,4 +28,4 @@ This is a portfolio demo: no payment, shipping, authentication or order-history 
 
 ## Design verification
 
-Check desktop and mobile browsing, keyboard navigation, mobile menu, combined filters, empty search results, adding/removing bottles, refresh persistence and failed order requests. Automated tests cover combined catalogue selection and cart reducer regressions.
+Check desktop and mobile browsing, keyboard navigation, mobile menu, combined filters, empty search results, adding/removing bottles, refresh persistence and failed order requests. Automated tests cover catalogue loading and fallback, filters, cart persistence, quick views, gift selection, translations, dialogs, ticker behavior and back-to-top scrolling. Run lint, tests and the production build before deploying.

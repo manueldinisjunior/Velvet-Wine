@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 import App from "./App";
 import { store } from "./redux/store";
 import wines from "./items.json";
+import { languages } from "./i18n";
 import { get, set } from "firebase/database";
 
 jest.mock("./firebase-config", () => ({}));
@@ -26,7 +27,7 @@ beforeEach(() => {
 test("browse, filter, add, persist, change quantity and retain bag after failed order", async () => {
   render(<App />);
   await screen.findByText("64 Weine entdecken");
-  fireEvent.click(within(document.getElementById("collection")).getByRole("button", { name: "Weißwein" }));
+  fireEvent.click(within(screen.getByRole("region", { name: "Weine entdecken" })).getByRole("button", { name: "Weißwein" }));
   fireEvent.change(screen.getByRole("searchbox"), {
     target: { value: "Freschello" },
   });
@@ -79,7 +80,7 @@ test("store alias redirects and all languages translate navigation", async () =>
   render(<App />);
   await screen.findByText("64 Weine entdecken");
   expect(window.location.pathname).toBe("/weinladen");
-  const languageTrigger = document.getElementById("language-toggle");
+  const languageTrigger = screen.getByRole("button", {name:"Sprache: Deutsch"});
   const choices = {
     nl: "Wijnwinkel",
     sv: "Vinbutik",
@@ -93,7 +94,7 @@ test("store alias redirects and all languages translate navigation", async () =>
   };
   for (const [lang, label] of Object.entries(choices)) {
     fireEvent.click(languageTrigger);
-    fireEvent.click(document.querySelector(`#language-options button[lang="${lang}"]`));
+    fireEvent.click(screen.getByRole("button", {name:languages[lang], exact:true}));
     expect(document.documentElement.lang).toBe(lang);
     expect(
       screen.getByRole("heading", { level: 1, name: label }),
@@ -151,7 +152,6 @@ test("back to top animates through the midpoint and finishes after 2400ms of ren
   window.matchMedia = jest.fn(() => ({ matches: false }));
   render(<App />);
   Object.defineProperty(window, "scrollY", { configurable: true, value: 1000 });
-  const now = jest.spyOn(performance, "now").mockReturnValue(0);
   let frame;
   const raf = jest.spyOn(window, "requestAnimationFrame").mockImplementation(callback => { frame = callback; return 1; });
   fireEvent.click(screen.getByRole("button", { name: /Nach oben/ }));
@@ -160,9 +160,8 @@ test("back to top animates through the midpoint and finishes after 2400ms of ren
   expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 500, left: 0, behavior: "instant" });
   for (let time = 1750; time <= 2900; time += 50) frame(time);
   expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 0, left: 0, behavior: "instant" });
-  expect(document.getElementById("top")).toHaveFocus();
+  expect(screen.getByText("Bewusst genießen.", {selector:".announcement"})).toHaveFocus();
   raf.mockRestore();
-  now.mockRestore();
   Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
 });
 
@@ -179,7 +178,7 @@ test("header search opens the catalog, focuses search, and works again on the sa
   search.focus();
   fireEvent.click(search);
   expect(input).toHaveFocus();
-  expect(screen.getByRole("link", { name: /^Cart, / }).querySelector("svg")).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /^Cart, / })).toHaveAttribute("href", "/cart");
 });
 
 test("flag picker closes on Escape and restores keyboard focus", () => {
@@ -190,7 +189,7 @@ test("flag picker closes on Escape and restores keyboard focus", () => {
   fireEvent.keyDown(document, { key: "Escape" });
   expect(trigger).toHaveAttribute("aria-expanded", "false");
   expect(trigger).toHaveFocus();
-  expect(document.getElementById("language-options")).not.toBeInTheDocument();
+  expect(screen.queryByRole("list", {name:"Sprache"})).not.toBeInTheDocument();
 });
 
 
@@ -224,14 +223,14 @@ test("loading placeholders give way to the catalog and reduced motion skips resu
   window.matchMedia = jest.fn(() => ({ matches: true }));
   const animate = jest.fn(() => ({ cancel: jest.fn() }));
   HTMLElement.prototype.animate = animate;
-  const { container } = render(<App />);
+  render(<App />);
   expect(screen.getByText("Weine werden geladen…")).toBeInTheDocument();
-  expect(container.querySelectorAll(".wine-skeleton")).toHaveLength(12);
+  expect(screen.queryAllByTestId("wine-skeleton")).toHaveLength(12);
   resolveCatalog({ val: () => wines });
   await screen.findByText("64 Weine entdecken");
-  fireEvent.click(within(document.getElementById("collection")).getByRole("button", { name: "Weißwein", exact: true }));
+  fireEvent.click(within(screen.getByRole("region", { name: "Weine entdecken" })).getByRole("button", { name: "Weißwein", exact: true }));
   expect(animate).not.toHaveBeenCalled();
-  expect(container.querySelectorAll(".wine-skeleton")).toHaveLength(0);
+  expect(screen.queryAllByTestId("wine-skeleton")).toHaveLength(0);
   delete HTMLElement.prototype.animate;
 });
 
@@ -241,11 +240,11 @@ test("landing gift CTA opens dedicated gallery with wine and supplement pricing"
   HTMLDialogElement.prototype.close = function () { this.removeAttribute("open"); };
   render(<App />);
   await screen.findByText("64 Weine entdecken");
-  expect(document.getElementById("story")).toBeInTheDocument();
-  fireEvent.click(within(document.getElementById("geschenke")).getByRole("link", {name:"Geschenke entdecken"}));
+  expect(screen.getByRole("heading", {name:/Weniger Zeremonie/})).toBeInTheDocument();
+  fireEvent.click(within(screen.getByRole("region", {name:"Wein verschenken."})).getByRole("link", {name:"Geschenke entdecken"}));
   expect(window.location.pathname).toBe("/geschenke");
-  expect(document.getElementById("story")).not.toBeInTheDocument();
-  expect(document.getElementById("geschenke")).not.toBeInTheDocument();
+  expect(screen.queryByRole("heading", {name:/Weniger Zeremonie/})).not.toBeInTheDocument();
+  expect(screen.queryByRole("region", {name:"Wein verschenken."})).not.toBeInTheDocument();
   const white = wines.find(wine => wine.type.toLowerCase() === "white");
   fireEvent.click(screen.getByRole("button", {name:"Korb auswählen 2"}));
   expect(screen.getByRole("button", {name:"Korb auswählen 2"})).toHaveAttribute("aria-pressed", "true");
@@ -267,8 +266,8 @@ test.each(["/weinladen", "/italy", "/france", "/spain", "/new-world"])("%s exclu
   window.history.replaceState({}, "", path);
   render(<App />);
   await screen.findByRole("heading", {name:"Weinladen",level:1});
-  expect(document.getElementById("geschenke")).not.toBeInTheDocument();
-  expect(document.getElementById("story")).not.toBeInTheDocument();
+  expect(screen.queryByRole("region", {name:"Wein verschenken."})).not.toBeInTheDocument();
+  expect(screen.queryByRole("heading", {name:/Weniger Zeremonie/})).not.toBeInTheDocument();
 });
 
 test("gift page is directly accessible and shows four sharp reference photos", async () => {
@@ -287,7 +286,7 @@ test("two-wine basket updates both preview bottles and retains both wines in Car
   const second = screen.getByRole("combobox", {name:"Wein 2"});
   fireEvent.change(first, {target:{value:String(wines[2].id)}});
   fireEvent.change(second, {target:{value:String(wines[3].id)}});
-  const preview = document.querySelector(".gifts-featured");
+  const preview = screen.getByRole("group", {name:"Korb auswählen 1"});
   expect(within(preview).getByAltText(wines[2].name)).toHaveAttribute("src",wines[2].imgBig);
   expect(within(preview).getByAltText(wines[3].name)).toHaveAttribute("src",wines[3].imgBig);
   fireEvent.click(within(preview).getAllByRole("button")[1]);

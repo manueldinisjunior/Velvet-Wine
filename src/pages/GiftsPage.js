@@ -33,7 +33,7 @@ export default function GiftsPage() {
     </header>
     <div className="gifts-layout">
       <div className="gifts-gallery" ref={ref} {...interactions}>
-        <div className="gifts-featured"><GiftBasketPreview presentation={presentation} wines={selected} onChoose={index => document.getElementById(`gift-wine-${index}`)?.focus()} /></div>
+        <div className="gifts-featured" role="group" aria-label={`${t("giftPresentation")} ${presentation}`}><GiftBasketPreview presentation={presentation} wines={selected} onChoose={index => document.getElementById(`gift-wine-${index}`)?.focus()} /></div>
         <fieldset className="gift-thumbnails">
           <legend>{t("giftPresentation")}</legend>
           <div>{GIFT_PRESENTATIONS.map(number => <button type="button" key={number} aria-pressed={presentation === number} aria-label={`${t("giftPresentation")} ${number}`} onClick={() => setPresentation(number)}><GiftBasketPreview presentation={number} wines={giftWines(number,selections[number],wines)} decorative /><span>{String(number).padStart(2, "0")}</span></button>)}</div>

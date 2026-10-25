@@ -171,7 +171,7 @@ function Catalog({ country, home }) {
         </div>
         {dataLoadState !== 2 && <>
           <p role="status">{t("loading")}</p>
-          <div className="wine-grid" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <div className="wine-card wine-skeleton" key={index}><div className="wine-visual skeleton-bottle" /><div className="wine-details"><p className="wine-meta skeleton-text">&nbsp;</p><h3 className="skeleton-text">&nbsp;</h3><p className="wine-grape skeleton-text">&nbsp;</p><div className="wine-buy"><div className="skeleton-price" /></div></div></div>)}</div>
+          <div className="wine-grid" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <div className="wine-card wine-skeleton" data-testid="wine-skeleton" key={index}><div className="wine-visual skeleton-bottle" /><div className="wine-details"><p className="wine-meta skeleton-text">&nbsp;</p><h3 className="skeleton-text">&nbsp;</h3><p className="wine-grape skeleton-text">&nbsp;</p><div className="wine-buy"><div className="skeleton-price" /></div></div></div>)}</div>
         </>}
         {dataLoadError && (
           <p className="catalog-notice">

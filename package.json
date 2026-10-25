@@ -2,7 +2,7 @@
   "name": "Velvet-essence",
   "version": "1.0.0",
   "description": "Velvet Essence - Online Wine Store",
-  "author": "Manuel Dinis Júnior",
+  "author": "Manuel Dinis J\u00fanior",
   "license": "Andrei Burko",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src --max-warnings=0"
   },
   "eslintConfig": {
     "extends": [

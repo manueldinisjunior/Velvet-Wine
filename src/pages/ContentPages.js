@@ -90,7 +90,7 @@ const legal = {
     ],
     [
       "Bewegung",
-      "Der Nach-oben-Button scrollt normalerweise in 2,4 Sekunden zum Seitenanfang. Bei aktivierter Systemeinstellung für reduzierte Bewegung springt er ohne Animation. Mit dem Mausrad, einer Berührung oder einer Taste kannst du die laufende Animation abbrechen.",
+      "Der Nach-oben-Button scrollt nach deinem Klick in etwa 2,4 Sekunden zum Seitenanfang, auch bei reduzierter Bewegung. Mit dem Mausrad, einer Berührung oder einer Taste kannst du die laufende Animation abbrechen. Automatische Animationen berücksichtigen die Systemeinstellung für reduzierte Bewegung.",
     ],
     [
       "Stand und Rückmeldung",
