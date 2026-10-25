@@ -6,7 +6,7 @@ import { useLanguage } from "../i18n";
 export default function GiftBasketPreview({ presentation, wines = [], onChoose, decorative = false }) {
   const { t } = useLanguage();
   const config = GIFT_BASKETS[presentation];
-  return <div className={`basket-preview basket-preview-${presentation}`} style={{aspectRatio:config.aspect}} aria-hidden={decorative || undefined}>
+  return <div className={`basket-preview basket-preview-${presentation}`} style={{aspectRatio:config.aspect, "--basket-ratio":`calc(${config.aspect})`}} aria-hidden={decorative || undefined}>
     <img className="basket-back" src={`/images/gift-base-${presentation}.webp`} alt={decorative ? "" : `${t("giftPresentation")} ${presentation}`} width="1000" height={presentation === 2 ? 625 : 1000} loading="lazy" />
     {wines.slice(0, config.slots).map((wine, index) => {
       const {rotate, ...position} = config.bottles[index];

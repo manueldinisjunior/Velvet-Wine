@@ -1363,7 +1363,7 @@ footer#contact { position:relative; }
 .footer-legal a { display:inline-flex; align-items:center; min-height:44px; }
 .footer-top .footer-contact, .footer-business + .back-top { display:inline-flex; align-items:center; justify-content:space-between; gap:16px; min-width:144px; min-height:48px; border:1px solid #ae939f; border-radius:28px; padding:10px 16px; font-size:14px; font-weight:600; line-height:26px; box-sizing:border-box; }
 .footer-top .footer-contact:hover, .footer-business + .back-top:hover,
-.footer-top .footer-contact:focus-visible, .footer-business + .back-top:focus-visible { border-color:#ae939f; }
+.footer-top .footer-contact:focus-visible, .footer-business + .back-top:focus-visible { border-color:#ae939f; background:var(--cream); color:var(--ink); }
 /* Block-level sizing lets auto margins center the mobile footer button. */
 @media(max-width:700px) {
  .footer-business + .back-top { position:static; display:flex; width:max-content; margin:12px auto 0; }
@@ -1419,9 +1419,10 @@ footer#contact { position:relative; }
 @media(max-width:600px) { .wine-quick-view { padding:20px; } .quick-view-facts { grid-template-columns:90px 1fr; } }
 
 /* Full-width landing CTA and dedicated gift selection. */
-.gift-section { width:100%; margin:0; padding:36px 5%; background:#f1e7e9; }
-.gift-teaser-inner { max-width:1120px; margin:auto; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:clamp(24px,5vw,72px); }
+.gift-section { width:100%; margin:0; padding:0 5%; background:#f1e7e9; }
+.gift-teaser-inner { max-width:1120px; margin:auto; display:grid; grid-template-columns:1fr 1fr; align-items:stretch; gap:clamp(24px,5vw,72px); }
 .gift-teaser-carousel > img { width:100%; height:300px; object-fit:cover; object-position:center 60%; }
+.gift-teaser-copy { align-self:center; padding-block:32px; }
 .gift-teaser-copy h2,.gifts-intro h1 { font-family:Georgia,serif; font-size:clamp(36px,4.2vw,60px); font-weight:400; line-height:1.1; margin:12px 0 20px; }
 .gift-teaser-copy > p:not(.eyebrow) { max-width:43ch; margin-bottom:24px; }
 .gifts-page { padding:44px 5% 72px; }
@@ -1455,7 +1456,7 @@ footer#contact { position:relative; }
 @media(prefers-reduced-motion:no-preference) { .gifts-featured > img { animation:velvet-reveal 180ms ease-out; } .gift-thumbnails button { transition:transform 180ms ease; } }
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) { .gift-thumbnails button:hover { transform:translateY(2px); } }
 @media(max-width:700px) {
- .gift-section { padding:28px 6%; } .gift-teaser-inner,.gifts-layout { grid-template-columns:1fr; gap:24px; } .gift-teaser-carousel > img { height:220px; } .gift-teaser-copy h2 { font-size:38px; } .gift-teaser-copy .button { width:100%; justify-content:space-between; }
+ .gift-section { padding:0 6%; } .gift-teaser-copy { padding:0 0 28px; } .gift-teaser-inner,.gifts-layout { grid-template-columns:1fr; gap:24px; } .gift-teaser-carousel > img { height:220px; } .gift-teaser-copy h2 { font-size:38px; } .gift-teaser-copy .button { width:100%; justify-content:space-between; }
  .gifts-page { padding:28px 6% 48px; } .gifts-intro { margin-bottom:24px; } .gift-builder { padding:22px; } .gift-thumbnails > div { grid-template-columns:repeat(4,minmax(0,1fr)); } .gift-thumbnails img { max-height:90px; } .gifts-featured { max-height:none; }
  .about-background::before { background-image:linear-gradient(90deg,var(--cream),#faf7ef88),url("../public/images/about-display.webp"); }
 }
@@ -1479,7 +1480,9 @@ footer#contact { position:relative; }
 .basket-preview .basket-bottle img { width:100%; height:100%; max-height:none; aspect-ratio:auto; object-fit:contain; mix-blend-mode:normal; opacity:1; filter:none; }
 .basket-bottle .bottle-placeholder { width:100%; height:100%; min-height:0; font-size:9px; }
 .basket-preview button.basket-bottle:focus-visible { outline:2px solid var(--wine); outline-offset:3px; }
-.gift-teaser-carousel { max-height:340px; display:flex; align-items:center; }
+.gift-teaser-carousel { position:relative; container-type:size; min-height:340px; }
+/* Crop the entire composition together, preserving bottle and basket proportions. */
+.gift-teaser-carousel > .basket-preview { position:absolute; top:50%; left:50%; width:max(100cqw, calc(100cqh * var(--basket-ratio))); transform:translate(-50%,-50%); }
 .gift-thumbnails .basket-preview { aspect-ratio:1 !important; }
 .gift-thumbnails .basket-preview-2 { aspect-ratio:690 / 431 !important; margin-block:18%; }
 .gift-thumbnails .basket-preview img { max-height:none; }
@@ -1490,7 +1493,7 @@ footer#contact { position:relative; }
 .gift-contents p { font-size:13px; }
 .cart-image .basket-preview img { max-width:none; }
 @media(prefers-reduced-motion:no-preference) { .basket-bottle img { animation:velvet-reveal 180ms ease-out; } }
-@media(max-width:700px) { .gift-teaser-carousel { max-height:250px; } .about-background { min-height:calc(100svh - 110px); } }
+@media(max-width:700px) { .gift-teaser-carousel { height:250px; min-height:250px; } .about-background { min-height:calc(100svh - 110px); } }
 
 /* Preserve the original product colours against a neutral photo surface. */
 .gift-wine-choice { display:grid; grid-template-columns:76px minmax(0,1fr); column-gap:16px; align-items:center; }
