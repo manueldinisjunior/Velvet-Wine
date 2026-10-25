@@ -1480,9 +1480,9 @@ footer#contact { position:relative; }
 .basket-preview .basket-bottle img { width:100%; height:100%; max-height:none; aspect-ratio:auto; object-fit:contain; mix-blend-mode:normal; opacity:1; filter:none; }
 .basket-bottle .bottle-placeholder { width:100%; height:100%; min-height:0; font-size:9px; }
 .basket-preview button.basket-bottle:focus-visible { outline:2px solid var(--wine); outline-offset:3px; }
-.gift-teaser-carousel { position:relative; container-type:size; min-height:340px; }
+.gift-teaser-carousel { position:relative; container-type:size; --gift-frame-height:340px; min-height:var(--gift-frame-height); }
 /* Crop the entire composition together, preserving bottle and basket proportions. */
-.gift-teaser-carousel > .basket-preview { position:absolute; top:50%; left:50%; width:max(100cqw, calc(100cqh * var(--basket-ratio))); transform:translate(-50%,-50%); }
+.gift-teaser-carousel > .basket-preview { position:absolute; top:50%; left:50%; width:max(100cqw, calc(max(100cqh, var(--gift-frame-height)) * var(--basket-ratio))); transform:translate(-50%,-50%); }
 .gift-thumbnails .basket-preview { aspect-ratio:1 !important; }
 .gift-thumbnails .basket-preview-2 { aspect-ratio:690 / 431 !important; margin-block:18%; }
 .gift-thumbnails .basket-preview img { max-height:none; }
@@ -1493,7 +1493,7 @@ footer#contact { position:relative; }
 .gift-contents p { font-size:13px; }
 .cart-image .basket-preview img { max-width:none; }
 @media(prefers-reduced-motion:no-preference) { .basket-bottle img { animation:velvet-reveal 180ms ease-out; } }
-@media(max-width:700px) { .gift-teaser-carousel { height:250px; min-height:250px; } .about-background { min-height:calc(100svh - 110px); } }
+@media(max-width:700px) { .gift-teaser-carousel { --gift-frame-height:250px; height:250px; min-height:250px; } .about-background { min-height:calc(100svh - 110px); } }
 
 /* Preserve the original product colours against a neutral photo surface. */
 .gift-wine-choice { display:grid; grid-template-columns:76px minmax(0,1fr); column-gap:16px; align-items:center; }
