@@ -1342,7 +1342,6 @@ footer#contact { position:relative; }
 .footer-business + .back-top { position:absolute; right:5%; bottom:20px; }
 @media(max-width:700px) {
  .footer-meta { padding-inline:0; }
- .footer-business + .back-top { position:static; display:flex; margin:12px auto 0; }
 }
 
 /* Matching circular header controls; flags are local SVG assets. */
@@ -1365,6 +1364,10 @@ footer#contact { position:relative; }
 .footer-top .footer-contact, .footer-business + .back-top { display:inline-flex; align-items:center; justify-content:space-between; gap:16px; min-width:144px; min-height:48px; border:1px solid #ae939f; border-radius:28px; padding:10px 16px; font-size:14px; font-weight:600; line-height:26px; box-sizing:border-box; }
 .footer-top .footer-contact:hover, .footer-business + .back-top:hover,
 .footer-top .footer-contact:focus-visible, .footer-business + .back-top:focus-visible { border-color:#ae939f; }
+/* Block-level sizing lets auto margins center the mobile footer button. */
+@media(max-width:700px) {
+ .footer-business + .back-top { position:static; display:flex; width:max-content; margin:12px auto 0; }
+}
 @media(max-width:600px) {
  .footer-business .social-links { gap:14px 16px; }
  .footer-legal { gap:8px 22px; }
