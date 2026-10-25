@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import BackToTop from './BackToTop';
 jest.mock('../i18n', () => ({useLanguage: () => ({t: () => 'Nach oben'})}));
-test('a delayed desktop frame cannot jump directly to the header', () => {
-  window.matchMedia = jest.fn(() => ({matches:false}));
+test.each([false, true])('desktop scroll stays animated when reduced motion is %s, even after a delayed frame', (matches) => {
+  window.matchMedia = jest.fn(() => ({matches}));
   window.scrollTo = jest.fn();
   Object.defineProperty(window, 'scrollY', {configurable:true, value:1000});
   let callback;
@@ -13,6 +13,10 @@ test('a delayed desktop frame cannot jump directly to the header', () => {
   callback(100);
   callback(5100);
   expect(window.scrollTo.mock.calls.at(-1)[0].top).toBeGreaterThan(990);
+  for (let time = 5150; time <= 6250; time += 50) callback(time);
+  expect(window.scrollTo.mock.calls.at(-1)[0].top).toBe(500);
+  for (let time = 6300; time <= 7450; time += 50) callback(time);
+  expect(window.scrollTo.mock.calls.at(-1)[0].top).toBe(0);
   unmount(); raf.mockRestore();
   Object.defineProperty(window, 'scrollY', {configurable:true, value:0});
 });

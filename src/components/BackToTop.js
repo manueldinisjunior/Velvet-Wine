@@ -24,11 +24,13 @@ export default function BackToTop() {
       cancel();
       document.getElementById("top")?.focus({ preventScroll: true });
     };
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
+    const origin = window.scrollY;
+    // This explicit navigation action always uses the requested slow scroll.
+    // Automatic animations elsewhere still honour reduced-motion preferences.
+    if (origin <= 0) {
       finish();
       return;
     }
-    const origin = window.scrollY;
     let previousFrame;
     let elapsed = 0;
     const duration = 2400;
